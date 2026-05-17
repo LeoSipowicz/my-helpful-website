@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Converter - Free Online Image Format Converter</title>
+  <meta name="description" content="Convert images between PNG, JPEG, and WebP formats online for free. No server uploads, 100% private and secure." />
+  <link rel="canonical" href="https://helpful-website.com/html/image-converter.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta property="og:title" content="Image Converter - Free Online Image Format Converter" />
+  <meta property="og:description" content="Convert images between PNG, JPEG, and WebP formats online for free. No server uploads, 100% private and secure." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/image-converter.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image Converter",
+    "applicationCategory": "MultimediaApplication",
+    "description": "A browser-based tool to convert images between PNG, JPEG, and WebP formats.",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires browser with Canvas API support"
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>A Helpful Website</h1>
+    <p>A set of helpful tools</p>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html" class="active">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Image Converter</h2>
+      <p>Convert your images to PNG, JPEG, or WebP format. All processing is done in your browser — nothing is uploaded to a server.</p>
+    </section>
+
+    <section id="upload">
+      <h3>Upload Image</h3>
+      <input type="file" id="file-input" accept="image/*" />
+    </section>
+
+    <section id="controls-section" style="display:none;">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="format-select">Output Format</label>
+          <select id="format-select">
+            <option value="png">PNG</option>
+            <option value="jpeg">JPEG</option>
+            <option value="webp">WebP</option>
+          </select>
+        </div>
+        <div class="form-group" id="quality-group">
+          <label for="quality">Quality: <span id="quality-val">90</span></label>
+          <input type="range" id="quality" min="1" max="100" value="90" />
+        </div>
+      </div>
+
+      <div id="preview-section">
+        <h3>Preview</h3>
+        <canvas id="canvas"></canvas>
+      </div>
+
+      <div class="btn-group">
+        <button id="download-btn" class="btn-primary">Download Converted Image</button>
+      </div>
+    </section>
+    <section>
+      <h2>How to Choose the Right Image Format</h2>
+      <p>Choosing the right image format is one of the most important decisions you can make for your website, design project, or print work. Each format has strengths and weaknesses, and using the wrong one can lead to large file sizes, poor quality, or compatibility issues. Here is a practical guide to help you decide which format to use and when.</p>
+
+      <h3>JPEG — Best for Photographs</h3>
+      <p>JPEG (or JPG) is the most widely supported image format on the web. It uses lossy compression, which means it reduces file size by discarding some visual information that the human eye is less likely to notice. This makes JPEG ideal for photographs and complex images with lots of color gradients, where the compression artifacts are barely visible. The trade-off is that JPEG does not support transparency, and repeated saving will gradually degrade quality. Use JPEG for photos, website banners, and any image where small file size matters more than perfect fidelity.</p>
+
+      <h3>PNG — Best for Graphics and Transparency</h3>
+      <p>PNG uses lossless compression, meaning it preserves every pixel of the original image exactly. This makes it perfect for screenshots, logos, icons, diagrams, and any image that contains text or sharp edges. PNG also supports transparency, so you can overlay images on different backgrounds without a white box around them. The downside is that PNG files tend to be larger than JPEGs, especially for photographs. Use PNG for graphics, UI elements, images with text, and any scenario where you need a transparent background.</p>
+
+      <h3>WebP — The Modern Choice</h3>
+      <p>WebP is a newer format developed by Google that offers both lossy and lossless compression. It typically produces files 25 to 35 percent smaller than JPEG while maintaining comparable quality. WebP also supports transparency and animation, making it a versatile all-in-one format. Most modern browsers support WebP, including Chrome, Firefox, Safari, and Edge. If your audience uses up-to-date browsers, WebP is an excellent choice for reducing page load times without sacrificing visual quality. Use WebP for web images where browser compatibility allows.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Upload your image using the file picker, then select your desired output format from the dropdown menu. If you choose JPEG or WebP, you can adjust the quality slider to balance file size against image fidelity. A setting of 80 to 90 percent usually offers a good compromise — significantly smaller files with little visible difference from the original. The preview updates in real time so you can see the effect of your settings before downloading.</p>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/image-converter.js"></script>
+</body>
+</html>

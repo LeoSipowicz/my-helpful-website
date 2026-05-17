@@ -1,0 +1,222 @@
+/* ── Variables ── */
+:root {
+  --sand:  #E6E1C5;
+  --blue:  #6D72C3;
+  --onyx:  #151515;
+}
+
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--sand);
+  color: var(--onyx);
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; max-width: 48rem; }
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: Impact, 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.5rem; }
+
+p { margin-bottom: 1rem; }
+
+a {
+  color: var(--blue);
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* ── Layout ── */
+header {
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--onyx);
+}
+
+footer {
+  padding: 1rem 0;
+  border-top: 3px solid var(--onyx);
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+section { margin-bottom: 3rem; }
+
+/* ── Nav ── */
+nav { display: flex; gap: 0.25rem; margin-top: 1rem; }
+
+nav a {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--onyx);
+  color: var(--onyx);
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+}
+nav a:hover, nav a.active {
+  background: var(--onyx);
+  color: var(--sand);
+  text-decoration: none;
+}
+
+/* ── Buttons ── */
+button {
+  padding: 0.55rem 1.25rem;
+  border: 2px solid var(--onyx);
+  background: var(--sand);
+  color: var(--onyx);
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+button:hover           { background: var(--onyx); color: var(--sand); }
+button.btn-primary     { background: var(--onyx); color: var(--sand); }
+button.btn-primary:hover { background: var(--blue); border-color: var(--blue); }
+button.btn-danger      { border-color: #c0392b; color: #c0392b; }
+button.btn-danger:hover { background: #c0392b; color: var(--sand); }
+button:disabled        { opacity: 0.35; cursor: not-allowed; }
+
+.btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+
+/* ── Forms ── */
+label {
+  display: block;
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--onyx);
+  background: var(--sand);
+  color: var(--onyx);
+  font-size: 0.95rem;
+  font-family: Georgia, serif;
+  margin-bottom: 1rem;
+  border-radius: 0;
+  appearance: none;
+}
+
+input[type="color"] {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.2rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  appearance: auto;
+  background: none;
+  border: none;
+}
+
+input[type="file"] {
+  cursor: pointer;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.form-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+.form-row .form-group { flex: 1 1 200px; min-width: 0; }
+.checkbox-label { display: flex; align-items: center; gap: 0.5rem; font-family: Georgia, serif; text-transform: none; letter-spacing: 0; font-size: 0.95rem; margin-bottom: 1rem; cursor: pointer; }
+.checkbox-label input { width: auto; margin: 0; }
+
+/* ── Footer ── */
+footer nav { margin-bottom: 0.5rem; }
+footer nav a { font-size: 0.7rem; padding: 0.25rem 0.6rem; border-width: 1px; }
+footer p { font-size: 0.8rem; }
+
+/* ── Lists ── */
+ul, ol { margin: 0 0 1rem 1.5rem; }
+li { margin-bottom: 0.4rem; }
+
+/* ── Tool Grid ── */
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.tool-card { border: 2px solid var(--onyx); padding: 1.5rem; }
+.tool-card h3 { margin-bottom: 0.5rem; }
+.tool-card p { margin-bottom: 1rem; font-size: 0.95rem; }
+
+/* ── Palette ── */
+.palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; margin-bottom: 1rem; }
+.palette-swatch {
+  height: 100px;
+  border: 2px solid var(--onyx);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+.palette-hex {
+  display: block;
+  background: var(--sand);
+  color: var(--onyx);
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  margin-bottom: 0.25rem;
+  border: 1px solid var(--onyx);
+}
+
+/* ── Size Info ── */
+#size-info p { font-size: 0.95rem; }
+
+/* ── Canvas ── */
+canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem auto;
+  cursor: crosshair;
+  border: 2px solid var(--onyx);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  body { padding: 1rem; }
+
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.2rem; }
+
+  nav { flex-wrap: wrap; }
+  nav a { font-size: 0.7rem; padding: 0.25rem 0.5rem; }
+
+  .form-row .form-group { flex: 1 1 100%; }
+
+  main { max-width: none; }
+}

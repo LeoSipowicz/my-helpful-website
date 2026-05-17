@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Resizer - Free Online Image Resizing Tool</title>
+  <meta name="description" content="Resize your images online for free. Upload an image, set custom dimensions, and download the resized version. No server uploads, 100% private." />
+  <link rel="canonical" href="https://helpful-website.com/html/image-resizer.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta property="og:title" content="Image Resizer - Free Online Image Resizing Tool" />
+  <meta property="og:description" content="Resize your images online for free. Upload an image, set custom dimensions, and download the resized version. No server uploads, 100% private." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/image-resizer.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image Resizer",
+    "applicationCategory": "MultimediaApplication",
+    "description": "A browser-based tool to resize images online.",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires browser with Canvas API support"
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>A Helpful Website</h1>
+    <p>A set of helpful tools</p>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html" class="active">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Image Resizer</h2>
+      <p>Upload an image, set your desired dimensions, and download the resized version. All processing happens in your browser — nothing is uploaded to any server.</p>
+    </section>
+
+    <section id="upload">
+      <h3>Upload Image</h3>
+      <input type="file" id="file-input" accept="image/*" />
+    </section>
+
+    <section id="controls-section" style="display:none;">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="width-input">Width (px)</label>
+          <input type="number" id="width-input" min="1" />
+        </div>
+        <div class="form-group">
+          <label for="height-input">Height (px)</label>
+          <input type="number" id="height-input" min="1" />
+        </div>
+      </div>
+      <label class="checkbox-label">
+        <input type="checkbox" id="lock-aspect" checked />
+        Lock aspect ratio
+      </label>
+
+      <div id="preview-section">
+        <h3>Preview</h3>
+        <canvas id="canvas"></canvas>
+      </div>
+
+      <div class="btn-group">
+        <button id="download-btn" class="btn-primary">Download Resized Image</button>
+      </div>
+    </section>
+    <section>
+      <h2>How to Resize Images for Different Platforms</h2>
+      <p>Getting the right image dimensions for each platform is one of the most common frustrations for content creators. Social media sites, e-commerce platforms, and content management systems all have their own recommended image sizes, and uploading an image at the wrong dimensions can result in awkward cropping, blurry scaling, or ugly letterboxing. Here is a quick guide to resizing images for the most popular use cases.</p>
+
+      <h3>Social Media Image Dimensions</h3>
+      <p>For Facebook, the optimal shared image size is 1200 x 630 pixels, which fits the linked content preview format. Instagram feed posts work best at 1080 x 1080 pixels for the square format, or 1080 x 1350 pixels for portrait-oriented posts. Twitter images display well at 1200 x 675 pixels, which matches the in-stream preview aspect ratio of 16:9. LinkedIn recommends 1200 x 627 pixels for shared link previews and 1200 x 1200 pixels for company logo images.</p>
+
+      <h3>E-Commerce and Product Images</h3>
+      <p>If you sell products online, most marketplaces recommend images that are at least 1000 pixels on their longest side to enable zoom functionality. Amazon specifically requires product images to be at least 500 pixels on the longest side, with 1000 pixels being recommended for the best customer experience. Etsy suggests images that are 2000 pixels wide for high-quality listing photos. Using our resizer tool, you can quickly batch-prepare your product images to meet these requirements without needing expensive software.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Using the Image Resizer is straightforward. Click the upload button and select an image from your computer. Once loaded, you will see the current dimensions displayed in the width and height fields. You can either enter specific pixel values or use the lock aspect ratio checkbox to maintain the image proportions while changing one dimension. The live preview shows exactly how your resized image will look. When you are happy with the result, click Download Resized Image to save it to your computer. All processing is done in your browser using the Canvas API, so your original file never leaves your device.</p>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/image-resizer.js"></script>
+</body>
+</html>

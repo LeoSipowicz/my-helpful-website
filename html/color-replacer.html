@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Replacer - Free Image Color Replacement Tool</title>
+  <meta name="description" content="Quickly and easily replace any color in an image with another color using our free, browser-based color replacer tool. Secure, fast, and easy to use." />
+  <link rel="canonical" href="https://helpful-website.com/html/color-replacer.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Color Replacer - Free Image Color Replacement Tool" />
+  <meta property="og:description" content="Quickly and easily replace any color in an image with another color using our free, browser-based color replacer tool. Secure, fast, and easy to use." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/color-replacer.html" />
+  
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Color Replacer",
+    "applicationCategory": "MultimediaApplication",
+    "description": "A browser-based tool to replace specific colors in images.",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires browser with Canvas API support"
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <header>
+    <h1>A Helpful Website</h1>
+    <p>A set of helpful tools</p>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html" class="active">Color Replacer</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Color Replacer</h2>
+      <p>Upload an image, click on a color you want to replace, and the tool will replace that color throughout the image with your chosen replacement color. Adjust the tolerance to control how similar colors must be to be replaced.</p>
+    </section>
+
+    <section id="upload">
+      <h2>Upload Image</h2>
+      <input type="file" id="file-input" accept="image/*" />
+    </section>
+
+    <section id="canvas-section" style="display:none;">
+      <h2>Click a Color to Replace</h2>
+      <canvas id="canvas"></canvas>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="replace-color">Replace With</label>
+          <input type="color" id="replace-color" value="#6D72C3" />
+        </div>
+        <div class="form-group">
+          <label for="tolerance">Tolerance: <span id="tolerance-val">30</span></label>
+          <input type="range" id="tolerance" min="0" max="128" value="30" />
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button id="undo-btn">Undo</button>
+        <button id="download-btn" class="btn-primary">Download</button>
+        <button id="reset-btn" class="btn-danger">Reset</button>
+      </div>
+    </section>
+    <section>
+      <h2>How to Replace Colors in Images</h2>
+      <p>Color replacement is a common image editing task that usually requires expensive software like Photoshop. Our Color Replacer tool gives you the same capability directly in your browser, for free, with no sign-ups or installations. Whether you need to change a product background, recolor an object, or fix a color cast, this tool makes it simple.</p>
+
+      <h3>When Would You Use Color Replacement?</h3>
+      <p>There are many practical scenarios where color replacement is useful. E-commerce sellers often need to show the same product in multiple colors — instead of photographing each variant separately, you can photograph one and use this tool to change the color digitally. Graphic designers might need to match the color of an element to a brand guideline. Web developers sometimes need to change the color of a texture or background to fit a design mockup. And for personal projects, you might want to change the color of an object in a photo for creative effect.</p>
+
+      <h3>Understanding Tolerance</h3>
+      <p>The tolerance setting is the most important control in this tool. It determines how similar a pixel's color must be to your selected color for it to be replaced. A low tolerance value (5 to 15) means only pixels that are very close to the exact color you clicked will be changed. This is useful for replacing a specific, uniform color like a solid background. A high tolerance (60 to 100) will replace a much wider range of similar colors, which is helpful when the color you want to change has subtle variations due to lighting or shading. Start with a tolerance of around 30 and adjust up or down based on your results.</p>
+
+      <h3>Tips for Best Results</h3>
+      <p>For the cleanest color replacement, use images where the color you want to change is relatively uniform and contrasts well with surrounding colors. If you are replacing a background color, try to use an image where the subject is well separated from the background. You can click the undo button to revert the last change and try again with different settings. The reset button restores the original image so you can start over. The preview updates in real time so you can fine-tune the result before downloading.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Upload your image, then click on the color you want to replace. The tool will select that color throughout the image. Choose a replacement color using the color picker, then adjust the tolerance slider to control how much of the image is affected. Click download to save your edited image. All processing is done locally in your browser — nothing is uploaded anywhere.</p>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/color-replacer.js"></script>
+
+</body>
+</html>
