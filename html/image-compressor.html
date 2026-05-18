@@ -63,12 +63,24 @@
     </section>
 
     <section id="controls-section" style="display:none;">
-      <div class="form-group">
-        <label for="quality">Compression Quality: <span id="quality-val">80</span></label>
-        <input type="range" id="quality" min="1" max="100" value="80" />
+      <div class="form-row">
+        <div class="form-group">
+          <label for="format-select">Output Format</label>
+          <select id="format-select">
+            <option value="auto">Auto (preserve original)</option>
+            <option value="png">PNG</option>
+            <option value="jpeg">JPEG</option>
+            <option value="webp">WebP</option>
+          </select>
+        </div>
+        <div class="form-group" id="quality-group">
+          <label for="quality">Compression Quality: <span id="quality-val">80</span></label>
+          <input type="range" id="quality" min="1" max="100" value="80" />
+        </div>
       </div>
 
       <div id="size-info">
+        <p>Original format: <span id="original-format"></span></p>
         <p>Original size: <span id="original-size"></span></p>
         <p>Compressed size: <span id="compressed-size"></span></p>
       </div>
@@ -87,16 +99,16 @@
       <p>Image compression is essential for creating fast-loading websites and efficient workflows. Large image files are the number one cause of slow page load times, which hurts your search engine rankings and drives visitors away. But compression does not have to mean visible quality loss. With the right approach, you can dramatically reduce file sizes while keeping images looking great.</p>
 
       <h3>Understanding the Quality vs. Size Trade-Off</h3>
-      <p>Our compressor uses lossy compression (JPEG) or lossy WebP, depending on your original file type. The quality slider lets you control how aggressive the compression is. At 100 percent quality, the image looks nearly identical to the original but the file size reduction is minimal. At very low settings like 10 to 20 percent, the file becomes tiny but visible artifacts appear — blockiness, color banding, and blurring. The sweet spot for most web images is between 70 and 85 percent. At this range, the human eye can barely tell the difference, but file sizes are often reduced by 50 to 80 percent.</p>
+      <p>When you choose JPEG or WebP output, the compressor uses lossy compression. The quality slider lets you control how aggressive the compression is. At 100 percent quality, the image looks nearly identical to the original but the file size reduction is minimal. At very low settings like 10 to 20 percent, the file becomes tiny but visible artifacts appear — blockiness, color banding, and blurring. The sweet spot for most web images is between 70 and 85 percent. At this range, the human eye can barely tell the difference, but file sizes are often reduced by 50 to 80 percent. If you choose PNG output, compression is lossless and the quality slider is disabled, since PNG preserves every pixel exactly.</p>
 
       <h3>Best Practices for Web Images</h3>
       <p>Before compressing, consider whether you actually need the image at its original resolution. A 4000-pixel-wide photo displayed in a 600-pixel-wide blog sidebar is wasting bandwidth even with compression. Use our Image Resizer first to scale down to your target display size, then compress the result. This two-step approach consistently produces the smallest possible files with the highest visual quality. Also, consider using WebP format for web images — it maintains better quality at lower file sizes compared to JPEG.</p>
 
       <h3>How to Use This Tool</h3>
-      <p>Start by uploading your image. The tool will show you the original file size. Adjust the compression quality slider and watch the compressed size update in real time. A live preview lets you compare the original and compressed versions side by side. When you are satisfied with the balance between size and quality, click Download Compressed Image. Since everything runs in your browser, you can compress as many images as you want without any limits or upload delays.</p>
+      <p>Start by uploading your image. The tool will show you the original file size and format. By default, the output format is set to Auto, which preserves your original file type. You can also manually choose PNG, JPEG, or WebP from the dropdown. If you select JPEG or WebP, adjust the quality slider to balance file size against image fidelity. PNG compression is always lossless, so the quality slider is disabled for PNG outputs. The live preview updates as you change settings. When you are satisfied with the result, click Download Compressed Image. Since everything runs in your browser, you can compress as many images as you want without any limits or upload delays.</p>
 
       <h3>What Is a Good Compression Ratio?</h3>
-      <p>For photographs saved as JPEG, a compression ratio of 5:1 to 10:1 (meaning the compressed file is 5 to 10 times smaller than the original) is typical at quality settings around 75 to 85 percent. For PNG graphics that contain large areas of solid color, compression ratios can be much higher. The size info panel shows you the exact before-and-after sizes so you can tune the settings to your needs.</p>
+      <p>For photographs saved as JPEG, a compression ratio of 5:1 to 10:1 (meaning the compressed file is 5 to 10 times smaller than the original) is typical at quality settings around 75 to 85 percent. For PNG graphics that contain large areas of solid color, the built-in lossless PNG compression can still deliver meaningful savings because browser-based encoders are highly optimized. The size info panel shows you the exact before-and-after sizes so you can tune the settings to your needs.</p>
     </section>
   </main>
 
