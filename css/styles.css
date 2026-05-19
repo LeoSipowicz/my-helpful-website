@@ -181,6 +181,13 @@ li { margin-bottom: 0.4rem; }
   cursor: pointer;
   position: relative;
 }
+.palette-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  margin-bottom: 0.25rem;
+}
 .palette-hex {
   display: block;
   background: var(--sand);
@@ -188,7 +195,15 @@ li { margin-bottom: 0.4rem; }
   font-family: 'Courier New', monospace;
   font-size: 0.75rem;
   padding: 0.2rem 0.4rem;
-  margin-bottom: 0.25rem;
+  border: 1px solid var(--onyx);
+}
+.palette-rgb {
+  display: block;
+  background: var(--sand);
+  color: var(--onyx);
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.3rem;
   border: 1px solid var(--onyx);
 }
 

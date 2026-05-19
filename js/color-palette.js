@@ -29,9 +29,9 @@ function extractPalette(img, count) {
   const colorMap = {};
 
   for (let i = 0; i < data.length; i += 16) {
-    const r = Math.round(data[i] / 32) * 32;
-    const g = Math.round(data[i + 1] / 32) * 32;
-    const b = Math.round(data[i + 2] / 32) * 32;
+    const r = Math.min(255, Math.round(data[i] / 32) * 32);
+    const g = Math.min(255, Math.round(data[i + 1] / 32) * 32);
+    const b = Math.min(255, Math.round(data[i + 2] / 32) * 32);
     const key = `${r},${g},${b}`;
     colorMap[key] = (colorMap[key] || 0) + 1;
   }
@@ -52,11 +52,13 @@ function renderPalette(colors) {
     const swatch = document.createElement('div');
     swatch.className = 'palette-swatch';
     swatch.style.background = c.hex;
-    swatch.innerHTML = `<span class="palette-hex">${c.hex}</span>`;
+    swatch.innerHTML = `<span class="palette-labels"><span class="palette-hex">${c.hex}</span><span class="palette-rgb">rgb(${c.r}, ${c.g}, ${c.b})</span></span>`;
     swatch.addEventListener('click', () => {
-      navigator.clipboard.writeText(c.hex).then(() => {
+      const textToCopy = `${c.hex} — rgb(${c.r}, ${c.g}, ${c.b})`;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        copyFeedback.textContent = `Copied ${c.hex}`;
         copyFeedback.style.display = '';
-        setTimeout(() => copyFeedback.style.display = 'none', 2000);
+        setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
       });
     });
     palette.appendChild(swatch);
