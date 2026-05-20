@@ -14,3 +14,6 @@
 
 ### 2026-05-19
 - Fixed critical Color Palette Extractor bug where bright colors (≥240 in any channel) produced invalid 9-digit hex codes due to quantization overflow to 256; values are now clamped to 255 so hex codes are always valid CSS. Also added RGB values alongside hex on each swatch and improved clipboard copy to include both formats with specific color feedback, making the tool more useful for designers who work in multiple color formats
+
+### 2026-05-20
+- Added Word Counter & Character Counter tool (html/word-counter.html + js/word-counter.js) with live word count, character count (with/without spaces), sentence count, paragraph count, reading time estimate, and keyword density analysis; diversifies site text tools to capture high-volume writing and SEO utility search queries; integrated across all page navigation, homepage tool grid, 404 tool grid, about page (correcting the previously inaccurate "seven tools" claim by making it true), sitemap, and updated homepage/about meta descriptions to reflect "image and text tools"

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Counter &amp; Character Counter - Free Online Text Statistics</title>
+  <meta name="description" content="Count words, characters, sentences, and paragraphs instantly. Get reading time, keyword density, and detailed text statistics. Free, private, no sign-up required." />
+  <link rel="canonical" href="https://helpful-website.com/html/word-counter.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta property="og:title" content="Word Counter &amp; Character Counter - Free Online Text Statistics" />
+  <meta property="og:description" content="Count words, characters, sentences, and paragraphs instantly. Get reading time and keyword density. Free, private, no sign-up required." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/word-counter.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Word Counter & Character Counter",
+    "applicationCategory": "UtilityApplication",
+    "description": "A browser-based tool to count words, characters, sentences, paragraphs, reading time, and keyword density in text.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-card {
+      border: 2px solid var(--onyx);
+      padding: 1rem;
+      text-align: center;
+    }
+    .stat-value {
+      font-family: Impact, sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+    }
+    #input-text {
+      min-height: 10rem;
+      resize: vertical;
+    }
+    #copy-feedback {
+      font-size: 0.85rem;
+      color: var(--blue);
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.75rem;
+    }
+    .keyword-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .keyword-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(21,21,21,0.15);
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+    .keyword-list li:last-child {
+      border-bottom: none;
+    }
+    .density-bar {
+      display: inline-block;
+      height: 8px;
+      background: var(--blue);
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>A Helpful Website</h1>
+    <p>A set of helpful tools</p>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html" class="active">Word Counter</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Word Counter &amp; Character Counter</h2>
+      <p>Paste or type your text below to get instant word count, character count, sentence count, paragraph count, estimated reading time, and keyword density analysis. No data is sent anywhere — everything runs in your browser.</p>
+    </section>
+
+    <section>
+      <div class="form-group">
+        <label for="input-text">Your Text</label>
+        <textarea id="input-text" rows="10" placeholder="Type or paste your text here to see live statistics..."></textarea>
+      </div>
+
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card"><div class="stat-value" id="word-count">0</div><div class="stat-label">Words</div></div>
+        <div class="stat-card"><div class="stat-value" id="char-count">0</div><div class="stat-label">Characters</div></div>
+        <div class="stat-card"><div class="stat-value" id="char-no-spaces">0</div><div class="stat-label">No Spaces</div></div>
+        <div class="stat-card"><div class="stat-value" id="sentence-count">0</div><div class="stat-label">Sentences</div></div>
+        <div class="stat-card"><div class="stat-value" id="paragraph-count">0</div><div class="stat-label">Paragraphs</div></div>
+        <div class="stat-card"><div class="stat-value" id="reading-time">0s</div><div class="stat-label">Reading Time</div></div>
+      </div>
+
+      <div id="keyword-section" style="display:none;">
+        <h3>Top Keywords</h3>
+        <ul class="keyword-list" id="keyword-list"></ul>
+      </div>
+
+      <div class="btn-group">
+        <button id="copy-btn" class="btn-primary">Copy Text</button>
+        <span id="copy-feedback" style="display:none;">Copied!</span>
+        <button id="clear-btn">Clear</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why Word Count Matters</h2>
+      <p>Knowing the length and structure of your text is essential across many professions and activities. Writers need to hit specific word counts for articles and essays. Students face strict limits on assignments. Social media managers must stay within platform-specific character limits. SEO professionals optimize content length for search rankings. And everyday users simply want to know how long a piece of text is.</p>
+
+      <h3>Standard Word and Character Limits</h3>
+      <p>Different platforms impose different limits, and staying within them is often critical. Twitter (now X) allows posts up to 280 characters for most accounts. Instagram captions have a hard limit of 2,200 characters. Meta descriptions for search engines should stay under 160 characters to avoid truncation in results. Google Ads headlines are limited to 30 characters, while descriptions allow 90. Academic essays often require exact word counts, with penalties for going over or under. Knowing these limits before you publish saves time and rework.</p>
+
+      <h3>Reading Time Estimates</h3>
+      <p>The average adult reads prose at approximately 200 to 250 words per minute. This tool uses a conservative estimate of 200 words per minute to calculate reading time. For technical documents, dense academic papers, or content in a second language, reading speed may be significantly slower. For light fiction or familiar topics, it may be faster. Use the reading time estimate as a rough guideline when planning presentations, blog posts, or newsletters.</p>
+
+      <h3>Keyword Density for SEO</h3>
+      <p>Keyword density refers to how often a particular word appears relative to the total word count. While modern search engines use sophisticated semantic analysis rather than simple keyword repetition, understanding which words dominate your text is still useful. Overusing a keyword can make text feel spammy and may trigger search engine penalties. Underusing an important term may mean search engines struggle to understand the topic. This tool shows the most frequent meaningful words, excluding common stop words like "the", "and", and "is", so you can see at a glance what your text is actually about.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Simply paste or type your text into the box above. Statistics update instantly as you type. Use the Copy Text button to grab your content for use elsewhere, or the Clear button to start fresh. All processing happens locally in your browser — your text never leaves your device.</p>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/word-counter.js"></script>
+</body>
+</html>
