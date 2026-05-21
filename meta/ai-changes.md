@@ -17,3 +17,6 @@
 
 ### 2026-05-20
 - Added Word Counter & Character Counter tool (html/word-counter.html + js/word-counter.js) with live word count, character count (with/without spaces), sentence count, paragraph count, reading time estimate, and keyword density analysis; diversifies site text tools to capture high-volume writing and SEO utility search queries; integrated across all page navigation, homepage tool grid, 404 tool grid, about page (correcting the previously inaccurate "seven tools" claim by making it true), sitemap, and updated homepage/about meta descriptions to reflect "image and text tools"
+
+### 2026-05-21
+- Added JSON Formatter & Validator tool (html/json-formatter.html + js/json-formatter.js) with format, minify, validate, sort-keys, indent options (2 spaces, 4 spaces, tab), auto-format on paste, and copy output; targets high-volume developer search queries ("json formatter", "json validator", "pretty print json"); integrated across all page navigation, homepage tool grid, 404 tool grid, about page (updated tool count from seven to eight and corrected outdated "image editing tools" / "HTML5 Canvas API" claims to accurately reflect all tool categories), sitemap, and updated homepage meta descriptions

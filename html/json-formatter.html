@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON Formatter &amp; Validator - Free Online JSON Pretty Print Tool</title>
+  <meta name="description" content="Format, validate, and pretty-print JSON online for free. Instantly beautify messy JSON, minify it for production, or validate syntax with clear error messages. No data sent to any server." />
+  <link rel="canonical" href="https://helpful-website.com/html/json-formatter.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta property="og:title" content="JSON Formatter &amp; Validator - Free Online JSON Pretty Print Tool" />
+  <meta property="og:description" content="Format, validate, and pretty-print JSON online for free. Instantly beautify messy JSON, minify it for production, or validate syntax with clear error messages." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/json-formatter.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "JSON Formatter & Validator",
+    "applicationCategory": "DeveloperApplication",
+    "description": "A browser-based tool to format, validate, minify, and pretty-print JSON data with syntax error reporting.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    #input-json, #output-json {
+      min-height: 10rem;
+      resize: vertical;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    #output-json {
+      background: rgba(21,21,21,0.03);
+    }
+    .options-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .options-row .form-group {
+      flex: 0 0 auto;
+      margin-bottom: 0;
+    }
+    .options-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: Georgia, serif;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+    .options-row label input {
+      width: auto;
+      margin: 0;
+    }
+    .options-row select {
+      width: auto;
+      min-width: 8rem;
+      margin-bottom: 0;
+    }
+    #error-box {
+      display: none;
+      border: 2px solid #c0392b;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: rgba(192,57,43,0.05);
+    }
+    #error-box h4 {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #c0392b;
+      margin-bottom: 0.5rem;
+    }
+    #error-box pre {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    #copy-feedback {
+      font-size: 0.85rem;
+      color: var(--blue);
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.75rem;
+    }
+    .status-ok {
+      display: none;
+      font-size: 0.85rem;
+      color: #27ae60;
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>A Helpful Website</h1>
+    <p>A set of helpful tools</p>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="json-formatter.html" class="active">JSON Formatter</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>JSON Formatter &amp; Validator</h2>
+      <p>Paste your JSON below to instantly beautify, validate, or minify it. All processing happens in your browser — your data is never sent to any server.</p>
+    </section>
+
+    <section>
+      <div class="form-group">
+        <label for="input-json">Input JSON</label>
+        <textarea id="input-json" rows="8" placeholder='Paste your JSON here, e.g. {"name":"John","age":30}'></textarea>
+      </div>
+
+      <div class="options-row">
+        <div class="form-group">
+          <label for="indent-select">Indent</label>
+          <select id="indent-select">
+            <option value="2">2 Spaces</option>
+            <option value="4">4 Spaces</option>
+            <option value="tab">Tab</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="sort-keys" />
+            Sort keys
+          </label>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button id="format-btn" class="btn-primary">Format JSON</button>
+        <button id="minify-btn">Minify JSON</button>
+        <button id="validate-btn">Validate Only</button>
+        <button id="clear-btn">Clear</button>
+      </div>
+
+      <div id="error-box">
+        <h4>Validation Error</h4>
+        <pre id="error-message"></pre>
+      </div>
+
+      <div class="status-ok" id="status-ok">Valid JSON</div>
+
+      <div class="form-group">
+        <label for="output-json">Output</label>
+        <textarea id="output-json" rows="8" readonly placeholder="Formatted JSON will appear here..."></textarea>
+      </div>
+
+      <div class="btn-group">
+        <button id="copy-btn" class="btn-primary">Copy Output</button>
+        <span id="copy-feedback" style="display:none;">Copied!</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>What Is JSON and Why Format It?</h2>
+      <p>JSON (JavaScript Object Notation) is the universal language of data exchange on the web. APIs, configuration files, databases, and modern applications all rely on JSON to move structured information between systems. But JSON written by machines — or copied from logs, network responses, and minified files — is often compressed into a single unreadable line. Our JSON Formatter turns that mess into clean, indented, human-readable text in milliseconds.</p>
+
+      <h3>When to Use a JSON Formatter</h3>
+      <p>Developers use JSON formatters dozens of times a day. You paste an API response to inspect its structure. You review a configuration file to find a specific key. You share a data sample with a teammate and want them to read it easily. You debug a webhook payload and need to see nested objects clearly. In all of these cases, pretty-printed JSON saves time and prevents errors caused by misreading compressed data.</p>
+
+      <h3>Validation Matters</h3>
+      <p>Invalid JSON is one of the most common causes of API failures and application crashes. A trailing comma, an unquoted key, a missing bracket, or a single stray character can break an entire data pipeline. This tool validates your JSON as you work and reports syntax errors in plain English so you can fix them immediately. Catching errors before they reach your code saves hours of debugging.</p>
+
+      <h3>Minification for Production</h3>
+      <p>While formatted JSON is perfect for humans, machines do not need whitespace. Minified JSON removes all unnecessary spaces, line breaks, and indentation, producing the smallest possible file size. This reduces bandwidth usage for API responses, speeds up data transfer, and improves application performance. Use the Minify button when you are ready to deploy JSON to a production environment.</p>
+
+      <h3>Common JSON Mistakes</h3>
+      <p>Even experienced developers make JSON errors. The most frequent mistakes include trailing commas after the last item in an array or object, using single quotes instead of double quotes for strings, leaving keys unquoted, and including comments (which JSON does not support). Another common issue is encoding problems — JSON must be valid UTF-8, and some special characters need escaping. This tool catches all of these issues and tells you exactly what is wrong.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Paste your JSON into the input box. Choose your preferred indentation — 2 spaces is the standard for most projects, 4 spaces works well for deeply nested data, and tabs are common in legacy codebases. Enable the Sort Keys option if you want object keys arranged alphabetically, which makes comparison and diffing easier. Click Format JSON to beautify, Minify JSON to compress, or Validate Only to check syntax without changing the layout. Use Copy Output to grab the result for use in your editor or terminal.</p>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/json-formatter.js"></script>
+</body>
+</html>
