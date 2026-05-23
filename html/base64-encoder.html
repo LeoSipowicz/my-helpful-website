@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base64 Encoder &amp; Decoder - Free Online Base64 Converter</title>
+  <meta name="description" content="Encode and decode Base64 online for free. Convert text to Base64 or decode Base64 back to text. Supports file encoding too. No data sent to any server — everything runs in your browser." />
+  <link rel="canonical" href="https://helpful-website.com/html/base64-encoder.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta property="og:title" content="Base64 Encoder &amp; Decoder - Free Online Base64 Converter" />
+  <meta property="og:description" content="Encode and decode Base64 online for free. Convert text to Base64 or decode Base64 back to text. Supports file encoding too." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/base64-encoder.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Base64 Encoder & Decoder",
+    "applicationCategory": "DeveloperApplication",
+    "description": "A browser-based tool to encode text and files to Base64 and decode Base64 back to text or files.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    #input-text, #output-text {
+      min-height: 10rem;
+      resize: vertical;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    #output-text {
+      background: rgba(21,21,21,0.03);
+    }
+    .options-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .options-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: Georgia, serif;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+    .options-row label input {
+      width: auto;
+      margin: 0;
+    }
+    #copy-feedback {
+      font-size: 0.85rem;
+      color: var(--blue);
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.75rem;
+    }
+    #char-info {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+    #file-section {
+      border: 2px dashed var(--onyx);
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    #file-section p {
+      margin-bottom: 0.5rem;
+    }
+    #file-section input[type="file"] {
+      margin-bottom: 0;
+    }
+    #file-meta {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 768px) {
+      #input-text, #output-text { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>A Helpful Website</h1>
+    <p>A set of helpful tools</p>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="base64-encoder.html" class="active">Base64 Encoder</a>
+      <a href="password-generator.html">Password Generator</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Base64 Encoder &amp; Decoder</h2>
+      <p>Encode plain text or files to Base64, or decode Base64 strings back to their original content. All processing happens in your browser — your data never leaves your device.</p>
+    </section>
+
+    <section>
+      <div class="form-group">
+        <label for="input-text">Input (text or Base64)</label>
+        <textarea id="input-text" rows="8" placeholder="Type or paste text here to encode, or paste a Base64 string to decode..."></textarea>
+      </div>
+
+      <div class="options-row">
+        <label>
+          <input type="checkbox" id="url-safe" />
+          URL-safe Base64 (replace + with - and / with _)
+        </label>
+      </div>
+
+      <div class="btn-group">
+        <button id="encode-btn" class="btn-primary">Encode to Base64</button>
+        <button id="decode-btn">Decode from Base64</button>
+        <button id="swap-btn">Swap Input / Output</button>
+        <button id="clear-btn">Clear</button>
+      </div>
+
+      <div id="char-info"></div>
+
+      <div class="form-group">
+        <label for="output-text">Output</label>
+        <textarea id="output-text" rows="8" readonly placeholder="Result will appear here..."></textarea>
+      </div>
+
+      <div class="btn-group">
+        <button id="copy-btn" class="btn-primary">Copy Output</button>
+        <span id="copy-feedback" style="display:none;">Copied!</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Encode a File to Base64</h2>
+      <p>Upload any file to get its Base64 representation. This is useful for embedding small images directly in CSS or HTML, or for transmitting binary data in text-based formats like JSON.</p>
+      <div id="file-section">
+        <input type="file" id="file-input" />
+        <p id="file-meta"></p>
+      </div>
+      <div class="btn-group">
+        <button id="copy-file-btn" class="btn-primary" style="display:none;">Copy File Base64</button>
+        <span id="copy-file-feedback" style="display:none;">Copied!</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>What Is Base64 and Why Use It?</h2>
+      <p>Base64 is an encoding scheme that converts binary data into a text string using 64 printable ASCII characters. It is not encryption — anyone can decode Base64 back to the original content — but it is invaluable for transferring binary data through systems that only handle text.</p>
+
+      <h3>Common Use Cases</h3>
+      <p><strong>Embedding images in HTML or CSS:</strong> Small icons and graphics can be converted to Base64 data URIs and embedded directly in your stylesheet or markup, eliminating extra HTTP requests. This is especially useful for single-file emails or critical above-the-fold assets.</p>
+      <p><strong>APIs and JSON:</strong> JSON does not natively support binary data. If you need to send an image or a file through a REST API, encoding it as Base64 inside a JSON string is the standard approach.</p>
+      <p><strong>Data URLs:</strong> Modern browsers support data URIs like <code>data:image/png;base64,iVBORw0KGgo...</code> which let you display images without hosting them on a server. Our file encoder generates these strings for you automatically.</p>
+      <p><strong>Debugging and inspection:</strong> Developers often encounter Base64 strings in configuration files, JWT tokens, cookie values, and network payloads. Being able to quickly decode them to inspect their contents is a daily necessity.</p>
+
+      <h3>URL-Safe Base64</h3>
+      <p>Standard Base64 uses the characters <code>+</code> and <code>/</code>, which have special meanings in URLs. URL-safe Base64 replaces <code>+</code> with <code>-</code> and <code>/</code> with <code>_</code>, and sometimes omits padding <code>=</code> characters. This makes the encoded string safe to pass as a query parameter or path segment without further encoding. If you are generating Base64 for use in a web address, enable the URL-safe option.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Paste your text into the input box and click Encode to Base64 to convert it. To reverse the process, paste a Base64 string and click Decode from Base64. Use the Swap button to move the output back to the input for chained operations. Enable URL-safe Base64 if you plan to use the result in a URL. To encode a file, use the file picker below the text areas — the tool will read the file locally and output its Base64 representation, complete with the data URI prefix.</p>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="base64-encoder.html">Base64 Encoder</a>
+      <a href="password-generator.html">Password Generator</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/base64-encoder.js"></script>
+</body>
+</html>
