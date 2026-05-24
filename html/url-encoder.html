@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Encoder &amp; Decoder - Free Online URL Converter</title>
+  <meta name="description" content="Encode and decode URLs online for free. Convert text to URL-encoded format or decode percent-encoded strings back to plain text. Supports both encodeURIComponent and encodeURI modes. No data sent to any server." />
+  <link rel="canonical" href="https://helpful-website.com/html/url-encoder.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta property="og:title" content="URL Encoder &amp; Decoder - Free Online URL Converter" />
+  <meta property="og:description" content="Encode and decode URLs online for free. Supports encodeURIComponent and encodeURI modes. No data sent to any server." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/url-encoder.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "URL Encoder & Decoder",
+    "applicationCategory": "DeveloperApplication",
+    "description": "A browser-based tool to encode text to URL-encoded format and decode percent-encoded strings back to plain text.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    #input-text, #output-text {
+      min-height: 10rem;
+      resize: vertical;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    #output-text {
+      background: rgba(21,21,21,0.03);
+    }
+    .options-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .options-row .form-group {
+      flex: 0 0 auto;
+      margin-bottom: 0;
+    }
+    .options-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: Georgia, serif;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+    .options-row label input {
+      width: auto;
+      margin: 0;
+    }
+    .options-row select {
+      width: auto;
+      min-width: 10rem;
+      margin-bottom: 0;
+    }
+    #copy-feedback {
+      font-size: 0.85rem;
+      color: var(--blue);
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.75rem;
+    }
+    #char-info {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+    .mode-note {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      #input-text, #output-text { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>A Helpful Website</h1>
+    <p>A set of helpful tools</p>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="base64-encoder.html">Base64 Encoder</a>
+      <a href="url-encoder.html" class="active">URL Encoder</a>
+      <a href="password-generator.html">Password Generator</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>URL Encoder &amp; Decoder</h2>
+      <p>Encode plain text or query parameters to URL-safe percent-encoded format, or decode percent-encoded strings back to readable text. All processing happens in your browser — your data never leaves your device.</p>
+    </section>
+
+    <section>
+      <div class="form-group">
+        <label for="input-text">Input (plain text or encoded URL)</label>
+        <textarea id="input-text" rows="8" placeholder="Paste text to encode, or a percent-encoded string to decode..."></textarea>
+      </div>
+
+      <div class="options-row">
+        <div class="form-group">
+          <label for="mode-select">Encoding Mode</label>
+          <select id="mode-select">
+            <option value="component">Component (for query strings &amp; form data)</option>
+            <option value="full">Full URL (preserves scheme &amp; domain)</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="mode-note" id="mode-note"><strong>Component mode</strong> encodes almost all special characters, making it safe for use inside query parameters and form fields.</p>
+
+      <div class="btn-group">
+        <button id="encode-btn" class="btn-primary">Encode</button>
+        <button id="decode-btn">Decode</button>
+        <button id="swap-btn">Swap Input / Output</button>
+        <button id="clear-btn">Clear</button>
+      </div>
+
+      <div id="char-info"></div>
+
+      <div class="form-group">
+        <label for="output-text">Output</label>
+        <textarea id="output-text" rows="8" readonly placeholder="Result will appear here..."></textarea>
+      </div>
+
+      <div class="btn-group">
+        <button id="copy-btn" class="btn-primary">Copy Output</button>
+        <span id="copy-feedback" style="display:none;">Copied!</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>What Is URL Encoding and Why Use It?</h2>
+      <p>URL encoding, also known as percent-encoding, is a mechanism for encoding arbitrary data in a Uniform Resource Identifier (URI) under certain circumstances. It replaces unsafe ASCII characters with a percent sign (%) followed by two hexadecimal digits. This ensures that special characters — like spaces, ampersands, question marks, and non-ASCII characters — do not interfere with the structure of a URL.</p>
+
+      <h3>Common Use Cases</h3>
+      <p><strong>Query parameters:</strong> When you build a URL with dynamic data, such as <code>https://example.com/search?q=hello world</code>, the space must be encoded as <code>%20</code> or <code>+</code> so the server interprets the query correctly. Our Component mode handles this automatically.</p>
+      <p><strong>Form submissions:</strong> Browsers encode form data using the same rules as <code>encodeURIComponent</code> before sending it to a server. Developers often need to inspect or reproduce this encoding manually when debugging APIs.</p>
+      <p><strong>Non-ASCII characters:</strong> URLs can only contain a limited set of ASCII characters. If you need to include emojis, accented letters, or characters from other writing systems, they must be percent-encoded as UTF-8 byte sequences. For example, the emoji 🚀 becomes <code>%F0%9F%9A%80</code>.</p>
+      <p><strong>API debugging:</strong> When inspecting network requests or API documentation, you frequently encounter encoded strings like <code>name%3DJohn%26age%3D30</code>. Decoding these instantly reveals the underlying data structure without manual deciphering.</p>
+
+      <h3>Component Mode vs. Full URL Mode</h3>
+      <p><strong>Component mode</strong> uses <code>encodeURIComponent</code>, which encodes every character except <code>A-Z a-z 0-9 - _ . ! ~ * ' ( )</code>. This is the right choice when you are encoding a piece of data that will be inserted into a query string or form field.</p>
+      <p><strong>Full URL mode</strong> uses <code>encodeURI</code>, which preserves URL-reserved characters like <code>/</code>, <code>?</code>, <code>:</code>, and <code>@</code>. This is useful when you want to encode an entire URL that contains special characters in its path or fragment, but you still need the URL structure itself to remain valid.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Paste the text you want to encode into the input box, select the appropriate mode, and click Encode. To reverse the process, paste a percent-encoded string and click Decode. Use Swap to move the output back to the input for chained operations. Component mode is selected by default and works for the vast majority of encoding tasks.</p>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="base64-encoder.html">Base64 Encoder</a>
+      <a href="url-encoder.html">URL Encoder</a>
+      <a href="password-generator.html">Password Generator</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/url-encoder.js"></script>
+</body>
+</html>
