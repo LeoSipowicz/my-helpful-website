@@ -21,6 +21,23 @@ const CHAR_SETS = {
 
 const AMBIGUOUS = new Set(['0', 'O', '1', 'l', 'I']);
 
+/* Secure randomness using Web Crypto API */
+function secureRandomInt(max) {
+  if (max <= 0) return 0;
+  const array = new Uint32Array(1);
+  crypto.getRandomValues(array);
+  return array[0] % max;
+}
+
+function secureShuffle(array) {
+  const arr = array.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = secureRandomInt(i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 function getPool() {
   let pool = '';
   if (uppercaseCheck.checked) pool += CHAR_SETS.uppercase;
@@ -46,34 +63,41 @@ function generatePassword() {
     return;
   }
 
-  // Ensure at least one character from each selected type is included
-  let password = '';
+  // Determine selected sets
   const selected = [];
-  if (uppercaseCheck.checked) selected.push(CHAR_SETS.uppercase);
-  if (lowercaseCheck.checked) selected.push(CHAR_SETS.lowercase);
-  if (numbersCheck.checked) selected.push(CHAR_SETS.numbers);
-  if (symbolsCheck.checked) selected.push(CHAR_SETS.symbols);
+  if (uppercaseCheck.checked) selected.push(filterAmbiguous(CHAR_SETS.uppercase));
+  if (lowercaseCheck.checked) selected.push(filterAmbiguous(CHAR_SETS.lowercase));
+  if (numbersCheck.checked) selected.push(filterAmbiguous(CHAR_SETS.numbers));
+  if (symbolsCheck.checked) selected.push(filterAmbiguous(CHAR_SETS.symbols));
 
-  for (const set of selected) {
-    let chars = set;
-    if (excludeAmbiguousCheck.checked) {
-      chars = chars.split('').filter(c => !AMBIGUOUS.has(c)).join('');
-    }
-    if (chars) {
-      password += chars[Math.floor(Math.random() * chars.length)];
+  // Filter out empty sets (can happen if exclude-ambiguous removes every char)
+  const validSets = selected.filter(s => s.length > 0);
+
+  const passwordChars = [];
+
+  // Ensure at least one character from each selected type, but never exceed requested length
+  for (const set of validSets) {
+    if (passwordChars.length < length) {
+      passwordChars.push(set[secureRandomInt(set.length)]);
     }
   }
 
-  const remaining = length - password.length;
-  for (let i = 0; i < remaining; i++) {
-    password += pool[Math.floor(Math.random() * pool.length)];
+  // Fill remaining length with characters from the full pool
+  while (passwordChars.length < length) {
+    passwordChars.push(pool[secureRandomInt(pool.length)]);
   }
 
-  // Shuffle the password so the guaranteed characters aren't always at the start
-  password = password.split('').sort(() => Math.random() - 0.5).join('');
+  // Shuffle so guaranteed characters aren't always at the start
+  const shuffled = secureShuffle(passwordChars);
+  const password = shuffled.join('');
 
   passwordDisplay.textContent = password;
   updateStrength(password);
+}
+
+function filterAmbiguous(set) {
+  if (!excludeAmbiguousCheck.checked) return set;
+  return set.split('').filter(c => !AMBIGUOUS.has(c)).join('');
 }
 
 function updateStrength(password) {

@@ -29,3 +29,6 @@
 
 ### 2026-05-24
 - Added URL Encoder & Decoder tool (html/url-encoder.html + js/url-encoder.js) with text-to-URL encoding and decoding, Component (encodeURIComponent) vs Full URL (encodeURI) mode toggle, auto-detect on paste, swap input/output, and copy-to-clipboard; targets extremely high-volume developer search queries ("url encoder", "url decode", "percent encode", "online url encoder"); strengthens the site's developer utility offering alongside JSON Formatter and Base64 Encoder; integrated across all page navigation headers and footers, homepage tool grid, 404 tool grid, about page (updated tool count from ten to eleven and added URL Encoder to the tool list), sitemap; updated homepage and about sitemap lastmod dates
+
+### 2026-05-25
+- Fixed critical security bug in Password Generator: replaced all `Math.random()` calls with `crypto.getRandomValues()` via Web Crypto API, and replaced the biased `Array.prototype.sort()` shuffle with a proper Fisher-Yates shuffle using cryptographically secure randomness. Also made the guaranteed-character logic robust against edge cases where selected character types could theoretically exceed the requested password length. This ensures generated passwords are genuinely unpredictable and worthy of the tool's "secure" branding — a real person using this for actual accounts deserves real security, not pseudo-randomness.
