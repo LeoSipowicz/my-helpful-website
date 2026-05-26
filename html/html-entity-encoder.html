@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>URL Encoder &amp; Decoder - Free Online URL Converter</title>
-  <meta name="description" content="Encode and decode URLs online for free. Convert text to URL-encoded format or decode percent-encoded strings back to plain text. Supports both encodeURIComponent and encodeURI modes. No data sent to any server." />
-  <link rel="canonical" href="https://helpful-website.com/html/url-encoder.html" />
+  <title>HTML Entity Encoder &amp; Decoder - Free Online HTML Escape Tool</title>
+  <meta name="description" content="Encode and decode HTML entities online for free. Escape special characters to HTML entities or decode them back to plain text. Supports named and numeric entities. No data sent to any server." />
+  <link rel="canonical" href="https://helpful-website.com/html/html-entity-encoder.html" />
   <link rel="stylesheet" href="../css/styles.css" />
-  <meta property="og:title" content="URL Encoder &amp; Decoder - Free Online URL Converter" />
-  <meta property="og:description" content="Encode and decode URLs online for free. Supports encodeURIComponent and encodeURI modes. No data sent to any server." />
+  <meta property="og:title" content="HTML Entity Encoder &amp; Decoder - Free Online HTML Escape Tool" />
+  <meta property="og:description" content="Encode and decode HTML entities online for free. Supports named and numeric entities. No data sent to any server." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/url-encoder.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/html-entity-encoder.html" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "URL Encoder & Decoder",
+    "name": "HTML Entity Encoder & Decoder",
     "applicationCategory": "DeveloperApplication",
-    "description": "A browser-based tool to encode text to URL-encoded format and decode percent-encoded strings back to plain text.",
+    "description": "A browser-based tool to encode text to HTML entities and decode HTML entities back to plain text.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -115,8 +115,8 @@
       <a href="word-counter.html">Word Counter</a>
       <a href="json-formatter.html">JSON Formatter</a>
       <a href="base64-encoder.html">Base64 Encoder</a>
-      <a href="url-encoder.html" class="active">URL Encoder</a>
-      <a href="html-entity-encoder.html">HTML Entities</a>
+      <a href="url-encoder.html">URL Encoder</a>
+      <a href="html-entity-encoder.html" class="active">HTML Entities</a>
       <a href="password-generator.html">Password Generator</a>
       <a href="../about.html">About</a>
       <a href="../privacy.html">Privacy</a>
@@ -126,31 +126,31 @@
 
   <main>
     <section>
-      <h2>URL Encoder &amp; Decoder</h2>
-      <p>Encode plain text or query parameters to URL-safe percent-encoded format, or decode percent-encoded strings back to readable text. All processing happens in your browser — your data never leaves your device.</p>
+      <h2>HTML Entity Encoder &amp; Decoder</h2>
+      <p>Encode special characters to HTML entities to make text safe for use in HTML documents, or decode HTML entities back to plain text. All processing happens in your browser — your data never leaves your device.</p>
     </section>
 
     <section>
       <div class="form-group">
-        <label for="input-text">Input (plain text or encoded URL)</label>
-        <textarea id="input-text" rows="8" placeholder="Paste text to encode, or a percent-encoded string to decode..."></textarea>
+        <label for="input-text">Input (plain text or HTML entities)</label>
+        <textarea id="input-text" rows="8" placeholder="Paste text to encode, or HTML entities to decode..."></textarea>
       </div>
 
       <div class="options-row">
         <div class="form-group">
           <label for="mode-select">Encoding Mode</label>
           <select id="mode-select">
-            <option value="component">Component (for query strings &amp; form data)</option>
-            <option value="full">Full URL (preserves scheme &amp; domain)</option>
+            <option value="named">Named entities (readable)</option>
+            <option value="numeric">Numeric entities (all chars)</option>
           </select>
         </div>
       </div>
 
-      <p class="mode-note" id="mode-note"><strong>Component mode</strong> encodes almost all special characters, making it safe for use inside query parameters and form fields.</p>
+      <p class="mode-note" id="mode-note"><strong>Named mode</strong> uses human-readable entity names like <code>&amp;lt;</code> and <code>&amp;gt;</code> for common symbols, and numeric codes for other characters. Best for readability.</p>
 
       <div class="btn-group">
-        <button id="encode-btn" class="btn-primary">Encode</button>
-        <button id="decode-btn">Decode</button>
+        <button id="encode-btn" class="btn-primary">Encode to Entities</button>
+        <button id="decode-btn">Decode from Entities</button>
         <button id="swap-btn">Swap Input / Output</button>
         <button id="clear-btn">Clear</button>
       </div>
@@ -169,21 +169,21 @@
     </section>
 
     <section>
-      <h2>What Is URL Encoding and Why Use It?</h2>
-      <p>URL encoding, also known as percent-encoding, is a mechanism for encoding arbitrary data in a Uniform Resource Identifier (URI) under certain circumstances. It replaces unsafe ASCII characters with a percent sign (%) followed by two hexadecimal digits. This ensures that special characters — like spaces, ampersands, question marks, and non-ASCII characters — do not interfere with the structure of a URL.</p>
+      <h2>What Are HTML Entities and Why Use Them?</h2>
+      <p>HTML entities are special codes that represent characters in HTML documents. They begin with an ampersand (<code>&amp;</code>) and end with a semicolon (<code>;</code>). For example, the less-than symbol <code>&lt;</code> is written as <code>&amp;lt;</code> in HTML, and the greater-than symbol <code>&gt;</code> is written as <code>&amp;gt;</code>. This prevents browsers from interpreting these characters as HTML markup, which is essential when displaying code snippets, mathematical expressions, or any text that contains reserved symbols.</p>
 
       <h3>Common Use Cases</h3>
-      <p><strong>Query parameters:</strong> When you build a URL with dynamic data, such as <code>https://example.com/search?q=hello world</code>, the space must be encoded as <code>%20</code> or <code>+</code> so the server interprets the query correctly. Our Component mode handles this automatically.</p>
-      <p><strong>Form submissions:</strong> Browsers encode form data using the same rules as <code>encodeURIComponent</code> before sending it to a server. Developers often need to inspect or reproduce this encoding manually when debugging APIs.</p>
-      <p><strong>Non-ASCII characters:</strong> URLs can only contain a limited set of ASCII characters. If you need to include emojis, accented letters, or characters from other writing systems, they must be percent-encoded as UTF-8 byte sequences. For example, the emoji 🚀 becomes <code>%F0%9F%9A%80</code>.</p>
-      <p><strong>API debugging:</strong> When inspecting network requests or API documentation, you frequently encounter encoded strings like <code>name%3DJohn%26age%3D30</code>. Decoding these instantly reveals the underlying data structure without manual deciphering.</p>
+      <p><strong>Displaying code in HTML:</strong> When you write a tutorial or blog post that includes HTML, JavaScript, or CSS examples, you must escape the angle brackets and ampersands so the browser renders them as text instead of executing them as markup. Our encoder handles this automatically.</p>
+      <p><strong>Preventing XSS vulnerabilities:</strong> Cross-site scripting (XSS) attacks inject malicious scripts into web pages. Encoding user input to HTML entities before displaying it is one of the most effective defenses, because it neutralizes dangerous characters like <code>&lt;</code> and <code>&gt;</code>.</p>
+      <p><strong>Handling special characters:</strong> Characters like curly quotes, em-dashes, currency symbols, and letters with diacritics may not render correctly in all encodings. Converting them to numeric entities ensures they display consistently across browsers, email clients, and content management systems.</p>
+      <p><strong>Decoding scraped content:</strong> When you copy text from a web page's source code, it often contains encoded entities. Decoding them instantly reveals the original readable text without manual lookup.</p>
 
-      <h3>Component Mode vs. Full URL Mode</h3>
-      <p><strong>Component mode</strong> uses <code>encodeURIComponent</code>, which encodes every character except <code>A-Z a-z 0-9 - _ . ! ~ * ' ( )</code>. This is the right choice when you are encoding a piece of data that will be inserted into a query string or form field.</p>
-      <p><strong>Full URL mode</strong> uses <code>encodeURI</code>, which preserves URL-reserved characters like <code>/</code>, <code>?</code>, <code>:</code>, and <code>@</code>. This is useful when you want to encode an entire URL that contains special characters in its path or fragment, but you still need the URL structure itself to remain valid.</p>
+      <h3>Named vs. Numeric Entities</h3>
+      <p><strong>Named entities</strong> use memorable names like <code>&amp;amp;</code> for <code>&amp;</code>, <code>&amp;copy;</code> for &copy;, and <code>&amp;nbsp;</code> for a non-breaking space. They are easier to read in source code but only exist for a limited set of characters.</p>
+      <p><strong>Numeric entities</strong> use a number to reference a Unicode code point. Decimal numeric entities look like <code>&amp;#169;</code> and hexadecimal ones look like <code>&amp;#xA9;</code>. They work for any character in the Unicode standard, making them universally applicable. Our tool supports both formats when decoding, and lets you choose between named and numeric modes when encoding.</p>
 
       <h3>How to Use This Tool</h3>
-      <p>Paste the text you want to encode into the input box, select the appropriate mode, and click Encode. To reverse the process, paste a percent-encoded string and click Decode. Use Swap to move the output back to the input for chained operations. Component mode is selected by default and works for the vast majority of encoding tasks.</p>
+      <p>Paste the text you want to encode into the input box, select your preferred mode, and click Encode to Entities. To reverse the process, paste a string containing entities and click Decode from Entities. Use Swap to move the output back to the input for chained operations. Named mode is selected by default and works best for readability.</p>
     </section>
   </main>
 
@@ -200,6 +200,7 @@
       <a href="json-formatter.html">JSON Formatter</a>
       <a href="base64-encoder.html">Base64 Encoder</a>
       <a href="url-encoder.html">URL Encoder</a>
+      <a href="html-entity-encoder.html">HTML Entities</a>
       <a href="password-generator.html">Password Generator</a>
       <a href="../about.html">About</a>
       <a href="../privacy.html">Privacy</a>
@@ -208,6 +209,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/url-encoder.js"></script>
+  <script src="../js/html-entity-encoder.js"></script>
 </body>
 </html>
