@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hash Generator &amp; File Checksum - Free Online MD5, SHA-1, SHA-256 Tool</title>
+  <meta name="description" content="Generate MD5, SHA-1, SHA-256, and SHA-512 hashes online for free. Hash text or compute file checksums to verify downloads. No data sent to any server — everything runs in your browser." />
+  <link rel="canonical" href="https://helpful-website.com/html/hash-generator.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta property="og:title" content="Hash Generator &amp; File Checksum - Free Online MD5, SHA-1, SHA-256 Tool" />
+  <meta property="og:description" content="Generate MD5, SHA-1, SHA-256, and SHA-512 hashes online for free. Hash text or compute file checksums to verify downloads." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/hash-generator.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Hash Generator & File Checksum",
+    "applicationCategory": "SecurityApplication",
+    "description": "A browser-based tool to generate MD5, SHA-1, SHA-256, and SHA-512 hashes for text and files.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    #input-text {
+      min-height: 10rem;
+      resize: vertical;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .options-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .options-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: Georgia, serif;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+    .options-row label input {
+      width: auto;
+      margin: 0;
+    }
+    #char-info {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+    .hash-result {
+      border: 2px solid var(--onyx);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .hash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .hash-name {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+    }
+    .hash-value {
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+      line-height: 1.4;
+      background: rgba(21,21,21,0.03);
+      padding: 0.5rem;
+      border: 1px solid var(--onyx);
+    }
+    .hash-copy-btn {
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+    }
+    #results-section, #file-results-section {
+      margin-bottom: 1rem;
+    }
+    #file-section {
+      border: 2px dashed var(--onyx);
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    #file-section input[type="file"] {
+      margin-bottom: 0;
+    }
+    #file-meta {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+    }
+    #compute-file-btn {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      #input-text { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>A Helpful Website</h1>
+    <p>A set of helpful tools</p>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="base64-encoder.html">Base64 Encoder</a>
+      <a href="url-encoder.html">URL Encoder</a>
+      <a href="html-entity-encoder.html">HTML Entities</a>
+      <a href="password-generator.html">Password Generator</a>
+      <a href="hash-generator.html" class="active">Hash Generator</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Hash Generator &amp; File Checksum</h2>
+      <p>Generate MD5, SHA-1, SHA-256, and SHA-512 hashes for any text or file. Use it to verify file integrity, compare checksums, or generate digests for security and development tasks. All processing happens in your browser — your data never leaves your device.</p>
+    </section>
+
+    <section>
+      <div class="form-group">
+        <label for="input-text">Input Text</label>
+        <textarea id="input-text" rows="8" placeholder="Type or paste text here to hash..."></textarea>
+      </div>
+
+      <div class="options-row">
+        <label>
+          <input type="checkbox" id="md5-check" checked />
+          MD5
+        </label>
+        <label>
+          <input type="checkbox" id="sha1-check" checked />
+          SHA-1
+        </label>
+        <label>
+          <input type="checkbox" id="sha256-check" checked />
+          SHA-256
+        </label>
+        <label>
+          <input type="checkbox" id="sha512-check" checked />
+          SHA-512
+        </label>
+      </div>
+
+      <div class="btn-group">
+        <button id="compute-btn" class="btn-primary">Compute Hashes</button>
+      </div>
+
+      <div id="char-info"></div>
+
+      <div id="results-section" style="display:none;"></div>
+    </section>
+
+    <section>
+      <h2>Hash a File</h2>
+      <p>Upload any file to compute its hashes. This is useful for verifying downloads against published checksums or generating your own digests.</p>
+      <div id="file-section">
+        <input type="file" id="file-input" />
+        <p id="file-meta"></p>
+      </div>
+      <div class="btn-group">
+        <button id="compute-file-btn" class="btn-primary">Compute File Hashes</button>
+      </div>
+      <div id="file-results-section" style="display:none;"></div>
+    </section>
+
+    <section>
+      <h2>What Are Cryptographic Hashes and Why Use Them?</h2>
+      <p>A cryptographic hash function takes an input of any size — a single word, a novel, or a multi-gigabyte file — and produces a fixed-length string of characters called a digest or hash. The same input always produces the same hash, but even the tiniest change to the input produces a completely different hash. This property makes hashes invaluable for verifying data integrity, detecting tampering, and comparing files without examining their contents directly.</p>
+
+      <h3>Verifying File Downloads</h3>
+      <p>When you download software, operating system images, or large datasets from the internet, publishers often provide a SHA-256 or MD5 checksum alongside the download link. After downloading the file, you can compute its hash and compare it to the published value. If they match, you can be confident the file arrived intact and was not corrupted during transfer or tampered with by a malicious actor. Our tool lets you perform this check entirely in your browser, without uploading your file to any third-party server.</p>
+
+      <h3>MD5 — The Classic Checksum</h3>
+      <p>MD5 produces a 128-bit digest displayed as a 32-character hex string. It was once the most widely used hash algorithm for file verification and is still common in legacy systems, open-source repositories, and checksum lists. While MD5 is no longer considered secure against deliberate collision attacks, it remains perfectly adequate for detecting accidental file corruption and is still requested by many build systems and package managers.</p>
+
+      <h3>SHA-1 — The Transition Standard</h3>
+      <p>SHA-1 generates a 160-bit digest as a 40-character hex string. It replaced MD5 in many security-sensitive applications during the 2000s and is still used in older Git repositories, certificate systems, and legacy APIs. Like MD5, SHA-1 is considered theoretically broken for collision resistance, but it is stronger than MD5 and is still widely encountered in checksum files and verification workflows.</p>
+
+      <h3>SHA-256 — The Modern Standard</h3>
+      <p>SHA-256 is the current gold standard for cryptographic hashing. It produces a 256-bit digest as a 64-character hex string and is considered secure against all known practical attacks. SHA-256 is used in Bitcoin, TLS certificates, code signing, and virtually every modern security protocol. When in doubt, use SHA-256. It is the recommended algorithm for new systems and the one most publishers use when providing download checksums today.</p>
+
+      <h3>SHA-512 — Maximum Security</h3>
+      <p>SHA-512 produces a 512-bit digest as a 128-character hex string. It offers the highest security margin of the common SHA-2 family and is preferred in high-security environments where the extra computational cost is acceptable. Some operating systems and security tools default to SHA-512 for their strongest verification modes.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Paste your text into the input box above, select the algorithms you want to compute, and click Compute Hashes. Results appear instantly below. To hash a file, use the file picker in the second section and click Compute File Hashes. All computation happens locally using your browser's built-in cryptography APIs and a pure JavaScript MD5 implementation. Your text and files are never sent anywhere.</p>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="image-resizer.html">Image Resizer</a>
+      <a href="image-converter.html">Image Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="color-palette.html">Color Palette</a>
+      <a href="color-replacer.html">Color Replacer</a>
+      <a href="text-case-converter.html">Case Converter</a>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="json-formatter.html">JSON Formatter</a>
+      <a href="base64-encoder.html">Base64 Encoder</a>
+      <a href="url-encoder.html">URL Encoder</a>
+      <a href="html-entity-encoder.html">HTML Entities</a>
+      <a href="password-generator.html">Password Generator</a>
+      <a href="hash-generator.html">Hash Generator</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/hash-generator.js"></script>
+</body>
+</html>
