@@ -38,3 +38,6 @@
 
 ### 2026-05-27
 - Added Hash Generator & File Checksum tool (html/hash-generator.html + js/hash-generator.js) with pure-JS MD5 and browser-native SHA-1/SHA-256/SHA-512 support for both text and file inputs; targets extremely high-volume security and developer search queries ("hash generator", "md5 online", "sha256 checksum", "file hash"); expands site into cryptographic utilities alongside Password Generator; integrated across all page navigation headers and footers, homepage tool grid, 404 tool grid, about page (updated tool count from twelve to thirteen), sitemap; updated homepage and 404 meta descriptions; also fixed missing HTML Entities navigation links in footers of password-generator.html and url-encoder.html that were overlooked in earlier integration passes
+
+### 2026-05-28 [UI/UX polish]
+- Made the header navigation horizontally scrollable on mobile instead of wrapping into 3-4 rows, which pushed all page content below the fold on small screens. This CSS-only change improves the experience on every page for mobile visitors.

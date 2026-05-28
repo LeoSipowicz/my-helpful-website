@@ -228,8 +228,20 @@ canvas {
   h2 { font-size: 1.5rem; }
   h3 { font-size: 1.2rem; }
 
-  nav { flex-wrap: wrap; }
-  nav a { font-size: 0.7rem; padding: 0.25rem 0.5rem; }
+  nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.15rem;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
 
   .form-row .form-group { flex: 1 1 100%; }
 
