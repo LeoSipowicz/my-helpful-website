@@ -41,3 +41,6 @@
 
 ### 2026-05-28 [UI/UX polish]
 - Made the header navigation horizontally scrollable on mobile instead of wrapping into 3-4 rows, which pushed all page content below the fold on small screens. This CSS-only change improves the experience on every page for mobile visitors.
+
+### 2026-05-29 [SEO/performance]
+- Added `preconnect` and `dns-prefetch` resource hints to every page (`<link rel="preconnect" href="https://www.googletagmanager.com" />`, `<link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />`, `<link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />`) to reduce DNS/TCP/TLS setup time for Google Analytics and AdSense, improving page load speed and Core Web Vitals across the entire site.
