@@ -44,3 +44,6 @@
 
 ### 2026-05-29 [SEO/performance]
 - Added `preconnect` and `dns-prefetch` resource hints to every page (`<link rel="preconnect" href="https://www.googletagmanager.com" />`, `<link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />`, `<link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />`) to reduce DNS/TCP/TLS setup time for Google Analytics and AdSense, improving page load speed and Core Web Vitals across the entire site.
+
+### 2026-05-30 [Bug fixes]
+- Fixed memory leaks across all image tools (Image Compressor, Image Converter, Image Resizer, Color Palette Extractor, Color Replacer) by revoking `URL.createObjectURL()` blob URLs after the image is decoded and drawn to canvas; also fixed the Image Compressor download to revoke its temporary blob URL after the download starts, and fixed the Image Converter to use `canvas.toBlob()` with a clear error message when a browser does not support WebP export (e.g., older Safari), preventing broken "data:," downloads

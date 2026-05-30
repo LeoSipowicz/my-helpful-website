@@ -7,10 +7,15 @@ const tolVal    = document.getElementById('tolerance-val');
 const replColor = document.getElementById('replace-color');
 
 let history = [];
+let imgObjectUrl = null;
 
 fileInput.addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
+  if (imgObjectUrl) {
+    URL.revokeObjectURL(imgObjectUrl);
+    imgObjectUrl = null;
+  }
   const img = new Image();
   img.onload = () => {
     canvas.width  = img.naturalWidth;
@@ -18,8 +23,13 @@ fileInput.addEventListener('change', e => {
     ctx.drawImage(img, 0, 0);
     history = [];
     section.style.display = '';
+    if (imgObjectUrl) {
+      URL.revokeObjectURL(imgObjectUrl);
+      imgObjectUrl = null;
+    }
   };
-  img.src = URL.createObjectURL(file);
+  imgObjectUrl = URL.createObjectURL(file);
+  img.src = imgObjectUrl;
 });
 
 tolInput.addEventListener('input', () => tolVal.textContent = tolInput.value);

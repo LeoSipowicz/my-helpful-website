@@ -8,10 +8,15 @@ const lockAspect = document.getElementById('lock-aspect');
 const downloadBtn = document.getElementById('download-btn');
 
 let originalImage = null;
+let imgObjectUrl = null;
 
 fileInput.addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
+  if (imgObjectUrl) {
+    URL.revokeObjectURL(imgObjectUrl);
+    imgObjectUrl = null;
+  }
   const img = new Image();
   img.onload = () => {
     originalImage = img;
@@ -19,8 +24,13 @@ fileInput.addEventListener('change', e => {
     heightInput.value = img.naturalHeight;
     renderPreview();
     controlsSection.style.display = '';
+    if (imgObjectUrl) {
+      URL.revokeObjectURL(imgObjectUrl);
+      imgObjectUrl = null;
+    }
   };
-  img.src = URL.createObjectURL(file);
+  imgObjectUrl = URL.createObjectURL(file);
+  img.src = imgObjectUrl;
 });
 
 function renderPreview() {

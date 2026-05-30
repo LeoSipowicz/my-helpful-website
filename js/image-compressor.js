@@ -16,10 +16,15 @@ let originalFileSize = 0;
 let originalMimeType = 'image/jpeg';
 let currentBlob = null;
 let currentExtension = 'jpg';
+let imgObjectUrl = null;
 
 fileInput.addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
+  if (imgObjectUrl) {
+    URL.revokeObjectURL(imgObjectUrl);
+    imgObjectUrl = null;
+  }
   originalFileSize = file.size;
   originalMimeType = file.type || 'image/jpeg';
   const img = new Image();
@@ -34,8 +39,13 @@ fileInput.addEventListener('change', e => {
     formatSelect.value = 'auto';
     updateQualityVisibility();
     compressImage();
+    if (imgObjectUrl) {
+      URL.revokeObjectURL(imgObjectUrl);
+      imgObjectUrl = null;
+    }
   };
-  img.src = URL.createObjectURL(file);
+  imgObjectUrl = URL.createObjectURL(file);
+  img.src = imgObjectUrl;
 });
 
 formatSelect.addEventListener('change', () => {
@@ -83,10 +93,12 @@ function compressImage() {
 
 downloadBtn.addEventListener('click', () => {
   if (!currentBlob) return;
+  const url = URL.createObjectURL(currentBlob);
   const a = document.createElement('a');
   a.download = `compressed.${currentExtension}`;
-  a.href = URL.createObjectURL(currentBlob);
+  a.href = url;
   a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
 });
 
 function formatSize(bytes) {

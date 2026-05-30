@@ -9,10 +9,15 @@ const qualityGroup = document.getElementById('quality-group');
 const downloadBtn = document.getElementById('download-btn');
 
 let originalImage = null;
+let imgObjectUrl = null;
 
 fileInput.addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
+  if (imgObjectUrl) {
+    URL.revokeObjectURL(imgObjectUrl);
+    imgObjectUrl = null;
+  }
   const img = new Image();
   img.onload = () => {
     originalImage = img;
@@ -20,8 +25,13 @@ fileInput.addEventListener('change', e => {
     canvas.height = img.naturalHeight;
     ctx.drawImage(img, 0, 0);
     controlsSection.style.display = '';
+    if (imgObjectUrl) {
+      URL.revokeObjectURL(imgObjectUrl);
+      imgObjectUrl = null;
+    }
   };
-  img.src = URL.createObjectURL(file);
+  imgObjectUrl = URL.createObjectURL(file);
+  img.src = imgObjectUrl;
 });
 
 formatSelect.addEventListener('change', () => {
@@ -38,8 +48,17 @@ downloadBtn.addEventListener('click', () => {
   const quality = parseInt(qualityInput.value) / 100;
   const mimeType = format === 'jpeg' ? 'image/jpeg' : format === 'webp' ? 'image/webp' : 'image/png';
   const ext = format === 'jpeg' ? 'jpg' : format;
-  const a = document.createElement('a');
-  a.download = `converted.${ext}`;
-  a.href = canvas.toDataURL(mimeType, quality);
-  a.click();
+
+  canvas.toBlob(blob => {
+    if (!blob) {
+      alert('This output format is not supported in your browser. Please try PNG or JPEG.');
+      return;
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.download = `converted.${ext}`;
+    a.href = url;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  }, mimeType, quality);
 });

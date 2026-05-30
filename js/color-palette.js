@@ -3,16 +3,27 @@ const palette = document.getElementById('palette');
 const resultsSection = document.getElementById('results-section');
 const copyFeedback = document.getElementById('copy-feedback');
 
+let imgObjectUrl = null;
+
 fileInput.addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
+  if (imgObjectUrl) {
+    URL.revokeObjectURL(imgObjectUrl);
+    imgObjectUrl = null;
+  }
   const img = new Image();
   img.onload = () => {
     const colors = extractPalette(img, 8);
     renderPalette(colors);
     resultsSection.style.display = '';
+    if (imgObjectUrl) {
+      URL.revokeObjectURL(imgObjectUrl);
+      imgObjectUrl = null;
+    }
   };
-  img.src = URL.createObjectURL(file);
+  imgObjectUrl = URL.createObjectURL(file);
+  img.src = imgObjectUrl;
 });
 
 function extractPalette(img, count) {
