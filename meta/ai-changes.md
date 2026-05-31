@@ -47,3 +47,6 @@
 
 ### 2026-05-30 [Bug fixes]
 - Fixed memory leaks across all image tools (Image Compressor, Image Converter, Image Resizer, Color Palette Extractor, Color Replacer) by revoking `URL.createObjectURL()` blob URLs after the image is decoded and drawn to canvas; also fixed the Image Compressor download to revoke its temporary blob URL after the download starts, and fixed the Image Converter to use `canvas.toBlob()` with a clear error message when a browser does not support WebP export (e.g., older Safari), preventing broken "data:," downloads
+
+### 2026-05-31 [Bug fixes]
+- Fixed Image Resizer NaN display bug: when a user clears the Width or Height input (or enters an invalid value), the linked dimension field no longer shows "NaN"; the aspect-ratio calculation now validates the input with `!isNaN(val) && val > 0` before computing, and `renderPreview()` gracefully falls back to the original image dimensions for invalid or empty inputs

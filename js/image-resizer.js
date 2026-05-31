@@ -35,25 +35,31 @@ fileInput.addEventListener('change', e => {
 
 function renderPreview() {
   if (!originalImage) return;
-  const w = parseInt(widthInput.value) || originalImage.naturalWidth;
-  const h = parseInt(heightInput.value) || originalImage.naturalHeight;
-  canvas.width = w;
-  canvas.height = h;
-  ctx.drawImage(originalImage, 0, 0, w, h);
+  const w = parseInt(widthInput.value);
+  const h = parseInt(heightInput.value);
+  canvas.width = !isNaN(w) && w > 0 ? w : originalImage.naturalWidth;
+  canvas.height = !isNaN(h) && h > 0 ? h : originalImage.naturalHeight;
+  ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
 }
 
 widthInput.addEventListener('input', () => {
   if (lockAspect.checked && originalImage) {
-    const ratio = originalImage.naturalHeight / originalImage.naturalWidth;
-    heightInput.value = Math.round(parseInt(widthInput.value) * ratio);
+    const widthVal = parseInt(widthInput.value);
+    if (!isNaN(widthVal) && widthVal > 0) {
+      const ratio = originalImage.naturalHeight / originalImage.naturalWidth;
+      heightInput.value = Math.round(widthVal * ratio);
+    }
   }
   renderPreview();
 });
 
 heightInput.addEventListener('input', () => {
   if (lockAspect.checked && originalImage) {
-    const ratio = originalImage.naturalWidth / originalImage.naturalHeight;
-    widthInput.value = Math.round(parseInt(heightInput.value) * ratio);
+    const heightVal = parseInt(heightInput.value);
+    if (!isNaN(heightVal) && heightVal > 0) {
+      const ratio = originalImage.naturalWidth / originalImage.naturalHeight;
+      widthInput.value = Math.round(heightVal * ratio);
+    }
   }
   renderPreview();
 });
