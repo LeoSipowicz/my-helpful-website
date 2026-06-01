@@ -50,3 +50,6 @@
 
 ### 2026-05-31 [Bug fixes]
 - Fixed Image Resizer NaN display bug: when a user clears the Width or Height input (or enters an invalid value), the linked dimension field no longer shows "NaN"; the aspect-ratio calculation now validates the input with `!isNaN(val) && val > 0` before computing, and `renderPreview()` gracefully falls back to the original image dimensions for invalid or empty inputs
+
+### 2026-06-01 [UI/UX polish]
+- Completely rethought the site navigation to solve the poor tab experience on both desktop and mobile. Replaced the overwhelming horizontal row of 17 tab-like links (which wrapped into 3-4 rows on desktop and provided no scroll indication on mobile) with a compact, categorized navigation system: desktop shows 4 tool category dropdowns (Image, Text, Developer, Security) plus Home/About/Privacy/Contact, while mobile uses a hamburger menu that expands into categorized accordion sections. Added a clickable site title, keyboard-accessible dropdowns (Escape to close), and a simplified footer with just 4 links instead of 17. Applied consistently across all 18 pages with new `js/nav.js` and updated `css/styles.css`.

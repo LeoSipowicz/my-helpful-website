@@ -60,24 +60,8 @@ footer {
 
 section { margin-bottom: 3rem; }
 
-/* ── Nav ── */
+/* ── Nav (legacy rules kept for compatibility; new nav styles below) ── */
 nav { display: flex; gap: 0.25rem; margin-top: 1rem; }
-
-nav a {
-  display: inline-block;
-  padding: 0.4rem 0.9rem;
-  border: 2px solid var(--onyx);
-  color: var(--onyx);
-  font-family: Impact, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.85rem;
-}
-nav a:hover, nav a.active {
-  background: var(--onyx);
-  color: var(--sand);
-  text-decoration: none;
-}
 
 /* ── Buttons ── */
 button {
@@ -156,8 +140,6 @@ input:focus, select:focus, textarea:focus {
 .checkbox-label input { width: auto; margin: 0; }
 
 /* ── Footer ── */
-footer nav { margin-bottom: 0.5rem; }
-footer nav a { font-size: 0.7rem; padding: 0.25rem 0.6rem; border-width: 1px; }
 footer p { font-size: 0.8rem; }
 
 /* ── Lists ── */
@@ -220,6 +202,147 @@ canvas {
   border: 2px solid var(--onyx);
 }
 
+/* ── New Navigation ── */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.site-title {
+  color: var(--onyx);
+  text-decoration: none;
+}
+.site-title:hover { text-decoration: none; }
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.5rem;
+  background: none;
+  border: 2px solid var(--onyx);
+  cursor: pointer;
+  width: auto;
+  margin: 0;
+}
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: var(--onyx);
+  transition: 0.2s;
+}
+.menu-toggle:hover span { background: var(--sand); }
+
+.main-nav { margin-top: 1rem; position: relative; }
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list > li { position: relative; }
+
+.nav-list a,
+.dropdown-toggle {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--onyx);
+  color: var(--onyx);
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.nav-list a:hover,
+.dropdown-toggle:hover,
+.nav-list a.active,
+.dropdown-toggle.active {
+  background: var(--onyx);
+  color: var(--sand);
+  text-decoration: none;
+}
+
+.dropdown-toggle::after {
+  content: ' ▾';
+  font-size: 0.7em;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--sand);
+  border: 2px solid var(--onyx);
+  list-style: none;
+  margin: 2px 0 0 0;
+  padding: 0.25rem;
+  z-index: 100;
+  box-shadow: 4px 4px 0 var(--onyx);
+}
+
+.dropdown li { margin: 0; }
+
+.dropdown a {
+  display: block;
+  border: none;
+  border-bottom: 1px solid rgba(21,21,21,0.1);
+  padding: 0.5rem 0.75rem;
+  font-family: Georgia, serif;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.dropdown a:last-child { border-bottom: none; }
+
+.dropdown a:hover {
+  background: var(--onyx);
+  color: var(--sand);
+}
+
+.has-dropdown.open .dropdown { display: block; }
+
+/* ── Footer ── */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  border: 2px solid var(--onyx);
+  color: var(--onyx);
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  background: var(--onyx);
+  color: var(--sand);
+  text-decoration: none;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   body { padding: 1rem; }
@@ -228,19 +351,46 @@ canvas {
   h2 { font-size: 1.5rem; }
   h3 { font-size: 1.2rem; }
 
-  nav {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  .menu-toggle { display: flex; }
+
+  .main-nav {
+    display: none;
+    margin-top: 1rem;
+  }
+  .main-nav.open { display: block; }
+
+  .nav-list {
+    flex-direction: column;
     gap: 0.15rem;
   }
-  nav::-webkit-scrollbar { display: none; }
-  nav a {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.5rem;
-    white-space: nowrap;
-    flex-shrink: 0;
+
+  .nav-list > li { width: 100%; }
+
+  .nav-list a,
+  .dropdown-toggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .dropdown {
+    position: static;
+    display: none;
+    border: none;
+    border-left: 3px solid var(--onyx);
+    border-top: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0 0 0 0.5rem;
+    min-width: auto;
+    background: rgba(21,21,21,0.03);
+  }
+
+  .has-dropdown.open .dropdown { display: block; }
+
+  .dropdown a {
+    border-bottom: 1px solid rgba(21,21,21,0.1);
+    font-size: 0.9rem;
   }
 
   .form-row .form-group { flex: 1 1 100%; }
