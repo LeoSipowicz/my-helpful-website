@@ -53,3 +53,6 @@
 
 ### 2026-06-01 [UI/UX polish]
 - Completely rethought the site navigation to solve the poor tab experience on both desktop and mobile. Replaced the overwhelming horizontal row of 17 tab-like links (which wrapped into 3-4 rows on desktop and provided no scroll indication on mobile) with a compact, categorized navigation system: desktop shows 4 tool category dropdowns (Image, Text, Developer, Security) plus Home/About/Privacy/Contact, while mobile uses a hamburger menu that expands into categorized accordion sections. Added a clickable site title, keyboard-accessible dropdowns (Escape to close), and a simplified footer with just 4 links instead of 17. Applied consistently across all 18 pages with new `js/nav.js` and updated `css/styles.css`.
+
+### 2026-06-02 [SEO/performance]
+- Updated all sitemap.xml `lastmod` dates to 2026-06-02 because the 2026-06-01 navigation overhaul changed the header, footer, and meta structure on every page; search engines need accurate freshness signals to recrawl and index the updated site structure. Also fixed the homepage H2 heading to include "Developer" (was "Free Image, Text & Security Tools"), corrected the about page JSON-LD description to reflect all four tool categories, and updated the privacy page meta description to be inclusive of all tool types rather than mentioning only images.
