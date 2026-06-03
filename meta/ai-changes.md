@@ -56,3 +56,6 @@
 
 ### 2026-06-02 [SEO/performance]
 - Updated all sitemap.xml `lastmod` dates to 2026-06-02 because the 2026-06-01 navigation overhaul changed the header, footer, and meta structure on every page; search engines need accurate freshness signals to recrawl and index the updated site structure. Also fixed the homepage H2 heading to include "Developer" (was "Free Image, Text & Security Tools"), corrected the about page JSON-LD description to reflect all four tool categories, and updated the privacy page meta description to be inclusive of all tool types rather than mentioning only images.
+
+### 2026-06-03 [Feature work]
+- Added Image Cropper tool (html/image-cropper.html + js/image-cropper.js) with click-and-drag rectangular selection, full-resolution cropping via Canvas API, live dimension readout, reset selection, and instant PNG download; targets high-volume image editing search queries ("crop image online", "online image cropper", "free photo crop tool") and strengthens the site's image tool cluster alongside Resizer, Compressor, Converter, Palette Extractor, and Color Replacer; integrated across all page navigation headers and footers, homepage tool grid, 404 tool grid, about page (updated tool count from thirteen to fourteen), sitemap, and homepage meta descriptions to include "crop"

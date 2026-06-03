@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <title>Image Cropper - Free Online Photo Cropping Tool</title>
+  <meta name="description" content="Crop images online for free. Select any area of your photo and download the cropped result instantly. No server uploads, 100% private browser-based image cropping." />
+  <link rel="canonical" href="https://helpful-website.com/html/image-cropper.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta property="og:title" content="Image Cropper - Free Online Photo Cropping Tool" />
+  <meta property="og:description" content="Crop images online for free. Select any area of your photo and download the cropped result instantly. No server uploads, 100% private." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/image-cropper.html" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Image Cropper",
+    "applicationCategory": "MultimediaApplication",
+    "description": "A browser-based tool to crop images by selecting a rectangular region.",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires browser with Canvas API support"
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    .crop-instruction {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    #crop-canvas {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      border: 2px solid var(--onyx);
+      touch-action: none;
+      cursor: crosshair;
+    }
+    #result-section {
+      display: none;
+    }
+    #result-canvas {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      border: 2px solid var(--onyx);
+    }
+    #crop-info {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+    <header>
+    <div class="header-top">
+      <a href="../index.html" class="site-title"><h1>A Helpful Website</h1></a>
+      <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <p>A set of helpful tools</p>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="../index.html" class="nav-item">Home</a></li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle active" aria-expanded="false">Image Tools</button>
+          <ul class="dropdown">
+            <li><a href="image-resizer.html">Image Resizer</a></li>
+<li><a href="image-converter.html">Image Converter</a></li>
+<li><a href="image-compressor.html">Image Compressor</a></li>
+<li><a href="color-palette.html">Color Palette</a></li>
+<li><a href="color-replacer.html">Color Replacer</a></li>
+<li><a href="image-cropper.html">Image Cropper</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Text Tools</button>
+          <ul class="dropdown">
+            <li><a href="text-case-converter.html">Case Converter</a></li>
+<li><a href="word-counter.html">Word Counter</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Developer Tools</button>
+          <ul class="dropdown">
+            <li><a href="json-formatter.html">JSON Formatter</a></li>
+<li><a href="base64-encoder.html">Base64 Encoder</a></li>
+<li><a href="url-encoder.html">URL Encoder</a></li>
+<li><a href="html-entity-encoder.html">HTML Entities</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Security Tools</button>
+          <ul class="dropdown">
+            <li><a href="password-generator.html">Password Generator</a></li>
+<li><a href="hash-generator.html">Hash Generator</a></li>
+          </ul>
+        </li>
+        <li><a href="../about.html" class="nav-item">About</a></li>
+        <li><a href="../privacy.html" class="nav-item">Privacy</a></li>
+        <li><a href="../contact.html" class="nav-item">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Image Cropper</h2>
+      <p>Upload an image and click and drag to select the area you want to keep. The crop is applied at full resolution so your output retains the original quality. All processing happens locally in your browser.</p>
+    </section>
+
+    <section id="upload">
+      <h3>Upload Image</h3>
+      <input type="file" id="file-input" accept="image/*" />
+    </section>
+
+    <section id="canvas-section" style="display:none;">
+      <p class="crop-instruction">Click and drag on the image to select the area you want to crop.</p>
+      <canvas id="crop-canvas"></canvas>
+      <div id="crop-info"></div>
+      <div class="btn-group">
+        <button id="crop-btn" class="btn-primary" disabled>Crop Selection</button>
+        <button id="reset-btn">Reset Selection</button>
+        <button id="download-btn" disabled>Download Cropped Image</button>
+      </div>
+    </section>
+
+    <section id="result-section">
+      <h3>Cropped Result</h3>
+      <canvas id="result-canvas"></canvas>
+    </section>
+
+    <section>
+      <h2>How to Crop Images Online</h2>
+      <p>Cropping is one of the most common image editing tasks. Whether you need to remove unwanted edges, focus on a subject, adjust the aspect ratio for social media, or prepare a product photo for a listing, cropping is usually the first step. Our free Image Cropper lets you do this instantly in your browser without uploading anything to a server.</p>
+
+      <h3>Why Crop Images?</h3>
+      <p>Photographers crop to improve composition using the rule of thirds. Social media managers crop photos to match platform-specific aspect ratios — Instagram posts prefer 1:1 or 4:5, Twitter cards use 1.91:1, and LinkedIn banners are 1584x396. E-commerce sellers crop product images to remove backgrounds and create clean, consistent thumbnails. Web developers crop screenshots to highlight specific UI elements. And everyday users simply want to cut out irrelevant parts of a photo before sharing it with friends.</p>
+
+      <h3>Full-Resolution Cropping</h3>
+      <p>Unlike some online tools that crop the preview image at screen resolution, our tool crops the original file at its full native resolution. This means if you upload a 4000x3000 pixel image and select a small region, the cropped output will still be high resolution and suitable for printing or further editing. The preview canvas shows your image at a comfortable viewing size, but the actual crop operation works on the original pixel data.</p>
+
+      <h3>Tips for Best Results</h3>
+      <p>For the sharpest results, start with the highest resolution original you have. If you plan to crop and then resize, always crop first and resize second — this preserves the most detail. If you need a specific output size after cropping, use our Image Resizer tool after downloading your cropped image. For web use, follow up with our Image Compressor to reduce file size without visible quality loss.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Upload your image using the file picker above. Click and drag on the image to draw a selection rectangle. The dimensions of your selection are shown below the image. Click Crop Selection to apply the crop and see the result. If you are not happy with the selection, click Reset Selection to try again. When you are satisfied, click Download Cropped Image to save the result to your computer. Your image never leaves your browser.</p>
+    </section>
+  </main>
+
+    <footer>
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/image-cropper.js"></script>
+  <script src="../js/nav.js"></script>
+</body>
+</html>
