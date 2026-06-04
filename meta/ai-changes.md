@@ -59,3 +59,6 @@
 
 ### 2026-06-03 [Feature work]
 - Added Image Cropper tool (html/image-cropper.html + js/image-cropper.js) with click-and-drag rectangular selection, full-resolution cropping via Canvas API, live dimension readout, reset selection, and instant PNG download; targets high-volume image editing search queries ("crop image online", "online image cropper", "free photo crop tool") and strengthens the site's image tool cluster alongside Resizer, Compressor, Converter, Palette Extractor, and Color Replacer; integrated across all page navigation headers and footers, homepage tool grid, 404 tool grid, about page (updated tool count from thirteen to fourteen), sitemap, and homepage meta descriptions to include "crop"
+
+### 2026-06-04 [Bug fixes]
+- Fixed Image Cropper bounds bug where dragging outside the image produced crop coordinates beyond the canvas edges, resulting in empty transparent areas in the downloaded output; coordinates are now clamped to [0, width] and [0, height]. Also improved mobile touch reliability by moving `touchmove` and `touchend` handlers to `window` (matching the existing mouse behaviour) so dragging continues even when the finger slides off the canvas, and added a `touchcancel` handler to prevent stuck drag states if the browser interrupts the gesture.

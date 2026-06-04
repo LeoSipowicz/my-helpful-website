@@ -51,14 +51,18 @@ fileInput.addEventListener('change', e => {
 
 function getCanvasCoords(e) {
   const rect = cropCanvas.getBoundingClientRect();
-  const clientX = e.touches && e.touches.length ? e.touches[0].clientX : e.clientX;
-  const clientY = e.touches && e.touches.length ? e.touches[0].clientY : e.clientY;
+  const touch = e.changedTouches && e.changedTouches.length ? e.changedTouches[0]
+              : e.touches && e.touches.length ? e.touches[0]
+              : null;
+  const clientX = touch ? touch.clientX : e.clientX;
+  const clientY = touch ? touch.clientY : e.clientY;
   const scaleX = cropCanvas.width / rect.width;
   const scaleY = cropCanvas.height / rect.height;
-  return {
-    x: (clientX - rect.left) * scaleX,
-    y: (clientY - rect.top) * scaleY
-  };
+  let x = (clientX - rect.left) * scaleX;
+  let y = (clientY - rect.top) * scaleY;
+  x = Math.max(0, Math.min(cropCanvas.width, x));
+  y = Math.max(0, Math.min(cropCanvas.height, y));
+  return { x, y };
 }
 
 function normalizeSelection() {
@@ -146,7 +150,7 @@ cropCanvas.addEventListener('touchstart', e => {
   updateCropInfo();
 }, { passive: false });
 
-cropCanvas.addEventListener('touchmove', e => {
+window.addEventListener('touchmove', e => {
   if (!isDragging || !originalImage) return;
   e.preventDefault();
   const coords = getCanvasCoords(e);
@@ -157,7 +161,15 @@ cropCanvas.addEventListener('touchmove', e => {
   updateCropInfo();
 }, { passive: false });
 
-cropCanvas.addEventListener('touchend', () => {
+window.addEventListener('touchend', e => {
+  if (!isDragging) return;
+  isDragging = false;
+  selection = normalizeSelection();
+  drawCanvas();
+  updateCropInfo();
+});
+
+window.addEventListener('touchcancel', () => {
   if (!isDragging) return;
   isDragging = false;
   selection = normalizeSelection();
