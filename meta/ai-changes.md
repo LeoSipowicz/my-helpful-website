@@ -62,3 +62,6 @@
 
 ### 2026-06-04 [Bug fixes]
 - Fixed Image Cropper bounds bug where dragging outside the image produced crop coordinates beyond the canvas edges, resulting in empty transparent areas in the downloaded output; coordinates are now clamped to [0, width] and [0, height]. Also improved mobile touch reliability by moving `touchmove` and `touchend` handlers to `window` (matching the existing mouse behaviour) so dragging continues even when the finger slides off the canvas, and added a `touchcancel` handler to prevent stuck drag states if the browser interrupts the gesture.
+
+### 2026-06-05 [UI/UX polish]
+- Styled all `input[type="range"]` sliders across the site (Image Compressor, Image Converter, Color Replacer, Password Generator) to match the brutalist design language with a bold onyx track, large 28px square thumb, and blue hover/focus/active states, replacing inconsistent default browser controls that were hard to use on mobile
