@@ -65,3 +65,6 @@
 
 ### 2026-06-05 [UI/UX polish]
 - Styled all `input[type="range"]` sliders across the site (Image Compressor, Image Converter, Color Replacer, Password Generator) to match the brutalist design language with a bold onyx track, large 28px square thumb, and blue hover/focus/active states, replacing inconsistent default browser controls that were hard to use on mobile
+
+### 2026-06-06 [Bug fixes]
+- Fixed missing favicon reference on all 19 pages: favicon.ico existed in the repo but was never linked in any HTML `<head>`, so browsers showed a generic tab icon. Added `<link rel="icon" href="/favicon.ico" sizes="any" />` after every stylesheet link. Also added `<meta name="theme-color" content="#E6E1C5" />` for mobile browser address-bar branding, and `<meta name="twitter:card" />` / `twitter:title` / `twitter:description` tags after every Open Graph block so Twitter shares render rich previews instead of plain text links. These were oversights from previous page integrations that made the site look less professional in tabs, bookmarks, and social feeds.
