@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <title>Text Diff - Free Online Text Comparison Tool</title>
+  <meta name="description" content="Compare two texts and see the differences instantly. Side-by-side diff with added and removed lines highlighted. Free, private, no data sent to any server." />
+  <link rel="canonical" href="https://helpful-website.com/html/text-diff.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <meta name="theme-color" content="#E6E1C5" />
+  <meta property="og:title" content="Text Diff - Free Online Text Comparison Tool" />
+  <meta property="og:description" content="Compare two texts and see the differences instantly. Side-by-side diff with added and removed lines highlighted. Free and private." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/text-diff.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Text Diff - Free Online Text Comparison Tool" />
+  <meta name="twitter:description" content="Compare two texts and see the differences instantly. Side-by-side diff with added and removed lines highlighted. Free and private." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Text Diff",
+    "applicationCategory": "UtilityApplication",
+    "description": "A browser-based tool to compare two texts and highlight differences.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .diff-grid .form-group { margin-bottom: 0; }
+    .diff-grid textarea { min-height: 12rem; resize: vertical; }
+    @media (max-width: 768px) {
+      .diff-grid { grid-template-columns: 1fr; }
+    }
+    .diff-result {
+      border: 2px solid var(--onyx);
+      background: rgba(21,21,21,0.03);
+      max-height: 24rem;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+    .diff-result pre {
+      margin: 0;
+      padding: 0.5rem 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .diff-result .diff-add {
+      background: rgba(39, 174, 96, 0.12);
+    }
+    .diff-result .diff-add::before {
+      content: '+ ';
+      color: #27ae60;
+      font-weight: bold;
+    }
+    .diff-result .diff-remove {
+      background: rgba(192, 57, 43, 0.12);
+    }
+    .diff-result .diff-remove::before {
+      content: '- ';
+      color: #c0392b;
+      font-weight: bold;
+    }
+    .diff-result .diff-same {
+      background: transparent;
+    }
+    .diff-result .diff-same::before {
+      content: '  ';
+    }
+    .diff-meta {
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    #diff-warning {
+      color: #c0392b;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <a href="../index.html" class="site-title"><h1>A Helpful Website</h1></a>
+      <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <p>A set of helpful tools</p>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="../index.html" class="nav-item">Home</a></li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Image Tools</button>
+          <ul class="dropdown">
+            <li><a href="image-resizer.html">Image Resizer</a></li>
+            <li><a href="image-converter.html">Image Converter</a></li>
+            <li><a href="image-compressor.html">Image Compressor</a></li>
+            <li><a href="color-palette.html">Color Palette</a></li>
+            <li><a href="color-replacer.html">Color Replacer</a></li>
+            <li><a href="image-cropper.html">Image Cropper</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle active" aria-expanded="false">Text Tools</button>
+          <ul class="dropdown">
+            <li><a href="text-case-converter.html">Case Converter</a></li>
+            <li><a href="word-counter.html">Word Counter</a></li>
+            <li><a href="text-diff.html">Text Diff</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Developer Tools</button>
+          <ul class="dropdown">
+            <li><a href="json-formatter.html">JSON Formatter</a></li>
+            <li><a href="base64-encoder.html">Base64 Encoder</a></li>
+            <li><a href="url-encoder.html">URL Encoder</a></li>
+            <li><a href="html-entity-encoder.html">HTML Entities</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Security Tools</button>
+          <ul class="dropdown">
+            <li><a href="password-generator.html">Password Generator</a></li>
+            <li><a href="hash-generator.html">Hash Generator</a></li>
+          </ul>
+        </li>
+        <li><a href="../about.html" class="nav-item">About</a></li>
+        <li><a href="../privacy.html" class="nav-item">Privacy</a></li>
+        <li><a href="../contact.html" class="nav-item">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Text Diff</h2>
+      <p>Paste two versions of a text into the boxes below and click Compare to see the differences. Added lines are highlighted in green, removed lines in red. All processing happens in your browser. No data is sent to any server.</p>
+    </section>
+
+    <section>
+      <div class="diff-grid">
+        <div class="form-group">
+          <label for="input-a">Original Text</label>
+          <textarea id="input-a" rows="10" placeholder="Paste the original text here"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="input-b">Modified Text</label>
+          <textarea id="input-b" rows="10" placeholder="Paste the modified text here"></textarea>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button id="compare-btn" class="btn-primary">Compare</button>
+        <button id="swap-btn">Swap</button>
+        <button id="clear-btn">Clear</button>
+      </div>
+
+      <div id="diff-warning" style="display:none;"></div>
+      <div class="diff-meta" id="diff-meta" style="display:none;"></div>
+      <div class="diff-result" id="diff-result" style="display:none;"></div>
+    </section>
+
+    <section>
+      <h2>Why Compare Text?</h2>
+      <p>Comparing two versions of a text is one of the most common tasks in writing, development, and legal work. Writers revise drafts and need to see what changed. Developers compare configuration files, code snippets, or JSON outputs. Legal professionals compare contract versions. System administrators compare log files. Our free Text Diff tool makes this fast and easy.</p>
+
+      <h3>How Text Diff Works</h3>
+      <p>This tool compares your two texts line by line using a standard diff algorithm. It finds the longest common sequence of lines between the two versions and then marks everything else as either added or removed. This means you get an accurate view of what changed, even if lines were inserted or deleted in the middle of the text.</p>
+
+      <h3>Line-by-Line Comparison</h3>
+      <p>The comparison is done at the line level, so any change within a line will cause that entire line to be marked as changed. For code and structured text, this is usually the most useful granularity. If you need character-level comparison, consider breaking the text into shorter lines or using a specialized code diff tool.</p>
+
+      <h3>Privacy and Speed</h3>
+      <p>Because everything runs in your browser, your texts are never uploaded to any server. This is ideal for sensitive content like legal documents, proprietary code, or private writing. Results appear instantly even for large texts.</p>
+
+      <h3>How to Use This Tool</h3>
+      <p>Paste your original text into the left box and the modified version into the right box. Click Compare to see the differences. Use Swap to exchange the two sides. Use Clear to start over. The result shows added lines in green, removed lines in red, and unchanged lines in neutral gray. You can scroll through the result to review all changes.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/text-diff.js"></script>
+  <script src="../js/nav.js"></script>
+</body>
+</html>
