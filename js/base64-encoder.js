@@ -149,7 +149,7 @@ fileInput.addEventListener('change', e => {
     return;
   }
 
-  fileMeta.textContent = `Selected: ${file.name} (${formatSize(file.size)}) — reading...`;
+  fileMeta.textContent = `Selected: ${file.name} (${formatSize(file.size)}) - reading`;
 
   const reader = new FileReader();
   reader.onload = () => {

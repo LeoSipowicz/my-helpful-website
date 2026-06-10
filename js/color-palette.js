@@ -65,7 +65,7 @@ function renderPalette(colors) {
     swatch.style.background = c.hex;
     swatch.innerHTML = `<span class="palette-labels"><span class="palette-hex">${c.hex}</span><span class="palette-rgb">rgb(${c.r}, ${c.g}, ${c.b})</span></span>`;
     swatch.addEventListener('click', () => {
-      const textToCopy = `${c.hex} — rgb(${c.r}, ${c.g}, ${c.b})`;
+      const textToCopy = `${c.hex} (rgb: ${c.r}, ${c.g}, ${c.b})`;
       navigator.clipboard.writeText(textToCopy).then(() => {
         copyFeedback.textContent = `Copied ${c.hex}`;
         copyFeedback.style.display = '';

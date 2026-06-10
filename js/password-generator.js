@@ -59,7 +59,7 @@ function generatePassword() {
     passwordDisplay.textContent = 'Select at least one character type';
     strengthFill.style.width = '0';
     strengthFill.style.background = 'transparent';
-    strengthText.textContent = 'Strength: —';
+    strengthText.textContent = 'Strength: -';
     return;
   }
 
@@ -169,4 +169,4 @@ copyBtn.addEventListener('click', () => {
 passwordDisplay.textContent = 'Click Generate to create a password';
 strengthFill.style.width = '0';
 strengthFill.style.background = 'transparent';
-strengthText.textContent = 'Strength: —';
+strengthText.textContent = 'Strength: -';

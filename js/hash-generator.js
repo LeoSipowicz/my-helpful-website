@@ -132,7 +132,7 @@ async function computeTextHashes() {
   }
 
   resultsSection.style.display = '';
-  resultsSection.innerHTML = '<p>Computing...</p>';
+  resultsSection.innerHTML = '<p>Computing</p>';
 
   const promises = [];
   if (md5Check.checked) promises.push({ name: 'MD5', fn: () => md5(text) });
@@ -216,13 +216,13 @@ computeFileBtn.addEventListener('click', async () => {
   }
 
   computeFileBtn.disabled = true;
-  computeFileBtn.textContent = 'Computing...';
+  computeFileBtn.textContent = 'Computing';
   fileResultsSection.style.display = '';
-  fileResultsSection.innerHTML = '<p>Reading file...</p>';
+  fileResultsSection.innerHTML = '<p>Reading file</p>';
 
   try {
     const arrayBuffer = await currentFile.arrayBuffer();
-    fileResultsSection.innerHTML = '<p>Hashing...</p>';
+    fileResultsSection.innerHTML = '<p>Hashing</p>';
 
     const promises = [];
     if (md5Check.checked) promises.push({ name: 'MD5', fn: () => md5(arrayBuffer) });
