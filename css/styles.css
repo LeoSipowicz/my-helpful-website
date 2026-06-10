@@ -20,7 +20,7 @@ body {
   flex-direction: column;
 }
 
-main { flex: 1; max-width: 48rem; }
+main { flex: 1; max-width: 48rem; margin: 0 auto; }
 
 /* ── Typography ── */
 h1, h2, h3, h4, h5, h6 {

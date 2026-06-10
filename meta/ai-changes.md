@@ -74,3 +74,11 @@
 
 ### 2026-06-10 [Bug fixes]
 - Fixed em dashes and en dashes in Password Generator interactive UI and body text (html/password-generator.html + js/password-generator.js): replaced `Strength: -` placeholder, `A-Z` labels, `a-z` labels, `0-9` labels, and all body text em dashes with hyphens. Also fixed em dashes in Color Palette clipboard copy (js/color-palette.js), Base64 Encoder file status (js/base64-encoder.js), and Hash Generator loading messages (js/hash-generator.js). Corrected outdated privacy page Open Graph and Twitter meta descriptions that still said "No images are uploaded or stored" instead of "No files or text are uploaded or stored" to accurately reflect the site's full tool set. Also replaced em dashes in the privacy page body text list items. These changes enforce the site's no-em-dash rule and fix factual inaccuracies discovered during the audit.
+
+### 2026-06-10 [UI/UX polish]
+- Fixed heading hierarchy in Color Replacer tool: changed `<h2>Upload Image</h2>` and `<h2>Click a Color to Replace</h2>` to `<h3>` so the document outline is correct (was jumping from h2 tool title to h2 subsections)
+- Fixed hamburger menu `aria-label` in nav.js: now dynamically switches between "Open menu" and "Close menu" based on menu state, so screen reader users get accurate state information
+- Added `aria-haspopup="true"` to all dropdown toggle buttons so screen readers announce that these buttons open a submenu
+- Added null-guard in nav.js document click handler so removing a dropdown toggle from the DOM during page lifecycle does not throw an error
+- Fixed `<main>` centering in styles.css: added `margin: 0 auto` so content is centered on wide screens instead of left-aligned
+- Removed extraneous blank lines immediately after `<body>` in color-replacer.html and text-diff.html for consistent formatting across all pages

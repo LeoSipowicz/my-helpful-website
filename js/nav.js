@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', () => {
       const isOpen = mainNav.classList.toggle('open');
       menuToggle.setAttribute('aria-expanded', isOpen);
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     });
   }
 
   dropdownToggles.forEach(toggle => {
+    toggle.setAttribute('aria-haspopup', 'true');
     toggle.addEventListener('click', (e) => {
       const parent = toggle.closest('.has-dropdown');
       const isOpen = parent.classList.toggle('open');
@@ -29,7 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('click', () => {
     dropdownToggles.forEach(toggle => {
-      toggle.closest('.has-dropdown').classList.remove('open');
+      const parent = toggle.closest('.has-dropdown');
+      if (parent) parent.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
     });
   });
