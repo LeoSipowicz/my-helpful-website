@@ -82,3 +82,9 @@
 - Added null-guard in nav.js document click handler so removing a dropdown toggle from the DOM during page lifecycle does not throw an error
 - Fixed `<main>` centering in styles.css: added `margin: 0 auto` so content is centered on wide screens instead of left-aligned
 - Removed extraneous blank lines immediately after `<body>` in color-replacer.html and text-diff.html for consistent formatting across all pages
+
+### 2026-06-11 [SEO/performance]
+- Updated all sitemap.xml lastmod dates to 2026-06-11 (were still showing 2026-06-09 from the previous sitemap update); search engines need accurate freshness signals to recrawl and index the latest site changes
+- Upgraded `pagead2.googlesyndication.com` from `dns-prefetch` to `preconnect` (with `crossorigin`) on all 20 pages; preconnect performs DNS + TCP + TLS handshake upfront, reducing AdSense script load latency by eliminating multiple round trips that dns-prefetch alone does not address
+- Added `dns-prefetch` for `www.google-analytics.com` on all 20 pages; GA4 data collection requests go to this domain, and without any resource hint the browser must perform a fresh DNS lookup when analytics events fire
+- Fixed about.html meta descriptions (`description`, `og:description`, `twitter:description`) to use hyphens instead of em dash HTML entities (`&mdash;`); em dashes in meta descriptions can cause SERP snippet truncation at unusual break points and violate the site's writing conventions
