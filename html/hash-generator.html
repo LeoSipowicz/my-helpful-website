@@ -242,28 +242,7 @@
       <div id="file-results-section" style="display:none;"></div>
     </section>
 
-    <section>
-      <h2>What Are Cryptographic Hashes and Why Use Them?</h2>
-      <p>A cryptographic hash function takes an input of any size — a single word, a novel, or a multi-gigabyte file — and produces a fixed-length string of characters called a digest or hash. The same input always produces the same hash, but even the tiniest change to the input produces a completely different hash. This property makes hashes invaluable for verifying data integrity, detecting tampering, and comparing files without examining their contents directly.</p>
 
-      <h3>Verifying File Downloads</h3>
-      <p>When you download software, operating system images, or large datasets from the internet, publishers often provide a SHA-256 or MD5 checksum alongside the download link. After downloading the file, you can compute its hash and compare it to the published value. If they match, you can be confident the file arrived intact and was not corrupted during transfer or tampered with by a malicious actor. Our tool lets you perform this check entirely in your browser, without uploading your file to any third-party server.</p>
-
-      <h3>MD5 — The Classic Checksum</h3>
-      <p>MD5 produces a 128-bit digest displayed as a 32-character hex string. It was once the most widely used hash algorithm for file verification and is still common in legacy systems, open-source repositories, and checksum lists. While MD5 is no longer considered secure against deliberate collision attacks, it remains perfectly adequate for detecting accidental file corruption and is still requested by many build systems and package managers.</p>
-
-      <h3>SHA-1 — The Transition Standard</h3>
-      <p>SHA-1 generates a 160-bit digest as a 40-character hex string. It replaced MD5 in many security-sensitive applications during the 2000s and is still used in older Git repositories, certificate systems, and legacy APIs. Like MD5, SHA-1 is considered theoretically broken for collision resistance, but it is stronger than MD5 and is still widely encountered in checksum files and verification workflows.</p>
-
-      <h3>SHA-256 — The Modern Standard</h3>
-      <p>SHA-256 is the current gold standard for cryptographic hashing. It produces a 256-bit digest as a 64-character hex string and is considered secure against all known practical attacks. SHA-256 is used in Bitcoin, TLS certificates, code signing, and virtually every modern security protocol. When in doubt, use SHA-256. It is the recommended algorithm for new systems and the one most publishers use when providing download checksums today.</p>
-
-      <h3>SHA-512 — Maximum Security</h3>
-      <p>SHA-512 produces a 512-bit digest as a 128-character hex string. It offers the highest security margin of the common SHA-2 family and is preferred in high-security environments where the extra computational cost is acceptable. Some operating systems and security tools default to SHA-512 for their strongest verification modes.</p>
-
-      <h3>How to Use This Tool</h3>
-      <p>Paste your text into the input box above, select the algorithms you want to compute, and click Compute Hashes. Results appear instantly below. To hash a file, use the file picker in the second section and click Compute File Hashes. All computation happens locally using your browser's built-in cryptography APIs and a pure JavaScript MD5 implementation. Your text and files are never sent anywhere.</p>
-    </section>
   </main>
 
     <footer>

@@ -207,23 +207,7 @@
       </div>
     </section>
 
-    <section>
-      <h2>What Are HTML Entities and Why Use Them?</h2>
-      <p>HTML entities are special codes that represent characters in HTML documents. They begin with an ampersand (<code>&amp;</code>) and end with a semicolon (<code>;</code>). For example, the less-than symbol <code>&lt;</code> is written as <code>&amp;lt;</code> in HTML, and the greater-than symbol <code>&gt;</code> is written as <code>&amp;gt;</code>. This prevents browsers from interpreting these characters as HTML markup, which is essential when displaying code snippets, mathematical expressions, or any text that contains reserved symbols.</p>
 
-      <h3>Common Use Cases</h3>
-      <p><strong>Displaying code in HTML:</strong> When you write a tutorial or blog post that includes HTML, JavaScript, or CSS examples, you must escape the angle brackets and ampersands so the browser renders them as text instead of executing them as markup. Our encoder handles this automatically.</p>
-      <p><strong>Preventing XSS vulnerabilities:</strong> Cross-site scripting (XSS) attacks inject malicious scripts into web pages. Encoding user input to HTML entities before displaying it is one of the most effective defenses, because it neutralizes dangerous characters like <code>&lt;</code> and <code>&gt;</code>.</p>
-      <p><strong>Handling special characters:</strong> Characters like curly quotes, em-dashes, currency symbols, and letters with diacritics may not render correctly in all encodings. Converting them to numeric entities ensures they display consistently across browsers, email clients, and content management systems.</p>
-      <p><strong>Decoding scraped content:</strong> When you copy text from a web page's source code, it often contains encoded entities. Decoding them instantly reveals the original readable text without manual lookup.</p>
-
-      <h3>Named vs. Numeric Entities</h3>
-      <p><strong>Named entities</strong> use memorable names like <code>&amp;amp;</code> for <code>&amp;</code>, <code>&amp;copy;</code> for &copy;, and <code>&amp;nbsp;</code> for a non-breaking space. They are easier to read in source code but only exist for a limited set of characters.</p>
-      <p><strong>Numeric entities</strong> use a number to reference a Unicode code point. Decimal numeric entities look like <code>&amp;#169;</code> and hexadecimal ones look like <code>&amp;#xA9;</code>. They work for any character in the Unicode standard, making them universally applicable. Our tool supports both formats when decoding, and lets you choose between named and numeric modes when encoding.</p>
-
-      <h3>How to Use This Tool</h3>
-      <p>Paste the text you want to encode into the input box, select your preferred mode, and click Encode to Entities. To reverse the process, paste a string containing entities and click Decode from Entities. Use Swap to move the output back to the input for chained operations. Named mode is selected by default and works best for readability.</p>
-    </section>
   </main>
 
     <footer>

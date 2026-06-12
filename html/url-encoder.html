@@ -207,23 +207,7 @@
       </div>
     </section>
 
-    <section>
-      <h2>What Is URL Encoding and Why Use It?</h2>
-      <p>URL encoding, also known as percent-encoding, is a mechanism for encoding arbitrary data in a Uniform Resource Identifier (URI) under certain circumstances. It replaces unsafe ASCII characters with a percent sign (%) followed by two hexadecimal digits. This ensures that special characters — like spaces, ampersands, question marks, and non-ASCII characters — do not interfere with the structure of a URL.</p>
 
-      <h3>Common Use Cases</h3>
-      <p><strong>Query parameters:</strong> When you build a URL with dynamic data, such as <code>https://example.com/search?q=hello world</code>, the space must be encoded as <code>%20</code> or <code>+</code> so the server interprets the query correctly. Our Component mode handles this automatically.</p>
-      <p><strong>Form submissions:</strong> Browsers encode form data using the same rules as <code>encodeURIComponent</code> before sending it to a server. Developers often need to inspect or reproduce this encoding manually when debugging APIs.</p>
-      <p><strong>Non-ASCII characters:</strong> URLs can only contain a limited set of ASCII characters. If you need to include emojis, accented letters, or characters from other writing systems, they must be percent-encoded as UTF-8 byte sequences. For example, the emoji 🚀 becomes <code>%F0%9F%9A%80</code>.</p>
-      <p><strong>API debugging:</strong> When inspecting network requests or API documentation, you frequently encounter encoded strings like <code>name%3DJohn%26age%3D30</code>. Decoding these instantly reveals the underlying data structure without manual deciphering.</p>
-
-      <h3>Component Mode vs. Full URL Mode</h3>
-      <p><strong>Component mode</strong> uses <code>encodeURIComponent</code>, which encodes every character except <code>A-Z a-z 0-9 - _ . ! ~ * ' ( )</code>. This is the right choice when you are encoding a piece of data that will be inserted into a query string or form field.</p>
-      <p><strong>Full URL mode</strong> uses <code>encodeURI</code>, which preserves URL-reserved characters like <code>/</code>, <code>?</code>, <code>:</code>, and <code>@</code>. This is useful when you want to encode an entire URL that contains special characters in its path or fragment, but you still need the URL structure itself to remain valid.</p>
-
-      <h3>How to Use This Tool</h3>
-      <p>Paste the text you want to encode into the input box, select the appropriate mode, and click Encode. To reverse the process, paste a percent-encoded string and click Decode. Use Swap to move the output back to the input for chained operations. Component mode is selected by default and works for the vast majority of encoding tasks.</p>
-    </section>
   </main>
 
     <footer>
