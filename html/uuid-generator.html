@@ -7,26 +7,26 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>URL Encoder &amp; Decoder - Free Online URL Converter</title>
-  <meta name="description" content="Encode and decode URLs online for free. Convert text to URL-encoded format or decode percent-encoded strings back to plain text. Supports both encodeURIComponent and encodeURI modes. No data sent to any server." />
-  <link rel="canonical" href="https://helpful-website.com/html/url-encoder.html" />
+  <title>UUID Generator - Free Online UUID v4 Generator</title>
+  <meta name="description" content="Generate UUIDs online for free. Create random UUID v4 identifiers instantly in your browser. Bulk generate up to 100 UUIDs. No data sent to any server." />
+  <link rel="canonical" href="https://helpful-website.com/html/uuid-generator.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="URL Encoder &amp; Decoder - Free Online URL Converter" />
-  <meta property="og:description" content="Encode and decode URLs online for free. Supports encodeURIComponent and encodeURI modes. No data sent to any server." />
+  <meta property="og:title" content="UUID Generator - Free Online UUID v4 Generator" />
+  <meta property="og:description" content="Generate UUIDs online for free. Create random UUID v4 identifiers instantly. Bulk generate up to 100 UUIDs. No data sent to any server." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/url-encoder.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/uuid-generator.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="URL Encoder &amp; Decoder - Free Online URL Converter" />
-  <meta name="twitter:description" content="Encode and decode URLs online for free. Supports encodeURIComponent and encodeURI modes. No data sent to any server." />
+  <meta name="twitter:title" content="UUID Generator - Free Online UUID v4 Generator" />
+  <meta name="twitter:description" content="Generate UUIDs online for free. Create random UUID v4 identifiers instantly. Bulk generate up to 100 UUIDs. No data sent to any server." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "URL Encoder & Decoder",
+    "name": "UUID Generator",
     "applicationCategory": "DeveloperApplication",
-    "description": "A browser-based tool to encode text to URL-encoded format and decode percent-encoded strings back to plain text.",
+    "description": "A browser-based tool to generate random UUID v4 identifiers.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -35,6 +35,7 @@
     }
   }
   </script>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -45,15 +46,47 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    #input-text, #output-text {
-      min-height: 10rem;
-      resize: vertical;
+    #uuid-display {
       font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-    #output-text {
+      font-size: 1.5rem;
+      padding: 1rem;
+      border: 2px solid var(--onyx);
       background: rgba(21,21,21,0.03);
+      word-break: break-all;
+      min-height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    #uuid-count {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+    #uuid-list {
+      list-style: none;
+      margin: 0 0 1rem 0;
+      padding: 0;
+      max-height: 20rem;
+      overflow-y: auto;
+      border: 2px solid var(--onyx);
+      background: rgba(21,21,21,0.03);
+    }
+    #uuid-list li {
+      padding: 0.4rem 0.75rem;
+      border-bottom: 1px solid rgba(21,21,21,0.1);
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+    }
+    #uuid-list li:last-child {
+      border-bottom: none;
+    }
+    #uuid-list li code {
+      background: none;
+      padding: 0;
+      font-size: inherit;
     }
     .options-row {
       display: flex;
@@ -61,10 +94,6 @@
       flex-wrap: wrap;
       align-items: center;
       margin-bottom: 1rem;
-    }
-    .options-row .form-group {
-      flex: 0 0 auto;
-      margin-bottom: 0;
     }
     .options-row label {
       display: inline-flex;
@@ -81,12 +110,11 @@
       width: auto;
       margin: 0;
     }
-    .options-row select {
-      width: auto;
-      min-width: 10rem;
+    .options-row .form-group {
+      flex: 0 0 auto;
       margin-bottom: 0;
     }
-    #copy-feedback {
+    #copy-feedback, #copy-all-feedback {
       font-size: 0.85rem;
       color: var(--blue);
       font-family: Impact, sans-serif;
@@ -94,18 +122,8 @@
       letter-spacing: 0.05em;
       margin-left: 0.75rem;
     }
-    #char-info {
-      font-size: 0.85rem;
-      opacity: 0.7;
-      margin-bottom: 1rem;
-    }
-    .mode-note {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      margin-bottom: 1rem;
-    }
     @media (max-width: 768px) {
-      #input-text, #output-text { font-size: 0.85rem; }
+      #uuid-display { font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -166,45 +184,41 @@
 
   <main>
     <section>
-      <h2>URL Encoder &amp; Decoder</h2>
-      <p>Encode plain text or query parameters to URL-safe percent-encoded format, or decode percent-encoded strings back to readable text. All processing happens in your browser — your data never leaves your device.</p>
+      <h2>UUID Generator</h2>
+      <p>Generate random UUID v4 identifiers instantly. Customize the format and generate multiple UUIDs at once. All processing happens in your browser using cryptographically secure randomness.</p>
     </section>
 
     <section>
+      <div id="uuid-display" aria-live="polite" aria-atomic="true"></div>
+
       <div class="form-group">
-        <label for="input-text">Input (plain text or encoded URL)</label>
-        <textarea id="input-text" rows="8" placeholder="Paste text to encode, or a percent-encoded string to decode..."></textarea>
+        <label for="count-slider">Number of UUIDs <span id="count-val">1</span></label>
+        <input type="range" id="count-slider" min="1" max="100" value="1" />
       </div>
 
       <div class="options-row">
-        <div class="form-group">
-          <label for="mode-select">Encoding Mode</label>
-          <select id="mode-select">
-            <option value="component">Component (for query strings &amp; form data)</option>
-            <option value="full">Full URL (preserves scheme &amp; domain)</option>
-          </select>
-        </div>
-      </div>
-
-      <p class="mode-note" id="mode-note"><strong>Component mode</strong> encodes almost all special characters, making it safe for use inside query parameters and form fields.</p>
-
-      <div class="btn-group">
-        <button id="encode-btn" class="btn-primary">Encode</button>
-        <button id="decode-btn">Decode</button>
-        <button id="swap-btn">Swap Input / Output</button>
-        <button id="clear-btn">Clear</button>
-      </div>
-
-      <div id="char-info"></div>
-
-      <div class="form-group">
-        <label for="output-text">Output</label>
-        <textarea id="output-text" rows="8" readonly placeholder="Result will appear here..."></textarea>
+        <label>
+          <input type="checkbox" id="uppercase" />
+          Uppercase
+        </label>
+        <label>
+          <input type="checkbox" id="hyphens" checked />
+          Include hyphens
+        </label>
       </div>
 
       <div class="btn-group">
-        <button id="copy-btn" class="btn-primary">Copy Output</button>
+        <button id="generate-btn" class="btn-primary">Generate</button>
+        <button id="copy-btn">Copy</button>
         <span id="copy-feedback" style="display:none;">Copied!</span>
+      </div>
+
+      <div id="uuid-count"></div>
+      <ul id="uuid-list"></ul>
+
+      <div class="btn-group">
+        <button id="copy-all-btn" class="btn-primary">Copy All</button>
+        <span id="copy-all-feedback" style="display:none;">Copied!</span>
       </div>
     </section>
 
@@ -221,7 +235,7 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/url-encoder.js"></script>
+  <script src="../js/uuid-generator.js"></script>
   <script src="../js/nav.js"></script>
 </body>
 </html>
