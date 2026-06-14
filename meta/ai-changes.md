@@ -94,3 +94,6 @@
 
 ### 2026-06-13 [Feature work]
 - Added UUID Generator tool (html/uuid-generator.html + js/uuid-generator.js) with randomized UUID v4 generation via `crypto.randomUUID()` with automatic fallback to `crypto.getRandomValues()`, single and bulk generation (1-100), uppercase/lowercase toggle, with/without hyphens toggle, copy individual, and copy all; targets very high-volume developer search queries ("uuid generator", "uuid v4", "generate uuid", "online uuid generator"); expands the site's developer tool cluster to five tools alongside JSON Formatter, Base64 Encoder, URL Encoder, and HTML Entity Encoder; integrated across all page navigation headers and footers, homepage tool grid, 404 tool grid, about page (updated tool count from fifteen to sixteen), sitemap; updated homepage meta descriptions to include "generate UUIDs"
+
+### 2026-06-14 [Bug fixes]
+- Replaced all remaining Unicode em dashes with hyphens across the site: index.html (4), hash-generator.html (2), base64-encoder.html (2), plus 6 more tool pages with 1 each (text-case-converter, word-counter, url-encoder, html-entity-encoder, image-converter, json-formatter, image-resizer). The 2026-06-10 bug fix only addressed password-generator, privacy, and JS files, missing 15 em dashes in 10 other pages. Every em dash on the site is now a plain hyphen, consistent with the site's writing conventions.
