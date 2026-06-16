@@ -97,3 +97,6 @@
 
 ### 2026-06-14 [Bug fixes]
 - Replaced all remaining Unicode em dashes with hyphens across the site: index.html (4), hash-generator.html (2), base64-encoder.html (2), plus 6 more tool pages with 1 each (text-case-converter, word-counter, url-encoder, html-entity-encoder, image-converter, json-formatter, image-resizer). The 2026-06-10 bug fix only addressed password-generator, privacy, and JS files, missing 15 em dashes in 10 other pages. Every em dash on the site is now a plain hyphen, consistent with the site's writing conventions.
+
+### 2026-06-16 [UI/UX polish]
+- Updated homepage content to accurately represent all four tool categories instead of being image-centric: rewrote "How It Works" steps 1-2 to mention developer and security tools alongside image and text; changed "Why Use These Tools?" opening from "There are plenty of image editors out there" to "There are plenty of online tools out there"; generalized FAQ question "Are my images safe?" to "Is my data safe?" and "How is this different from other free image tools?" to "How is this different from other free online tools?" with corresponding answer updates. Updated sitemap lastmod dates to 2026-06-16 for all 20 pages.
