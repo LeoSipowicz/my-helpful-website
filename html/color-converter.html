@@ -7,26 +7,26 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>JSON Formatter &amp; Validator - Free Online JSON Pretty Print Tool</title>
-  <meta name="description" content="Format, validate, and pretty-print JSON online for free. Instantly beautify messy JSON, minify it for production, or validate syntax with clear error messages. No data sent to any server." />
-  <link rel="canonical" href="https://helpful-website.com/html/json-formatter.html" />
+  <title>Color Converter - Free Online HEX to RGB to HSL Converter</title>
+  <meta name="description" content="Convert colors between HEX, RGB, and HSL formats instantly. Free online color converter with live preview. No sign-up, no data sent anywhere." />
+  <link rel="canonical" href="https://helpful-website.com/html/color-converter.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="JSON Formatter &amp; Validator - Free Online JSON Pretty Print Tool" />
-  <meta property="og:description" content="Format, validate, and pretty-print JSON online for free. Instantly beautify messy JSON, minify it for production, or validate syntax with clear error messages." />
+  <meta property="og:title" content="Color Converter - Free Online HEX to RGB to HSL Converter" />
+  <meta property="og:description" content="Convert colors between HEX, RGB, and HSL formats instantly. Free online color converter with live preview." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/json-formatter.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/color-converter.html" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="JSON Formatter &amp; Validator - Free Online JSON Pretty Print Tool" />
-  <meta name="twitter:description" content="Format, validate, and pretty-print JSON online for free. Instantly beautify messy JSON, minify it for production, or validate syntax with clear error messages." />
+  <meta name="twitter:title" content="Color Converter - Free Online HEX to RGB to HSL Converter" />
+  <meta name="twitter:description" content="Convert colors between HEX, RGB, and HSL formats instantly. Free online color converter with live preview." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "JSON Formatter & Validator",
+    "name": "Color Converter",
     "applicationCategory": "DeveloperApplication",
-    "description": "A browser-based tool to format, validate, minify, and pretty-print JSON data with syntax error reporting.",
+    "description": "A browser-based tool to convert colors between HEX, RGB, and HSL formats.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -46,66 +46,63 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    #input-json, #output-json {
-      min-height: 10rem;
-      resize: vertical;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      line-height: 1.5;
+    #color-preview {
+      width: 100%;
+      height: 120px;
+      border: 2px solid var(--onyx);
+      margin-bottom: 1.5rem;
+      background: var(--sand);
     }
-    #output-json {
-      background: rgba(21,21,21,0.03);
-    }
-    .options-row {
-      display: flex;
+    .converter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
-    .options-row .form-group {
-      flex: 0 0 auto;
-      margin-bottom: 0;
-    }
-    .options-row label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: Georgia, serif;
-      text-transform: none;
-      letter-spacing: 0;
-      font-size: 0.95rem;
-      margin-bottom: 0;
-      cursor: pointer;
-    }
-    .options-row label input {
-      width: auto;
-      margin: 0;
-    }
-    .options-row select {
-      width: auto;
-      min-width: 8rem;
-      margin-bottom: 0;
-    }
-    #error-box {
-      display: none;
-      border: 2px solid #c0392b;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      background: rgba(192,57,43,0.05);
-    }
-    #error-box h4 {
+    .converter-grid .form-group { margin-bottom: 0; }
+    .converter-grid input { margin-bottom: 0.5rem; }
+    .converter-grid .form-group:last-child input { margin-bottom: 0; }
+    .format-label {
       font-family: Impact, sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #c0392b;
-      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    #error-box pre {
+    .format-label .copy-btn {
+      padding: 0.2rem 0.5rem;
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
+    #hex-preview {
       font-family: 'Courier New', monospace;
       font-size: 0.85rem;
-      white-space: pre-wrap;
-      word-break: break-word;
+      opacity: 0.7;
+      margin-bottom: 1rem;
+      min-height: 1.2rem;
+    }
+    .rgb-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .rgb-group input { margin-bottom: 0; }
+    .rgb-group label {
+      font-size: 0.7rem;
+      margin-bottom: 0.2rem;
+    }
+    .hsl-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .hsl-group input { margin-bottom: 0; }
+    .hsl-group label {
+      font-size: 0.7rem;
+      margin-bottom: 0.2rem;
     }
     #copy-feedback {
       font-size: 0.85rem;
@@ -114,15 +111,11 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-left: 0.75rem;
-    }
-    .status-ok {
       display: none;
-      font-size: 0.85rem;
-      color: #27ae60;
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      .converter-grid { grid-template-columns: 1fr; }
+      #color-preview { height: 80px; }
     }
   </style>
 </head>
@@ -184,59 +177,72 @@
 
   <main>
     <section>
-      <h2>JSON Formatter &amp; Validator</h2>
-      <p>Paste your JSON below to instantly beautify, validate, or minify it. All processing happens in your browser - your data is never sent to any server.</p>
+      <h2>Color Converter</h2>
+      <p>Convert colors between HEX, RGB, and HSL formats instantly. Type any value and all other fields update automatically. All processing happens in your browser.</p>
     </section>
 
     <section>
-      <div class="form-group">
-        <label for="input-json">Input JSON</label>
-        <textarea id="input-json" rows="8" placeholder='Paste your JSON here, e.g. {"name":"John","age":30}'></textarea>
-      </div>
+      <div id="color-preview"></div>
 
-      <div class="options-row">
+      <div class="converter-grid">
         <div class="form-group">
-          <label for="indent-select">Indent</label>
-          <select id="indent-select">
-            <option value="2">2 Spaces</option>
-            <option value="4">4 Spaces</option>
-            <option value="tab">Tab</option>
-          </select>
+          <div class="format-label">
+            <span>HEX</span>
+            <button type="button" class="copy-btn" data-target="hex-input">Copy</button>
+          </div>
+          <input type="text" id="hex-input" value="#6D72C3" placeholder="#ff6600" />
+          <div id="hex-preview">#6d72c3</div>
         </div>
+
         <div class="form-group">
-          <label>
-            <input type="checkbox" id="sort-keys" />
-            Sort keys
-          </label>
+          <div class="format-label">
+            <span>RGB</span>
+            <button type="button" class="copy-btn" data-target="rgb-display">Copy</button>
+          </div>
+          <input type="hidden" id="rgb-display" />
+          <div class="rgb-group">
+            <div>
+              <label for="r-input">R</label>
+              <input type="number" id="r-input" min="0" max="255" placeholder="0-255" />
+            </div>
+            <div>
+              <label for="g-input">G</label>
+              <input type="number" id="g-input" min="0" max="255" placeholder="0-255" />
+            </div>
+            <div>
+              <label for="b-input">B</label>
+              <input type="number" id="b-input" min="0" max="255" placeholder="0-255" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="format-label">
+            <span>HSL</span>
+            <button type="button" class="copy-btn" data-target="hsl-display">Copy</button>
+          </div>
+          <input type="hidden" id="hsl-display" />
+          <div class="hsl-group">
+            <div>
+              <label for="h-input">H&deg;</label>
+              <input type="number" id="h-input" min="0" max="360" placeholder="0-360" />
+            </div>
+            <div>
+              <label for="s-input">S%</label>
+              <input type="number" id="s-input" min="0" max="100" placeholder="0-100" />
+            </div>
+            <div>
+              <label for="l-input">L%</label>
+              <input type="number" id="l-input" min="0" max="100" placeholder="0-100" />
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="btn-group">
-        <button id="format-btn" class="btn-primary">Format JSON</button>
-        <button id="minify-btn">Minify JSON</button>
-        <button id="validate-btn">Validate Only</button>
-        <button id="clear-btn">Clear</button>
-      </div>
-
-      <div id="error-box">
-        <h4>Validation Error</h4>
-        <pre id="error-message"></pre>
-      </div>
-
-      <div class="status-ok" id="status-ok">Valid JSON</div>
-
-      <div class="form-group">
-        <label for="output-json">Output</label>
-        <textarea id="output-json" rows="8" readonly placeholder="Formatted JSON will appear here..."></textarea>
-      </div>
-
-      <div class="btn-group">
-        <button id="copy-btn" class="btn-primary">Copy Output</button>
-        <span id="copy-feedback" style="display:none;">Copied!</span>
+        <span id="copy-feedback">Copied!</span>
       </div>
     </section>
-
-
   </main>
 
     <footer>
@@ -249,7 +255,7 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/json-formatter.js"></script>
+  <script src="../js/color-converter.js"></script>
   <script src="../js/nav.js"></script>
 </body>
 </html>
