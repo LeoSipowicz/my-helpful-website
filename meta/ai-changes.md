@@ -103,3 +103,8 @@
 
 ### 2026-06-17 [Feature work]
 - Added Color Converter tool (html/color-converter.html + js/color-converter.js) with bidirectional HEX, RGB, and HSL conversion, live color preview, and copy-to-clipboard for each format; targets high-volume developer and designer search queries ("hex to rgb", "color converter", "rgb to hex", "hsl converter"); expands the site's developer tool cluster to six tools alongside JSON Formatter, Base64 Encoder, URL Encoder, HTML Entity Encoder, and UUID Generator, and provides a color-focused utility that complements the existing Color Palette and Color Replacer image tools; integrated across all page navigation headers and footers, homepage tool grid, 404 tool grid, about page (updated tool count from sixteen to seventeen), sitemap; updated homepage and about meta descriptions to include "convert colors"
+
+### 2026-06-18 [SEO/performance]
+- Added `og:site_name` ("A Helpful Website") and `og:locale` ("en_US") meta tags to all 22 pages to enrich social media card previews; Facebook, Twitter, LinkedIn, and Slack use these properties to display the site name and language in shared link cards, improving click-through rates from social referrals
+- Added `<meta name="robots" content="noindex, follow">` to 404.html to prevent search engines from accidentally indexing the 404 page (which had a self-referencing canonical and was at risk of appearing in SERPs if discovered via broken links)
+- Updated sitemap.xml lastmod dates to 2026-06-18 for all 21 URLs to signal freshness after the meta tag additions
