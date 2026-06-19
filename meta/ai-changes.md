@@ -108,3 +108,6 @@
 - Added `og:site_name` ("A Helpful Website") and `og:locale` ("en_US") meta tags to all 22 pages to enrich social media card previews; Facebook, Twitter, LinkedIn, and Slack use these properties to display the site name and language in shared link cards, improving click-through rates from social referrals
 - Added `<meta name="robots" content="noindex, follow">` to 404.html to prevent search engines from accidentally indexing the 404 page (which had a self-referencing canonical and was at risk of appearing in SERPs if discovered via broken links)
 - Updated sitemap.xml lastmod dates to 2026-06-18 for all 21 URLs to signal freshness after the meta tag additions
+
+### 2026-06-19 [Bug fixes]
+- Fixed about.html "Why We Built This" section which was still image-centric ("Most free online image editors", "basic image editing should be private") despite the site now offering text, developer, and security tools alongside image tools. Updated to generalize across all tool categories, matching the similar 2026-06-16 homepage update that was never applied to the about page. Also fixed double-space-hyphen formatting in the following paragraph.
