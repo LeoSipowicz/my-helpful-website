@@ -111,3 +111,6 @@
 
 ### 2026-06-19 [Bug fixes]
 - Fixed about.html "Why We Built This" section which was still image-centric ("Most free online image editors", "basic image editing should be private") despite the site now offering text, developer, and security tools alongside image tools. Updated to generalize across all tool categories, matching the similar 2026-06-16 homepage update that was never applied to the about page. Also fixed double-space-hyphen formatting in the following paragraph.
+
+### 2026-06-20 [UI/UX polish]
+- Converted the contact form to AJAX submission via fetch (js/contact.js) so visitors who send a message stay on the page and see inline success/error feedback instead of being redirected to Formspree's external thank-you page. Added id="contact-form" to the form element and linked the new script. Updated sitemap lastmod for contact.html to signal the change.
