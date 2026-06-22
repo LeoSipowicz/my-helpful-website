@@ -121,6 +121,14 @@ function renderMarkdown(text) {
 function processInline(text) {
   let result = escapeHtml(text);
 
+  // Extract inline code spans first so markdown syntax inside them is preserved
+  const codeSpans = [];
+  result = result.replace(/`([^`]+)`/g, function(match, content) {
+    const placeholder = '%%%CODE' + codeSpans.length + '%%%';
+    codeSpans.push(placeholder, '<code>' + content + '</code>');
+    return placeholder;
+  });
+
   // Images: ![alt](src)
   result = result.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
 
@@ -135,11 +143,13 @@ function processInline(text) {
   result = result.replace(/\*([^*]+)\*/g, '<em>$1</em>');
   result = result.replace(/_([^_]+)_/g, '<em>$1</em>');
 
-  // Inline code: `text`
-  result = result.replace(/`([^`]+)`/g, '<code>$1</code>');
-
   // Strikethrough: ~~text~~
   result = result.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+
+  // Restore code spans
+  for (let i = 0; i < codeSpans.length; i += 2) {
+    result = result.split(codeSpans[i]).join(codeSpans[i + 1]);
+  }
 
   return result;
 }

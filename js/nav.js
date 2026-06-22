@@ -40,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       dropdownToggles.forEach(toggle => {
-        toggle.closest('.has-dropdown').classList.remove('open');
+        const parent = toggle.closest('.has-dropdown');
+        if (parent) parent.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       });
       if (mainNav) {
