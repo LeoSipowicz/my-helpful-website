@@ -121,3 +121,6 @@
 ### 2026-06-22 [Bug fixes]
 - Fixed Markdown Editor inline code rendering bug: the `processInline()` function applied bold and italic regex patterns before inline code regex, so markdown syntax inside backtick code spans (e.g., `` `**hello**` ``) was incorrectly rendered as HTML tags instead of literal text. The fix extracts code spans into placeholders before processing bold/italic, then restores them afterward, ensuring code content is always rendered literally.
 - Fixed nav.js Escape keydown handler missing null guard on `toggle.closest('.has-dropdown')` - the existing click handler already had a null guard, but the Escape handler did not, creating an inconsistency that could throw an error if a dropdown toggle was removed from the DOM during the page lifecycle
+
+### 2026-06-23 [UI/UX polish]
+- Fixed contact form submission feedback appearing below the viewport on mobile: added `feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' })` after both success and error feedback is displayed in the contact form (js/contact.js). Previously, on mobile, the submit button was often at the bottom of the viewport, so the dynamically-appended success/error `<div>` appeared below the fold and the user saw only blank form fields with no confirmation that their message was sent. The scroll ensures visitors always see the response to their submission.

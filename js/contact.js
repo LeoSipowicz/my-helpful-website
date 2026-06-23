@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.style.cssText = 'margin-top:1rem;border:2px solid #27ae60;padding:1rem;background:rgba(39,174,96,0.05);';
         feedback.innerHTML = '<strong style="font-family:Impact,sans-serif;text-transform:uppercase;letter-spacing:0.05em;">Message Sent</strong><p style="margin:0.5rem 0 0 0;">Thank you for your message. We will get back to you as soon as possible.</p>';
         feedback.style.display = 'block';
+        feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         form.querySelectorAll('input, textarea').forEach(el => el.value = '');
       } else {
         throw new Error('Server error');
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       feedback.style.cssText = 'margin-top:1rem;border:2px solid #c0392b;padding:1rem;background:rgba(192,57,43,0.05);';
       feedback.innerHTML = '<strong style="font-family:Impact,sans-serif;text-transform:uppercase;letter-spacing:0.05em;">Error</strong><p style="margin:0.5rem 0 0 0;">Something went wrong. Please try again or email us directly.</p>';
       feedback.style.display = 'block';
+      feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     submitBtn.disabled = false;
