@@ -124,3 +124,8 @@
 
 ### 2026-06-23 [UI/UX polish]
 - Fixed contact form submission feedback appearing below the viewport on mobile: added `feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' })` after both success and error feedback is displayed in the contact form (js/contact.js). Previously, on mobile, the submit button was often at the bottom of the viewport, so the dynamically-appended success/error `<div>` appeared below the fold and the user saw only blank form fields with no confirmation that their message was sent. The scroll ensures visitors always see the response to their submission.
+
+### 2026-06-24 [SEO/performance]
+- Updated all sitemap.xml lastmod dates from 2026-06-21 to 2026-06-24 to signal freshness after the 6/22 (nav.js null guard fix), 6/23 (contact form scroll fix), and 6/24 changes; search engines need accurate dates to recrawl updated pages
+- Updated privacy page "Last updated: 2026" to "Last updated: June 2026" so visitors see a specific month rather than a vague year-only date, improving trust signals for the privacy policy
+- Moved `<script src="nav.js">` from the end of `<body>` to `<head>` with `defer` on all 23 pages (18 tool pages, 5 top-level pages), and moved `<script src="contact.js">` with `defer` on contact.html; both scripts use `DOMContentLoaded` listeners so defer is safe. The browser now starts downloading these scripts during HTML parsing instead of waiting until the entire body is parsed, reducing the render-blocking script execution at page load time
