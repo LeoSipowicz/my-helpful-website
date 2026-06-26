@@ -134,3 +134,7 @@
 - Fixed homepage intro paragraph still claiming only image and text tools ("Our image tools use the HTML5 Canvas API... while our text tools run entirely in JavaScript") when the site now also offers developer and security tools; expanded to mention all four categories. The 2026-06-16 UI/UX polish pass updated the FAQ, How It Works, and section headings but missed the first `<p>` after the hero heading, leaving visitors with an incomplete description of the site's capabilities.
 - Fixed about page intro paragraph that mentioned image, text, and developer tools but omitted security tools ("while our text and developer tools run entirely in JavaScript"); updated to reference all four categories for consistency with the rest of the about page which correctly lists all 18 tools.
 - Updated sitemap lastmod for homepage and about.html to 2026-06-25 to signal freshness after content corrections.
+
+### 2026-06-26 [UI/UX polish]
+- Fixed about.html "Our Tools" paragraph tool ordering: the last four tools were listed in a different sequence (UUID Generator -> Color Converter -> Markdown Editor -> Hash Generator) than the homepage tool grid (Hash Generator -> UUID Generator -> Color Converter -> Markdown Editor), making the about page inconsistent with the homepage for visitors cross-referencing the tool list
+- Fixed color-converter.html copy-feedback span missing inline `style="display:none"` (was relying on a CSS rule instead, diverging from the pattern used on all other tool pages); now consistent with the other 17 tool pages
