@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <title>Unix Timestamp Converter - Free Online Epoch Time Converter</title>
+  <meta name="description" content="Convert Unix timestamps to human-readable dates and vice versa online for free. See the current epoch time live. No data sent to any server - everything runs in your browser." />
+  <link rel="canonical" href="https://helpful-website.com/html/timestamp-converter.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <meta name="theme-color" content="#E6E1C5" />
+  <meta property="og:title" content="Unix Timestamp Converter - Free Online Epoch Time Converter" />
+  <meta property="og:description" content="Convert Unix timestamps to human-readable dates and vice versa online for free. See the current epoch time live. No data sent to any server." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://helpful-website.com/html/timestamp-converter.html" />
+  <meta property="og:site_name" content="A Helpful Website" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Unix Timestamp Converter - Free Online Epoch Time Converter" />
+  <meta name="twitter:description" content="Convert Unix timestamps to human-readable dates and vice versa online for free. See the current epoch time live. No data sent to any server." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Unix Timestamp Converter",
+    "applicationCategory": "DeveloperApplication",
+    "description": "A browser-based tool to convert Unix timestamps to human-readable dates and vice versa.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    #now-display {
+      border: 2px solid var(--onyx);
+      padding: 1rem;
+      background: rgba(21,21,21,0.03);
+      margin-bottom: 1.5rem;
+    }
+    .now-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(21,21,21,0.1);
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+    .now-row:last-child { border-bottom: none; }
+    .now-label {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+    }
+    .now-value {
+      word-break: break-all;
+      text-align: right;
+    }
+    .converter-section {
+      border: 2px solid var(--onyx);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      background: rgba(21,21,21,0.02);
+    }
+    .converter-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .ts-result {
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      border: 1px solid var(--onyx);
+      background: rgba(21,21,21,0.03);
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .date-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .date-grid .form-group { margin-bottom: 0; }
+    .date-grid input { margin-bottom: 0; text-align: center; }
+    .date-grid label {
+      font-size: 0.65rem;
+      margin-bottom: 0.15rem;
+      text-align: center;
+    }
+    .ts-output-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(21,21,21,0.1);
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+    .ts-output-row:last-child { border-bottom: none; }
+    #copy-feedback, #ts-feedback, #utc-feedback, #local-feedback, #ts-output-feedback {
+      font-size: 0.85rem;
+      color: var(--blue);
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.75rem;
+    }
+    @media (max-width: 768px) {
+      .date-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+<script src="../js/nav.js" defer></script></head>
+<body>
+    <header>
+    <div class="header-top">
+      <a href="../index.html" class="site-title"><h1>A Helpful Website</h1></a>
+      <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <p>A set of helpful tools</p>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="../index.html" class="nav-item">Home</a></li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Image Tools</button>
+          <ul class="dropdown">
+            <li><a href="image-resizer.html">Image Resizer</a></li>
+<li><a href="image-converter.html">Image Converter</a></li>
+<li><a href="image-compressor.html">Image Compressor</a></li>
+<li><a href="color-palette.html">Color Palette</a></li>
+<li><a href="color-replacer.html">Color Replacer</a></li>
+<li><a href="image-cropper.html">Image Cropper</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Text Tools</button>
+          <ul class="dropdown">
+            <li><a href="text-case-converter.html">Case Converter</a></li>
+<li><a href="word-counter.html">Word Counter</a></li>
+            <li><a href="text-diff.html">Text Diff</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle active" aria-expanded="false">Developer Tools</button>
+          <ul class="dropdown">
+            <li><a href="json-formatter.html">JSON Formatter</a></li>
+<li><a href="base64-encoder.html">Base64 Encoder</a></li>
+<li><a href="url-encoder.html">URL Encoder</a></li>
+<li><a href="html-entity-encoder.html">HTML Entities</a></li>
+<li><a href="uuid-generator.html">UUID Generator</a></li>
+<li><a href="color-converter.html">Color Converter</a></li>
+<li><a href="markdown-editor.html">Markdown Editor</a></li>
+<li><a href="timestamp-converter.html">Timestamp Converter</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Security Tools</button>
+          <ul class="dropdown">
+            <li><a href="password-generator.html">Password Generator</a></li>
+<li><a href="hash-generator.html">Hash Generator</a></li>
+          </ul>
+        </li>
+        <li><a href="../about.html" class="nav-item">About</a></li>
+        <li><a href="../privacy.html" class="nav-item">Privacy</a></li>
+        <li><a href="../contact.html" class="nav-item">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Unix Timestamp Converter</h2>
+      <p>Convert Unix timestamps to human-readable dates or convert any date to a Unix timestamp. All processing happens in your browser - nothing is sent to any server.</p>
+    </section>
+
+    <section>
+      <h3>Current Unix Time</h3>
+      <div id="now-display">
+        <div class="now-row"><span class="now-label">Unix (seconds)</span><span class="now-value" id="now-seconds"></span></div>
+        <div class="now-row"><span class="now-label">Unix (milliseconds)</span><span class="now-value" id="now-ms"></span></div>
+        <div class="now-row"><span class="now-label">UTC</span><span class="now-value" id="now-utc"></span></div>
+        <div class="now-row"><span class="now-label">Local</span><span class="now-value" id="now-local"></span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="converter-section">
+        <h3>Timestamp to Date</h3>
+        <div class="form-group">
+          <label for="ts-input">Unix timestamp (seconds or milliseconds)</label>
+          <input type="text" id="ts-input" placeholder="e.g. 1719446400" />
+        </div>
+        <div id="ts-date-output" style="display:none;" class="ts-result">
+          <div class="ts-output-row"><span>Local:</span><span id="ts-date-local"></span></div>
+          <div class="ts-output-row"><span>UTC:</span><span id="ts-date-utc"></span></div>
+        </div>
+        <div class="btn-group">
+          <button id="copy-local-btn" class="btn-primary">Copy Local</button>
+          <button id="copy-utc-btn">Copy UTC</button>
+          <span id="local-feedback" style="display:none;">Copied!</span>
+          <span id="utc-feedback" style="display:none;">Copied!</span>
+        </div>
+      </div>
+
+      <div class="converter-section">
+        <h3>Date to Timestamp</h3>
+        <div class="date-grid">
+          <div class="form-group">
+            <label for="year-input">Year</label>
+            <input type="number" id="year-input" min="1970" max="2100" />
+          </div>
+          <div class="form-group">
+            <label for="month-input">Month</label>
+            <input type="number" id="month-input" min="1" max="12" />
+          </div>
+          <div class="form-group">
+            <label for="day-input">Day</label>
+            <input type="number" id="day-input" min="1" max="31" />
+          </div>
+          <div class="form-group">
+            <label for="hour-input">Hour</label>
+            <input type="number" id="hour-input" min="0" max="23" />
+          </div>
+          <div class="form-group">
+            <label for="minute-input">Minute</label>
+            <input type="number" id="minute-input" min="0" max="59" />
+          </div>
+          <div class="form-group">
+            <label for="second-input">Second</label>
+            <input type="number" id="second-input" min="0" max="59" />
+          </div>
+        </div>
+        <div class="ts-result">
+          <div class="ts-output-row"><span>Unix (seconds):</span><span id="date-ts-output-seconds"></span></div>
+          <div class="ts-output-row"><span>Unix (milliseconds):</span><span id="date-ts-output-ms"></span></div>
+        </div>
+        <div class="btn-group">
+          <button id="set-now-btn" class="btn-primary">Set to Now</button>
+          <button id="set-today-btn">Set to Today</button>
+          <button id="copy-ts-output-btn">Copy Seconds</button>
+          <span id="ts-output-feedback" style="display:none;">Copied!</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <footer>
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/timestamp-converter.js"></script>
+</body>
+</html>
