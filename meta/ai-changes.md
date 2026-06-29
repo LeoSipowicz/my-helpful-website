@@ -145,3 +145,6 @@
 
 ### 2026-06-28 [SEO/performance]
 - Trimmed homepage meta description from 467 characters to 154 characters (Google truncates snippets at ~155-160 chars, so the full value prop was buried below the fold of SERP snippets, reducing click-through rate from search results). Also trimmed the about page meta description from ~196 chars to 117 chars (matching the already-concise og:description). Updated sitemap.xml lastmod dates to 2026-06-28 for all 23 URLs to signal freshness.
+
+### 2026-06-29 [UI/UX polish]
+- Reordered the tool grid on the homepage, 404 page, and about page to be strictly grouped by category (Image, Text, Developer, Security) instead of the mixed ordering that had Developer tools split around Security tools. The previous ordering was a historical artifact from incremental feature additions: Developer tools (JSON Formatter, Base64, URL Encoder, HTML Entities), then Security (Password Generator, Hash Generator), then Developer tools again (UUID Generator, Color Converter, Markdown Editor, Timestamp Converter). Developer tools are now all grouped sequentially, followed by Security tools. This makes the grid scannable for visitors looking for a specific tool category. Updated about page tool list paragraph to match the new ordering, and updated sitemap lastmod dates to 2026-06-29 for all 23 pages to signal freshness.
