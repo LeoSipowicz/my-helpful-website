@@ -1,4 +1,3 @@
-const nowDisplay = document.getElementById('now-display');
 const tsInput = document.getElementById('ts-input');
 const tsDateOutput = document.getElementById('ts-date-output');
 const tsDateLocal = document.getElementById('ts-date-local');

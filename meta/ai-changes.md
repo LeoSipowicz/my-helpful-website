@@ -151,3 +151,10 @@
 
 ### 2026-06-30 [Bug fixes]
 - Fixed privacy page data handling descriptions which still referenced only images ("image data", "image or text") despite the site now offering text, developer, and security tools alongside image tools. Updated section heading from "Image & Text Processing" to "Data Processing" and rewrote 5 instances across 4 sections (Data Processing, Information We Collect, Third-Party Services, Data Retention) to accurately describe that no file contents, text data, or personal information is shared with any third party. Updated sitemap lastmod for privacy.html to 2026-06-30 to signal the content update.
+
+### 2026-07-01 [Bug fixes]
+- Removed unused `nowDisplay` variable in timestamp-converter.js (declared via `getElementById` but never referenced) and removed dead `#copy-feedback, #ts-feedback,` selectors from timestamp-converter.html inline CSS (those IDs do not exist in the page markup); both were copy-paste leftovers from other tool pages that introduced dead code
+- Fixed extra blank line before `</main>` in image-cropper.html for consistent formatting
+
+### 2026-07-01 [SEO/performance]
+- Updated sitemap lastmod dates for timestamp-converter.html and image-cropper.html to 2026-07-01 to signal freshness after code cleanup
