@@ -7,28 +7,28 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>Password Generator - Free Secure Random Password Generator</title>
-  <meta name="description" content="Generate strong, secure, random passwords instantly. Customize length and character types. Free, private, no data sent anywhere - everything runs in your browser." />
-  <link rel="canonical" href="https://helpful-website.com/html/password-generator.html" />
+  <title>Lorem Ipsum Generator - Free Online Placeholder Text Generator</title>
+  <meta name="description" content="Generate Lorem Ipsum placeholder text online for free. Choose paragraphs, sentences, or words. Perfect for designers, developers, and content creators. No data sent to any server." />
+  <link rel="canonical" href="https://helpful-website.com/html/lorem-ipsum.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="Password Generator - Free Secure Random Password Generator" />
-  <meta property="og:description" content="Generate strong, secure, random passwords instantly. Customize length and character types. Free and private." />
+  <meta property="og:title" content="Lorem Ipsum Generator - Free Online Placeholder Text Generator" />
+  <meta property="og:description" content="Generate Lorem Ipsum placeholder text online for free. Choose paragraphs, sentences, or words. Perfect for designers, developers, and content creators." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/password-generator.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/lorem-ipsum.html" />
   <meta property="og:site_name" content="A Helpful Website" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Password Generator - Free Secure Random Password Generator" />
-  <meta name="twitter:description" content="Generate strong, secure, random passwords instantly. Customize length and character types. Free and private." />
+  <meta name="twitter:title" content="Lorem Ipsum Generator - Free Online Placeholder Text Generator" />
+  <meta name="twitter:description" content="Generate Lorem Ipsum placeholder text online for free. Choose paragraphs, sentences, or words. Perfect for designers, developers, and content creators." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Password Generator",
-    "applicationCategory": "SecurityApplication",
-    "description": "A browser-based tool to generate strong, secure, random passwords with customizable options.",
+    "name": "Lorem Ipsum Generator",
+    "applicationCategory": "UtilityApplication",
+    "description": "A browser-based tool to generate Lorem Ipsum placeholder text in paragraphs, sentences, or words.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -48,38 +48,6 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    #password-display {
-      font-family: 'Courier New', monospace;
-      font-size: 1.5rem;
-      padding: 1rem;
-      border: 2px solid var(--onyx);
-      background: rgba(21,21,21,0.03);
-      word-break: break-all;
-      min-height: 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    #strength-bar {
-      height: 8px;
-      background: #ddd;
-      margin-bottom: 1rem;
-      border: 1px solid var(--onyx);
-    }
-    #strength-fill {
-      height: 100%;
-      width: 0;
-      transition: width 0.3s ease, background 0.3s ease;
-    }
-    #strength-text {
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
-    }
     .options-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -98,10 +66,12 @@
       width: auto;
       margin: 0;
     }
-    #length-val {
-      font-family: Impact, sans-serif;
+    #output-text {
+      min-height: 12rem;
+      resize: vertical;
+      font-family: Georgia, serif;
       font-size: 1rem;
-      margin-left: 0.5rem;
+      line-height: 1.7;
     }
     #copy-feedback {
       font-size: 0.85rem;
@@ -111,8 +81,31 @@
       letter-spacing: 0.05em;
       margin-left: 0.75rem;
     }
-    @media (max-width: 768px) {
-      #password-display { font-size: 1.1rem; }
+    .count-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .count-row .form-group {
+      flex: 0 0 auto;
+      margin-bottom: 0;
+    }
+    .count-row input {
+      width: 5rem;
+      text-align: center;
+    }
+    .count-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: Georgia, serif;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      cursor: pointer;
     }
   </style>
 <script src="../js/nav.js" defer></script></head>
@@ -140,7 +133,7 @@
           </ul>
         </li>
         <li class="has-dropdown">
-          <button type="button" class="dropdown-toggle" aria-expanded="false">Text Tools</button>
+          <button type="button" class="dropdown-toggle active" aria-expanded="false">Text Tools</button>
           <ul class="dropdown">
             <li><a href="text-case-converter.html">Case Converter</a></li>
 <li><a href="word-counter.html">Word Counter</a></li>
@@ -162,7 +155,7 @@
           </ul>
         </li>
         <li class="has-dropdown">
-          <button type="button" class="dropdown-toggle active" aria-expanded="false">Security Tools</button>
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Security Tools</button>
           <ul class="dropdown">
             <li><a href="password-generator.html">Password Generator</a></li>
 <li><a href="hash-generator.html">Hash Generator</a></li>
@@ -177,52 +170,49 @@
 
   <main>
     <section>
-      <h2>Password Generator</h2>
-      <p>Create strong, random, secure passwords instantly. Customize the length and character types to match any website's requirements. No data is sent anywhere - generation happens entirely in your browser.</p>
+      <h2>Lorem Ipsum Generator</h2>
+      <p>Generate placeholder text for your designs, prototypes, and layouts. Choose how much text you need and click Generate. All processing happens in your browser - nothing is sent to any server.</p>
     </section>
 
     <section>
-      <div id="password-display" aria-live="polite" aria-atomic="true">Click Generate to create a password</div>
-
-      <div id="strength-bar"><div id="strength-fill"></div></div>
-      <div id="strength-text">Strength: -</div>
-
-      <div class="form-group">
-        <label for="length-slider">Password Length <span id="length-val">16</span></label>
-        <input type="range" id="length-slider" min="6" max="64" value="16" />
+      <div class="count-row">
+        <div class="form-group">
+          <label for="count">Amount <span id="count-val">3</span></label>
+          <input type="number" id="count" min="1" max="100" value="3" />
+        </div>
       </div>
 
       <div class="options-grid">
         <label class="option-item">
-          <input type="checkbox" id="uppercase" checked />
-          Uppercase (A-Z)
+          <input type="radio" name="unit" value="paragraphs" checked />
+          Paragraphs
         </label>
         <label class="option-item">
-          <input type="checkbox" id="lowercase" checked />
-          Lowercase (a-z)
+          <input type="radio" name="unit" value="sentences" />
+          Sentences
         </label>
         <label class="option-item">
-          <input type="checkbox" id="numbers" checked />
-          Numbers (0-9)
+          <input type="radio" name="unit" value="words" />
+          Words
         </label>
         <label class="option-item">
-          <input type="checkbox" id="symbols" checked />
-          Symbols (!@#$%^&*)
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="exclude-ambiguous" />
-          Exclude ambiguous (0, O, 1, l, I)
+          <input type="checkbox" id="start-lorem" checked />
+          Start with "Lorem ipsum..."
         </label>
       </div>
 
       <div class="btn-group">
-        <button id="generate-btn" class="btn-primary">Generate Password</button>
+        <button id="generate-btn" class="btn-primary">Generate</button>
         <button id="copy-btn">Copy to Clipboard</button>
         <span id="copy-feedback" style="display:none;">Copied!</span>
+        <button id="clear-btn">Clear</button>
+      </div>
+
+      <div class="form-group">
+        <label for="output-text">Generated Text</label>
+        <textarea id="output-text" readonly placeholder="Click Generate to create placeholder text..."></textarea>
       </div>
     </section>
-
-
   </main>
 
     <footer>
@@ -235,6 +225,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/password-generator.js"></script>
+  <script src="../js/lorem-ipsum.js"></script>
 </body>
 </html>
