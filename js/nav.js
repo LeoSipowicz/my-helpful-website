@@ -3,6 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainNav = document.querySelector('.main-nav');
   const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
+  // Mark active nav link with aria-current
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav-list a.nav-item').forEach(link => {
+    const linkPath = link.getAttribute('href');
+    if (linkPath === currentPath || 
+        (currentPath.endsWith('.html') && linkPath === currentPath.substring(currentPath.lastIndexOf('/') + 1))) {
+      link.setAttribute('aria-current', 'page');
+    }
+  });
+
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', () => {
       const isOpen = mainNav.classList.toggle('open');
