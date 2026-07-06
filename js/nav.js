@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentPath = window.location.pathname;
   document.querySelectorAll('.nav-list a.nav-item').forEach(link => {
     const linkPath = link.getAttribute('href');
+    const isHomepage = currentPath === '/' || currentPath === '/index.html';
+    const isHomeLink = linkPath === 'index.html' || linkPath === './index.html' || linkPath === '/index.html';
     if (linkPath === currentPath || 
-        (currentPath.endsWith('.html') && linkPath === currentPath.substring(currentPath.lastIndexOf('/') + 1))) {
+        (currentPath.endsWith('.html') && linkPath === currentPath.substring(currentPath.lastIndexOf('/') + 1)) ||
+        (isHomepage && isHomeLink)) {
       link.setAttribute('aria-current', 'page');
     }
   });
