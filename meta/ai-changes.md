@@ -176,3 +176,6 @@
 
 ### 2026-07-06 [Bug fixes]
 - Fixed nav.js Home link never receiving `aria-current="page"` on the homepage: `window.location.pathname` is `/` but the Home nav link has `href="index.html"`, so neither the exact-match condition nor the `.html`-suffix condition was met. Added a third condition that detects the homepage by checking for `/` or `/index.html` and matching against any canonical form of `index.html` (`index.html`, `./index.html`, `/index.html`). This was a regression from the 2026-07-04 aria-current feature that left screen reader users without a "current page" announcement for the Home link.
+
+### 2026-07-07 [SEO/performance]
+- Added `offers` property (price: 0, USD) to JSON-LD structured data on all 6 image tool pages (Image Resizer, Image Converter, Image Compressor, Color Palette Extractor, Color Replacer, Image Cropper). These pages had `operatingSystem` and `browserRequirements` but were missing the `offers` block that the other 14 tool pages included, creating an inconsistency that left search engines without a clear signal that these are free tools. Updated sitemap lastmod dates for the 6 changed pages to 2026-07-07.
