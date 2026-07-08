@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   copyBtn.addEventListener('click', () => {
     if (!outputText.value) return;
     navigator.clipboard.writeText(outputText.value).then(() => {
-      copyFeedback.style.display = 'inline';
+      copyFeedback.style.display = '';
       copyFeedback.textContent = 'Copied!';
       setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
     }).catch(() => {});

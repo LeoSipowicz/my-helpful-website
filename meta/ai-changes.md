@@ -179,3 +179,9 @@
 
 ### 2026-07-07 [SEO/performance]
 - Added `offers` property (price: 0, USD) to JSON-LD structured data on all 6 image tool pages (Image Resizer, Image Converter, Image Compressor, Color Palette Extractor, Color Replacer, Image Cropper). These pages had `operatingSystem` and `browserRequirements` but were missing the `offers` block that the other 14 tool pages included, creating an inconsistency that left search engines without a clear signal that these are free tools. Updated sitemap lastmod dates for the 6 changed pages to 2026-07-07.
+
+### 2026-07-08 [Bug fixes]
+- Fixed heading hierarchy bug in hash-generator.html: changed `<h2>Hash a File</h2>` to `<h3>` (was a subsection under the main `<h2>` tool title, creating a skipped heading level in the document outline for screen readers and accessibility tools)
+- Fixed heading hierarchy bug in base64-encoder.html: changed `<h2>Encode a File to Base64</h2>` to `<h3>` (same issue - subsection at same level as the page title heading)
+- Fixed lorem-ipsum.js copy feedback display pattern to use `style.display = ''` (removing inline style) instead of `style.display = 'inline'` for consistency with the other 9 tool pages that use this pattern; the CSS for `#copy-feedback` on lorem-ipsum.html has no `display` rule, so `'inline'` was functionally equivalent but inconsistent with the rest of the codebase
+- Updated sitemap lastmod dates for hash-generator.html and base64-encoder.html to 2026-07-08 to signal freshness after the heading fixes
