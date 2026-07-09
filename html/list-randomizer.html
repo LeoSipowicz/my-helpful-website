@@ -7,30 +7,29 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>Image Resizer - Free Online Image Resizing Tool</title>
-  <meta name="description" content="Resize your images online for free. Upload an image, set custom dimensions, and download the resized version. No server uploads, 100% private." />
-  <link rel="canonical" href="https://helpful-website.com/html/image-resizer.html" />
+  <title>Random Picker &amp; List Randomizer - Free Online Random Item Picker</title>
+  <meta name="description" content="Pick a random item from a list, shuffle a list, or draw multiple random items instantly. Free online random picker tool. No data sent to any server." />
+  <link rel="canonical" href="https://helpful-website.com/html/list-randomizer.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="Image Resizer - Free Online Image Resizing Tool" />
-  <meta property="og:description" content="Resize your images online for free. Upload an image, set custom dimensions, and download the resized version. No server uploads, 100% private." />
+  <meta property="og:title" content="Random Picker &amp; List Randomizer - Free Online Random Item Picker" />
+  <meta property="og:description" content="Pick a random item from a list, shuffle a list, or draw multiple random items instantly. Free online random picker tool." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/image-resizer.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/list-randomizer.html" />
   <meta property="og:site_name" content="A Helpful Website" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Image Resizer - Free Online Image Resizing Tool" />
-  <meta name="twitter:description" content="Resize your images online for free. Upload an image, set custom dimensions, and download the resized version. No server uploads, 100% private." />
+  <meta name="twitter:title" content="Random Picker &amp; List Randomizer - Free Online Random Item Picker" />
+  <meta name="twitter:description" content="Pick a random item from a list, shuffle a list, or draw multiple random items instantly. Free online random picker tool." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Image Resizer",
-    "applicationCategory": "MultimediaApplication",
-    "description": "A browser-based tool to resize images online.",
+    "name": "Random Picker & List Randomizer",
+    "applicationCategory": "UtilityApplication",
+    "description": "A browser-based tool to pick random items from a list, shuffle lists, and draw multiple random entries.",
     "operatingSystem": "All",
-    "browserRequirements": "Requires browser with Canvas API support",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -48,6 +47,80 @@
   </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
+  <style>
+    #input-list {
+      min-height: 10rem;
+      resize: vertical;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    #result-display {
+      font-size: 1.2rem;
+      padding: 1rem;
+      border: 2px solid var(--onyx);
+      background: rgba(21,21,21,0.03);
+      word-break: break-word;
+      min-height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 1rem;
+      font-family: Georgia, serif;
+    }
+    #result-list {
+      min-height: 5rem;
+      resize: vertical;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    #pick-count-input {
+      width: 4rem;
+      text-align: center;
+    }
+    .count-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .count-row .form-group {
+      flex: 0 0 auto;
+      margin-bottom: 0;
+    }
+    .count-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: Georgia, serif;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+    .count-row input {
+      margin-bottom: 0;
+    }
+    #item-count {
+      font-family: Impact, sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    #copy-feedback {
+      font-size: 0.85rem;
+      color: var(--blue);
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 0.75rem;
+    }
+  </style>
 <script src="../js/nav.js" defer></script></head>
 <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
@@ -63,7 +136,7 @@
       <ul class="nav-list">
         <li><a href="../index.html" class="nav-item">Home</a></li>
         <li class="has-dropdown">
-          <button type="button" class="dropdown-toggle active" aria-expanded="false">Image Tools</button>
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Image Tools</button>
           <ul class="dropdown">
             <li><a href="image-resizer.html">Image Resizer</a></li>
 <li><a href="image-converter.html">Image Converter</a></li>
@@ -74,7 +147,7 @@
           </ul>
         </li>
         <li class="has-dropdown">
-          <button type="button" class="dropdown-toggle" aria-expanded="false">Text Tools</button>
+          <button type="button" class="dropdown-toggle active" aria-expanded="false">Text Tools</button>
           <ul class="dropdown">
             <li><a href="text-case-converter.html">Case Converter</a></li>
 <li><a href="word-counter.html">Word Counter</a></li>
@@ -112,41 +185,43 @@
 
   <main id="main-content">
     <section>
-      <h2>Image Resizer</h2>
-      <p>Upload an image, set your desired dimensions, and download the resized version. All processing happens in your browser - nothing is uploaded to any server.</p>
+      <h2>Random Picker &amp; List Randomizer</h2>
+      <p>Enter a list of items below (one per line), then pick a random item, shuffle the list, or draw multiple random entries. All processing happens in your browser - nothing is sent to any server.</p>
     </section>
 
-    <section id="upload">
-      <h3>Upload Image</h3>
-      <input type="file" id="file-input" accept="image/*" />
-    </section>
-
-    <section id="controls-section" style="display:none;">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="width-input">Width (px)</label>
-          <input type="number" id="width-input" min="1" />
-        </div>
-        <div class="form-group">
-          <label for="height-input">Height (px)</label>
-          <input type="number" id="height-input" min="1" />
-        </div>
+    <section>
+      <div class="form-group">
+        <label for="input-list">Your List</label>
+        <div id="item-count">0 items</div>
+        <textarea id="input-list" rows="10" placeholder="Enter one item per line...&#10;&#10;Example:&#10;Alice&#10;Bob&#10;Charlie&#10;Diana"></textarea>
       </div>
-      <label class="checkbox-label">
-        <input type="checkbox" id="lock-aspect" checked />
-        Lock aspect ratio
-      </label>
 
-      <div id="preview-section">
-        <h3>Preview</h3>
-        <canvas id="canvas"></canvas>
+      <div class="count-row">
+        <div class="form-group">
+          <label for="pick-count-input">Pick count</label>
+          <input type="number" id="pick-count-input" min="1" max="100" value="1" />
+        </div>
       </div>
 
       <div class="btn-group">
-        <button id="download-btn" class="btn-primary">Download Resized Image</button>
+        <button id="pick-btn" class="btn-primary">Pick Random</button>
+        <button id="pick-multiple-btn">Pick Multiple</button>
+        <button id="shuffle-btn">Shuffle List</button>
+        <button id="clear-btn">Clear</button>
+      </div>
+
+      <div id="result-display" aria-live="polite" aria-atomic="true">Click Pick Random to choose an item</div>
+
+      <div class="form-group">
+        <label for="result-list">Results</label>
+        <textarea id="result-list" rows="6" readonly placeholder="Multiple results or shuffled list will appear here..."></textarea>
+      </div>
+
+      <div class="btn-group">
+        <button id="copy-btn">Copy Results</button>
+        <span id="copy-feedback" style="display:none;">Copied!</span>
       </div>
     </section>
-
   </main>
 
     <footer>
@@ -159,6 +234,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/image-resizer.js"></script>
+  <script src="../js/list-randomizer.js"></script>
 </body>
 </html>
