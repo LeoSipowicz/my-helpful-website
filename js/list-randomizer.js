@@ -5,6 +5,7 @@ const pickBtn = document.getElementById('pick-btn');
 const pickMultipleBtn = document.getElementById('pick-multiple-btn');
 const shuffleBtn = document.getElementById('shuffle-btn');
 const clearBtn = document.getElementById('clear-btn');
+const loadExampleBtn = document.getElementById('load-example-btn');
 const copyBtn = document.getElementById('copy-btn');
 const copyFeedback = document.getElementById('copy-feedback');
 const pickCountInput = document.getElementById('pick-count-input');
@@ -20,9 +21,15 @@ function updateItemCount() {
 }
 
 function randInt(min, max) {
+  const range = max - min + 1;
+  const limit = Math.floor(4294967296 / range) * range;
   const array = new Uint32Array(1);
-  crypto.getRandomValues(array);
-  return min + (array[0] % (max - min + 1));
+  let value;
+  do {
+    crypto.getRandomValues(array);
+    value = array[0];
+  } while (value >= limit);
+  return min + (value % range);
 }
 
 function fisherYatesShuffle(arr) {
@@ -86,6 +93,13 @@ pickMultipleBtn.addEventListener('click', pickMultiple);
 shuffleBtn.addEventListener('click', shuffleList);
 
 clearBtn.addEventListener('click', clearAll);
+
+loadExampleBtn.addEventListener('click', () => {
+  inputList.value = 'Alice\nBob\nCharlie\nDiana\nEve\nFrank';
+  resultDisplay.textContent = 'Click Pick Random to choose an item';
+  resultList.value = '';
+  updateItemCount();
+});
 
 copyBtn.addEventListener('click', () => {
   if (!resultList.value) return;
