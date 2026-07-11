@@ -7,28 +7,28 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>URL Encoder &amp; Decoder - Free Online URL Converter</title>
-  <meta name="description" content="Encode and decode URLs online for free. Convert text to URL-encoded format or decode percent-encoded strings back to plain text. Supports both encodeURIComponent and encodeURI modes. No data sent to any server." />
-  <link rel="canonical" href="https://helpful-website.com/html/url-encoder.html" />
+  <title>Number Base Converter - Free Online Binary, Octal, Decimal & Hex Converter</title>
+  <meta name="description" content="Convert numbers between binary, octal, decimal, and hexadecimal bases instantly. Free online number base converter. No data sent to any server - everything runs in your browser." />
+  <link rel="canonical" href="https://helpful-website.com/html/number-base-converter.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="URL Encoder &amp; Decoder - Free Online URL Converter" />
-  <meta property="og:description" content="Encode and decode URLs online for free. Supports encodeURIComponent and encodeURI modes. No data sent to any server." />
+  <meta property="og:title" content="Number Base Converter - Free Online Binary, Octal, Decimal & Hex Converter" />
+  <meta property="og:description" content="Convert numbers between binary, octal, decimal, and hexadecimal bases instantly. Free online number base converter." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/url-encoder.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/number-base-converter.html" />
   <meta property="og:site_name" content="A Helpful Website" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="URL Encoder &amp; Decoder - Free Online URL Converter" />
-  <meta name="twitter:description" content="Encode and decode URLs online for free. Supports encodeURIComponent and encodeURI modes. No data sent to any server." />
+  <meta name="twitter:title" content="Number Base Converter - Free Online Binary, Octal, Decimal & Hex Converter" />
+  <meta name="twitter:description" content="Convert numbers between binary, octal, decimal, and hexadecimal bases instantly. Free online number base converter." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "URL Encoder & Decoder",
+    "name": "Number Base Converter",
     "applicationCategory": "DeveloperApplication",
-    "description": "A browser-based tool to encode text to URL-encoded format and decode percent-encoded strings back to plain text.",
+    "description": "A browser-based tool to convert numbers between binary, octal, decimal, and hexadecimal bases.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -37,6 +37,7 @@
     }
   }
   </script>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -47,67 +48,52 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    #input-text, #output-text {
-      min-height: 10rem;
-      resize: vertical;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-    #output-text {
-      background: rgba(21,21,21,0.03);
-    }
-    .options-row {
+    .input-row {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+    }
+    .input-row .form-group {
+      flex: 1 1 200px;
+      margin-bottom: 0;
+    }
+    .input-row select {
+      margin-bottom: 0;
+    }
+    .base-result {
+      border: 2px solid var(--onyx);
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .options-row .form-group {
-      flex: 0 0 auto;
-      margin-bottom: 0;
+    .base-label {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.8rem;
+      min-width: 5rem;
     }
-    .options-row label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: Georgia, serif;
-      text-transform: none;
-      letter-spacing: 0;
-      font-size: 0.95rem;
-      margin-bottom: 0;
-      cursor: pointer;
+    .base-value {
+      font-family: 'Courier New', monospace;
+      font-size: 1.05rem;
+      word-break: break-all;
+      flex: 1;
+      text-align: right;
     }
-    .options-row label input {
-      width: auto;
-      margin: 0;
-    }
-    .options-row select {
-      width: auto;
-      min-width: 10rem;
-      margin-bottom: 0;
-    }
-    #copy-feedback {
+    .copy-feedback {
       font-size: 0.85rem;
       color: var(--blue);
       font-family: Impact, sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-left: 0.75rem;
-    }
-    #char-info {
-      font-size: 0.85rem;
-      opacity: 0.7;
-      margin-bottom: 1rem;
-    }
-    .mode-note {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      margin-bottom: 1rem;
-    }
-    @media (max-width: 768px) {
-      #input-text, #output-text { font-size: 0.85rem; }
+      display: none;
     }
   </style>
 <script src="../js/nav.js" defer></script></head>
@@ -175,49 +161,65 @@
 
   <main id="main-content">
     <section>
-      <h2>URL Encoder &amp; Decoder</h2>
-      <p>Encode plain text or query parameters to URL-safe percent-encoded format, or decode percent-encoded strings back to readable text. All processing happens in your browser - your data never leaves your device.</p>
+      <h2>Number Base Converter</h2>
+      <p>Convert numbers between binary (base 2), octal (base 8), decimal (base 10), and hexadecimal (base 16) instantly. Type or paste a number, select its base, and see the converted values in all other bases. All processing happens in your browser - nothing is sent to any server.</p>
     </section>
 
     <section>
-      <div class="form-group">
-        <label for="input-text">Input (plain text or encoded URL)</label>
-        <textarea id="input-text" rows="8" placeholder="Paste text to encode, or a percent-encoded string to decode..."></textarea>
-      </div>
-
-      <div class="options-row">
+      <div class="input-row">
         <div class="form-group">
-          <label for="mode-select">Encoding Mode</label>
-          <select id="mode-select">
-            <option value="component">Component (for query strings &amp; form data)</option>
-            <option value="full">Full URL (preserves scheme &amp; domain)</option>
+          <label for="input-value">Enter a number</label>
+          <input type="text" id="input-value" value="255" placeholder="e.g. 255, ff, 11111111" />
+        </div>
+        <div class="form-group">
+          <label for="input-base">Input base</label>
+          <select id="input-base">
+            <option value="2">Binary (base 2)</option>
+            <option value="8">Octal (base 8)</option>
+            <option value="10" selected>Decimal (base 10)</option>
+            <option value="16">Hexadecimal (base 16)</option>
           </select>
         </div>
       </div>
 
-      <p class="mode-note" id="mode-note"><strong>Component mode</strong> encodes almost all special characters, making it safe for use inside query parameters and form fields.</p>
+      <h3>Results</h3>
 
-      <div class="btn-group">
-        <button id="encode-btn" class="btn-primary">Encode</button>
-        <button id="decode-btn">Decode</button>
-        <button id="swap-btn">Swap Input / Output</button>
-        <button id="clear-btn">Clear</button>
+      <div class="base-result">
+        <span class="base-label">Binary</span>
+        <span class="base-value" id="binary-value">11111111</span>
+        <div>
+          <button type="button" class="copy-btn" data-target="binary-value">Copy</button>
+          <span class="copy-feedback" id="bf-binary">Copied!</span>
+        </div>
       </div>
 
-      <div id="char-info"></div>
-
-      <div class="form-group">
-        <label for="output-text">Output</label>
-        <textarea id="output-text" rows="8" readonly placeholder="Result will appear here..."></textarea>
+      <div class="base-result">
+        <span class="base-label">Octal</span>
+        <span class="base-value" id="octal-value">377</span>
+        <div>
+          <button type="button" class="copy-btn" data-target="octal-value">Copy</button>
+          <span class="copy-feedback" id="bf-octal">Copied!</span>
+        </div>
       </div>
 
-      <div class="btn-group">
-        <button id="copy-btn" class="btn-primary">Copy Output</button>
-        <span id="copy-feedback" style="display:none;">Copied!</span>
+      <div class="base-result">
+        <span class="base-label">Decimal</span>
+        <span class="base-value" id="decimal-value">255</span>
+        <div>
+          <button type="button" class="copy-btn" data-target="decimal-value">Copy</button>
+          <span class="copy-feedback" id="bf-decimal">Copied!</span>
+        </div>
+      </div>
+
+      <div class="base-result">
+        <span class="base-label">Hexadecimal</span>
+        <span class="base-value" id="hex-value">ff</span>
+        <div>
+          <button type="button" class="copy-btn" data-target="hex-value">Copy</button>
+          <span class="copy-feedback" id="bf-hex">Copied!</span>
+        </div>
       </div>
     </section>
-
-
   </main>
 
     <footer>
@@ -230,6 +232,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/url-encoder.js"></script>
+  <script src="../js/number-base-converter.js"></script>
 </body>
 </html>
