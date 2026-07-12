@@ -109,7 +109,7 @@ function setToday() {
 }
 
 function showFeedback(el) {
-  el.style.display = 'inline';
+  el.style.display = '';
   setTimeout(function() { el.style.display = 'none'; }, 2000);
 }
 

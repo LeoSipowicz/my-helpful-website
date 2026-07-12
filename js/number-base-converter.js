@@ -61,7 +61,7 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
     navigator.clipboard.writeText(text).then(() => {
       const feedback = document.getElementById('bf-' + targetId);
       if (feedback) {
-        feedback.style.display = 'inline';
+        feedback.style.display = '';
         setTimeout(() => { feedback.style.display = 'none'; }, 2000);
       }
     }).catch(() => {});

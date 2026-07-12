@@ -168,7 +168,7 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
     if (!target) return;
     navigator.clipboard.writeText(target.value).then(() => {
       copyFeedback.textContent = 'Copied!';
-      copyFeedback.style.display = 'inline';
+      copyFeedback.style.display = '';
       setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
     });
   });

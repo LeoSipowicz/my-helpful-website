@@ -179,13 +179,13 @@ copyBtn.addEventListener('click', () => {
   const html = mdPreview.innerHTML;
   if (!html || html.includes('preview-placeholder')) {
     copyFeedback.textContent = 'Nothing to copy';
-    copyFeedback.style.display = 'inline';
+    copyFeedback.style.display = '';
     setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
     return;
   }
   navigator.clipboard.writeText(html).then(() => {
     copyFeedback.textContent = 'Copied!';
-    copyFeedback.style.display = 'inline';
+    copyFeedback.style.display = '';
     setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
   });
 });
