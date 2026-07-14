@@ -205,3 +205,6 @@
 ### 2026-07-13 [SEO/performance]
 - Added og:image and twitter:image meta tags to all 25 pages linking to a new og-image.svg (1200x630 brutalist-branded social preview card with onyx background, sand text, blue accent bars, and site name). Previously, sharing any page on Facebook, Twitter/X, LinkedIn, Slack, or Discord produced only a text card with no image preview, reducing click-through rates from social referrals. The SVG uses the site's design language (onyx #151515, sand #E6E1C5, blue #6D72C3) so shared links visually match the site identity.
 - Updated sitemap.xml lastmod dates to 2026-07-13 for all 26 URLs to signal freshness after the og:image addition.
+
+### 2026-07-14 [Bug fixes]
+- Fixed og-image.svg text-transform bug: the `text-transform="uppercase"` attribute is not a valid SVG presentation attribute (it is a CSS property, not in the SVG namespace). Social media platforms (Facebook, Twitter, LinkedIn, Slack, Discord) use CSS-agnostic SVG renderers that ignore text-transform, causing the brand title to render in mixed case ("A Helpful Website") instead of uppercase on shared link preview cards. Changed the text content to "A HELPFUL WEBSITE" directly and removed the unsupported attribute, ensuring consistent brand presentation on every platform.
