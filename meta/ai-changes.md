@@ -208,3 +208,6 @@
 
 ### 2026-07-14 [Bug fixes]
 - Fixed og-image.svg text-transform bug: the `text-transform="uppercase"` attribute is not a valid SVG presentation attribute (it is a CSS property, not in the SVG namespace). Social media platforms (Facebook, Twitter, LinkedIn, Slack, Discord) use CSS-agnostic SVG renderers that ignore text-transform, causing the brand title to render in mixed case ("A Helpful Website") instead of uppercase on shared link preview cards. Changed the text content to "A HELPFUL WEBSITE" directly and removed the unsupported attribute, ensuring consistent brand presentation on every platform.
+
+### 2026-07-15 [UI/UX polish]
+- Added honeypot spam protection to the contact form: an invisible text field (`.honeypot` CSS class with off-screen positioning, zero height, hidden overflow, zero opacity, and pointer-events: none) is checked in contact.js before the Formspree AJAX submission. If a bot fills the hidden field, the form shows a fake success message without sending any data to Formspree, while real users never see or interact with the field. Without this, spam bots could freely submit the Formspree endpoint and bury genuine user messages in noise, making the feedback channel unreliable for real visitors. Updated sitemap lastmod dates to 2026-07-15 for all 26 URLs.

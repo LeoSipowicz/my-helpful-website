@@ -12,6 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const honeypot = document.getElementById('website');
+    if (honeypot && honeypot.value) {
+      feedback.style.cssText = 'margin-top:1rem;border:2px solid #27ae60;padding:1rem;background:rgba(39,174,96,0.05);';
+      feedback.innerHTML = '<strong style="font-family:Impact,sans-serif;text-transform:uppercase;letter-spacing:0.05em;">Message Sent</strong><p style="margin:0.5rem 0 0 0;">Thank you for your message. We will get back to you as soon as possible.</p>';
+      feedback.style.display = 'block';
+      feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      form.querySelectorAll('input, textarea').forEach(el => el.value = '');
+      return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
     feedback.style.display = 'none';

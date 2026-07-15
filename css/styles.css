@@ -439,6 +439,17 @@ canvas {
   text-decoration: none;
 }
 
+/* ── Honeypot (invisible to users, catches spam bots) ── */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* ── Very small screens ── */
 @media (max-width: 400px) {
   body { padding: 0.75rem; }
