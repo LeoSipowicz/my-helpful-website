@@ -7,30 +7,30 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>Word Counter &amp; Character Counter - Free Online Text Statistics</title>
-  <meta name="description" content="Count words, characters, sentences, and paragraphs instantly. Get reading time, keyword density, and detailed text statistics. Free, private, no sign-up required." />
-  <link rel="canonical" href="https://helpful-website.com/html/word-counter.html" />
+  <title>Random Number Generator - Free Online Random Number Picker</title>
+  <meta name="description" content="Generate random numbers online for free. Set any range, choose integers or decimals, generate multiple numbers. Cryptographically secure. No data sent to any server." />
+  <link rel="canonical" href="https://helpful-website.com/html/random-number-generator.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="Word Counter &amp; Character Counter - Free Online Text Statistics" />
-  <meta property="og:description" content="Count words, characters, sentences, and paragraphs instantly. Get reading time and keyword density. Free, private, no sign-up required." />
+  <meta property="og:title" content="Random Number Generator - Free Online Random Number Picker" />
+  <meta property="og:description" content="Generate random numbers online for free. Set any range, choose integers or decimals, generate multiple numbers. Cryptographically secure. No data sent to any server." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/word-counter.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/random-number-generator.html" />
   <meta property="og:site_name" content="A Helpful Website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://helpful-website.com/og-image.svg" />
   <meta name="twitter:image" content="https://helpful-website.com/og-image.svg" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Word Counter &amp; Character Counter - Free Online Text Statistics" />
-  <meta name="twitter:description" content="Count words, characters, sentences, and paragraphs instantly. Get reading time and keyword density. Free, private, no sign-up required." />
+  <meta name="twitter:title" content="Random Number Generator - Free Online Random Number Picker" />
+  <meta name="twitter:description" content="Generate random numbers online for free. Set any range, choose integers or decimals, generate multiple numbers. Cryptographically secure. No data sent to any server." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Word Counter & Character Counter",
-    "applicationCategory": "UtilityApplication",
-    "description": "A browser-based tool to count words, characters, sentences, paragraphs, reading time, and keyword density in text.",
+    "name": "Random Number Generator",
+    "applicationCategory": "DeveloperApplication",
+    "description": "A browser-based tool to generate cryptographically secure random numbers with customizable range and count.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -50,33 +50,31 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    .rng-row {
+      display: flex;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      align-items: flex-end;
     }
-    .stat-card {
-      border: 2px solid var(--onyx);
+    .rng-row .form-group {
+      flex: 1 1 120px;
+      margin-bottom: 0;
+    }
+    .rng-row input {
+      margin-bottom: 0;
+    }
+    #results {
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
       padding: 1rem;
-      text-align: center;
-    }
-    .stat-value {
-      font-family: Impact, sans-serif;
-      font-size: 2rem;
-      letter-spacing: 0.02em;
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-    .stat-label {
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.75rem;
-    }
-    #input-text {
-      min-height: 10rem;
-      resize: vertical;
+      border: 2px solid var(--onyx);
+      background: rgba(21,21,21,0.03);
+      word-break: break-word;
+      min-height: 4rem;
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      line-height: 1.6;
     }
     #copy-feedback {
       font-size: 0.85rem;
@@ -85,29 +83,6 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-left: 0.75rem;
-    }
-    .keyword-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .keyword-list li {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.35rem 0;
-      border-bottom: 1px solid rgba(21,21,21,0.15);
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-    }
-    .keyword-list li:last-child {
-      border-bottom: none;
-    }
-    .density-bar {
-      display: inline-block;
-      height: 8px;
-      background: var(--blue);
-      margin-right: 0.5rem;
-      vertical-align: middle;
     }
   </style>
 <script src="../js/nav.js" defer></script></head>
@@ -136,7 +111,7 @@
           </ul>
         </li>
         <li class="has-dropdown">
-          <button type="button" class="dropdown-toggle active" aria-expanded="false">Text Tools</button>
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Text Tools</button>
           <ul class="dropdown">
             <li><a href="text-case-converter.html">Case Converter</a></li>
 <li><a href="word-counter.html">Word Counter</a></li>
@@ -146,7 +121,7 @@
           </ul>
         </li>
         <li class="has-dropdown">
-          <button type="button" class="dropdown-toggle" aria-expanded="false">Developer Tools</button>
+          <button type="button" class="dropdown-toggle active" aria-expanded="false">Developer Tools</button>
           <ul class="dropdown">
             <li><a href="json-formatter.html">JSON Formatter</a></li>
 <li><a href="base64-encoder.html">Base64 Encoder</a></li>
@@ -176,38 +151,50 @@
 
   <main id="main-content">
     <section>
-      <h2>Word Counter &amp; Character Counter</h2>
-      <p>Paste or type your text below to get instant word count, character count, sentence count, paragraph count, estimated reading time, and keyword density analysis. No data is sent anywhere - everything runs in your browser.</p>
+      <h2>Random Number Generator</h2>
+      <p>Generate cryptographically secure random numbers instantly. Set a range, choose between integers and decimals, and generate one or many numbers at once. All processing happens in your browser - nothing is sent to any server.</p>
     </section>
 
     <section>
-      <div class="form-group">
-        <label for="input-text">Your Text</label>
-        <textarea id="input-text" rows="10" placeholder="Type or paste your text here to see live statistics..."></textarea>
+      <div class="rng-row">
+        <div class="form-group">
+          <label for="min-value">Min</label>
+          <input type="number" id="min-value" value="1" step="any" />
+        </div>
+        <div class="form-group">
+          <label for="max-value">Max</label>
+          <input type="number" id="max-value" value="100" step="any" />
+        </div>
+        <div class="form-group">
+          <label for="count-value">Count</label>
+          <input type="number" id="count-value" value="1" min="1" max="100" />
+        </div>
       </div>
 
-      <div class="stats-grid" id="stats-grid">
-        <div class="stat-card"><div class="stat-value" id="word-count">0</div><div class="stat-label">Words</div></div>
-        <div class="stat-card"><div class="stat-value" id="char-count">0</div><div class="stat-label">Characters</div></div>
-        <div class="stat-card"><div class="stat-value" id="char-no-spaces">0</div><div class="stat-label">No Spaces</div></div>
-        <div class="stat-card"><div class="stat-value" id="sentence-count">0</div><div class="stat-label">Sentences</div></div>
-        <div class="stat-card"><div class="stat-value" id="paragraph-count">0</div><div class="stat-label">Paragraphs</div></div>
-        <div class="stat-card"><div class="stat-value" id="reading-time">0s</div><div class="stat-label">Reading Time</div></div>
+      <label class="checkbox-label">
+        <input type="checkbox" id="integer-mode" checked />
+        Integers only
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="unique-mode" />
+        Unique values (integers only)
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="sort-mode" />
+        Sort results
+      </label>
+
+      <div class="btn-group" style="margin-bottom:1rem;">
+        <button id="generate-btn" class="btn-primary">Generate</button>
       </div>
 
-      <div id="keyword-section" style="display:none;">
-        <h3>Top Keywords</h3>
-        <ul class="keyword-list" id="keyword-list"></ul>
-      </div>
+      <div id="results" aria-live="polite" aria-atomic="true">Click Generate to get random numbers</div>
 
       <div class="btn-group">
-        <button id="copy-btn" class="btn-primary">Copy Text</button>
+        <button id="copy-btn">Copy Results</button>
         <span id="copy-feedback" style="display:none;">Copied!</span>
-        <button id="clear-btn">Clear</button>
       </div>
     </section>
-
-
   </main>
 
     <footer>
@@ -220,6 +207,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/word-counter.js"></script>
+  <script src="../js/random-number-generator.js"></script>
 </body>
 </html>
