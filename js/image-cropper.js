@@ -197,7 +197,7 @@ cropBtn.addEventListener('click', () => {
     0, 0, resultCanvas.width, resultCanvas.height
   );
 
-  resultSection.style.display = '';
+  resultSection.style.display = 'block';
   downloadBtn.disabled = false;
   resultSection.scrollIntoView({ behavior: 'smooth' });
 });

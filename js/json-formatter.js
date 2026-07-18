@@ -36,7 +36,7 @@ function getReplacer() {
 }
 
 function showError(msg) {
-  errorBox.style.display = '';
+  errorBox.style.display = 'block';
   errorMessage.textContent = msg;
   statusOk.style.display = 'none';
 }
@@ -46,7 +46,7 @@ function hideError() {
 }
 
 function showOk() {
-  statusOk.style.display = '';
+  statusOk.style.display = 'block';
 }
 
 function hideOk() {

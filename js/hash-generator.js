@@ -203,7 +203,7 @@ fileInput.addEventListener('change', e => {
   }
   currentFile = file;
   fileMeta.textContent = `Selected: ${file.name} (${formatSize(file.size)})`;
-  computeFileBtn.style.display = '';
+  computeFileBtn.style.display = 'inline-block';
   fileResultsSection.style.display = 'none';
 });
 
