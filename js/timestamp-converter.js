@@ -129,21 +129,21 @@ secondInput.addEventListener('input', dateToTimestamp);
 copyUtcBtn.addEventListener('click', function() {
   const text = tsDateUtc.textContent.replace(' (UTC)', '').trim();
   if (text) {
-    navigator.clipboard.writeText(text).then(function() { showFeedback(utcFeedback); });
+    navigator.clipboard.writeText(text).then(function() { showFeedback(utcFeedback); }).catch(() => {});
   }
 });
 
 copyLocalBtn.addEventListener('click', function() {
   const text = tsDateLocal.textContent.replace(' (local)', '').trim();
   if (text) {
-    navigator.clipboard.writeText(text).then(function() { showFeedback(localFeedback); });
+    navigator.clipboard.writeText(text).then(function() { showFeedback(localFeedback); }).catch(() => {});
   }
 });
 
 copyTsOutputBtn.addEventListener('click', function() {
   const text = dateTsOutputSeconds.textContent.replace(' (seconds)', '').trim();
   if (text && text !== 'Invalid date') {
-    navigator.clipboard.writeText(text).then(function() { showFeedback(tsOutputFeedback); });
+    navigator.clipboard.writeText(text).then(function() { showFeedback(tsOutputFeedback); }).catch(() => {});
   }
 });
 

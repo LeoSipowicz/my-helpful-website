@@ -83,7 +83,7 @@ copyBtn.addEventListener('click', () => {
   navigator.clipboard.writeText(inputText.value).then(() => {
     copyFeedback.style.display = '';
     setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
-  });
+  }).catch(() => {});
 });
 
 clearBtn.addEventListener('click', () => {

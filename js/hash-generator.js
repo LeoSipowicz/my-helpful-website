@@ -166,7 +166,7 @@ async function computeTextHashes() {
         navigator.clipboard.writeText(btn.dataset.hash).then(() => {
           btn.textContent = 'Copied!';
           setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
-        });
+        }).catch(() => {});
       });
     });
   } catch (err) {
@@ -257,7 +257,7 @@ computeFileBtn.addEventListener('click', async () => {
         navigator.clipboard.writeText(btn.dataset.hash).then(() => {
           btn.textContent = 'Copied!';
           setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
-        });
+        }).catch(() => {});
       });
     });
   } catch (err) {

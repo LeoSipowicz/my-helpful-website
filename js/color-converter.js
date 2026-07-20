@@ -170,7 +170,7 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
       copyFeedback.textContent = 'Copied!';
       copyFeedback.style.display = '';
       setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
-    });
+    }).catch(() => {});
   });
 });
 

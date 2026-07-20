@@ -129,9 +129,9 @@
     navigator.clipboard.writeText(text).then(function() {
       copyFeedback.style.display = '';
       setTimeout(function() {
-        copyFeedback.style.display = 'none';
+        copyFeedback.style.display = '';
       }, 2000);
-    });
+    }).catch(function() {});
   });
 
   generate();

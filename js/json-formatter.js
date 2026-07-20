@@ -135,7 +135,7 @@ copyBtn.addEventListener('click', () => {
   navigator.clipboard.writeText(text).then(() => {
     copyFeedback.style.display = '';
     setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
-  });
+  }).catch(() => {});
 });
 
 // Auto-format on paste if the pasted content looks like JSON

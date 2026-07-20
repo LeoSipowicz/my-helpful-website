@@ -57,7 +57,7 @@ copyBtn.addEventListener('click', () => {
   navigator.clipboard.writeText(text).then(() => {
     copyFeedback.style.display = '';
     setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
-  });
+  }).catch(() => {});
 });
 
 copyAllBtn.addEventListener('click', () => {
@@ -67,7 +67,7 @@ copyAllBtn.addEventListener('click', () => {
   navigator.clipboard.writeText(text).then(() => {
     copyAllFeedback.style.display = '';
     setTimeout(() => { copyAllFeedback.style.display = 'none'; }, 2000);
-  });
+  }).catch(() => {});
 });
 
 uppercaseCheck.addEventListener('change', generate);

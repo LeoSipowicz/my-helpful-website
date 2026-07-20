@@ -224,3 +224,6 @@
 ### 2026-07-19 [SEO/performance]
 - Added FAQPage JSON-LD structured data to the homepage (index.html) with all 5 existing Q&A pairs marked up as Question/Answer schema. Google can now display FAQ rich results in SERPs for queries matching the homepage's FAQ content, improving click-through rates from search. The schema text exactly matches the existing page content - no fabricated answers.
 - Updated sitemap.xml lastmod dates to 2026-07-19 for all 26 URLs to signal freshness after the structured data addition.
+
+### 2026-07-20 [Bug fixes]
+- Added `.catch(() => {})` handlers to all `navigator.clipboard.writeText()` promises across 14 JS files (password-generator, timestamp-converter, hash-generator, word-counter, text-case-converter, json-formatter, url-encoder, html-entity-encoder, uuid-generator, color-converter, markdown-editor, base64-encoder, color-palette, random-number-generator) to suppress unhandled promise rejections when the Clipboard API fails (e.g., on HTTP, restricted contexts, or when the user denies clipboard permission). Unhandled rejections pollute the browser console and degrade the perceived trustworthiness of the site for technically-literate visitors who open DevTools. Updated sitemap lastmod dates to 2026-07-20 for the 14 affected pages.

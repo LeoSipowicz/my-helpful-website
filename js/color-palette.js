@@ -70,7 +70,7 @@ function renderPalette(colors) {
         copyFeedback.textContent = `Copied ${c.hex}`;
         copyFeedback.style.display = '';
         setTimeout(() => { copyFeedback.style.display = 'none'; }, 2000);
-      });
+      }).catch(() => {});
     });
     palette.appendChild(swatch);
   });
