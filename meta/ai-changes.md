@@ -227,3 +227,8 @@
 
 ### 2026-07-20 [Bug fixes]
 - Added `.catch(() => {})` handlers to all `navigator.clipboard.writeText()` promises across 14 JS files (password-generator, timestamp-converter, hash-generator, word-counter, text-case-converter, json-formatter, url-encoder, html-entity-encoder, uuid-generator, color-converter, markdown-editor, base64-encoder, color-palette, random-number-generator) to suppress unhandled promise rejections when the Clipboard API fails (e.g., on HTTP, restricted contexts, or when the user denies clipboard permission). Unhandled rejections pollute the browser console and degrade the perceived trustworthiness of the site for technically-literate visitors who open DevTools. Updated sitemap lastmod dates to 2026-07-20 for the 14 affected pages.
+
+### 2026-07-21 [UI/UX polish]
+- Removed generic filler tagline `<p>A set of helpful tools</p>` from the header on all 28 pages. This text appeared between the site title and navigation on every page but added no value - the homepage h2 already describes the site and tool pages have their own h2 and intro paragraph. Removing it reduces visual clutter and aligns with the rule that every word must serve a purpose.
+- Fixed Random Number Generator copy feedback bug where the "Copied!" confirmation never disappeared: the 2026-07-20 clipboard catch-all commit accidentally changed `style.display = 'none'` to `style.display = ''` in the `setTimeout` hide callback, so the feedback element stayed visible forever. Restored `'none'` so the "Copied!" text hides after 2 seconds as intended.
+- Updated sitemap.xml lastmod dates to 2026-07-21 for all 28 URLs.

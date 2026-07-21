@@ -129,7 +129,7 @@
     navigator.clipboard.writeText(text).then(function() {
       copyFeedback.style.display = '';
       setTimeout(function() {
-        copyFeedback.style.display = '';
+        copyFeedback.style.display = 'none';
       }, 2000);
     }).catch(function() {});
   });
