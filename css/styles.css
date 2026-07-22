@@ -239,9 +239,10 @@ li { margin-bottom: 0.4rem; }
 
 /* ── Tool Grid ── */
 .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
-.tool-card { border: 2px solid var(--onyx); padding: 1.5rem; }
+.tool-card { border: 2px solid var(--onyx); padding: 1.5rem; display: flex; flex-direction: column; }
 .tool-card h3 { margin-bottom: 0.5rem; }
-.tool-card p { margin-bottom: 1rem; font-size: 0.95rem; }
+.tool-card p { margin-bottom: 1rem; font-size: 0.95rem; flex: 1 1 auto; }
+.tool-card a { margin-top: auto; }
 
 /* ── Palette ── */
 .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; margin-bottom: 1rem; }

@@ -232,3 +232,6 @@
 - Removed generic filler tagline `<p>A set of helpful tools</p>` from the header on all 28 pages. This text appeared between the site title and navigation on every page but added no value - the homepage h2 already describes the site and tool pages have their own h2 and intro paragraph. Removing it reduces visual clutter and aligns with the rule that every word must serve a purpose.
 - Fixed Random Number Generator copy feedback bug where the "Copied!" confirmation never disappeared: the 2026-07-20 clipboard catch-all commit accidentally changed `style.display = 'none'` to `style.display = ''` in the `setTimeout` hide callback, so the feedback element stayed visible forever. Restored `'none'` so the "Copied!" text hides after 2 seconds as intended.
 - Updated sitemap.xml lastmod dates to 2026-07-21 for all 28 URLs.
+
+### 2026-07-22 [UI/UX polish]
+- Fixed tool card layout on homepage, 404 page, and about page: cards now use `display: flex; flex-direction: column` with `flex: 1 1 auto` on the description paragraph and `margin-top: auto` on the link, so all cards in the same grid row have equal height with bottom-aligned "Open" links. Previously, cards with shorter descriptions left the link floating at different vertical positions, creating an uneven visual row. Updated sitemap lastmod dates to 2026-07-22.
