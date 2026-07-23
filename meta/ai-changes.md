@@ -235,3 +235,6 @@
 
 ### 2026-07-22 [UI/UX polish]
 - Fixed tool card layout on homepage, 404 page, and about page: cards now use `display: flex; flex-direction: column` with `flex: 1 1 auto` on the description paragraph and `margin-top: auto` on the link, so all cards in the same grid row have equal height with bottom-aligned "Open" links. Previously, cards with shorter descriptions left the link floating at different vertical positions, creating an uneven visual row. Updated sitemap lastmod dates to 2026-07-22.
+
+### 2026-07-23 [SEO/performance]
+- Added BreadcrumbList JSON-LD structured data to all 28 pages (homepage, about, privacy, contact, 404, and all 23 tool pages). Each page now has a schema.org BreadcrumbList block before its existing JSON-LD, with item elements matching the site's navigation hierarchy: homepage (Home), about/privacy/contact (Home > PageName), and tool pages (Home > Category > ToolName). Google uses breadcrumb markup to display navigation paths in SERP snippets, which can improve click-through rates from search results and helps search engines understand site structure. Updated sitemap.xml lastmod dates to 2026-07-23 for all 28 URLs to signal freshness.
