@@ -94,7 +94,7 @@
       results.sort(function(a, b) { return a - b; });
     }
 
-    const separator = isInteger ? ', ' : ', ';
+    const separator = ', ';
     resultsContainer.textContent = results.join(separator);
   }
 

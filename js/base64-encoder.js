@@ -134,14 +134,6 @@ copyBtn.addEventListener('click', () => {
   }).catch(() => {});
 });
 
-copyFileBtn.addEventListener('click', () => {
-  if (!lastFileBase64) return;
-  navigator.clipboard.writeText(lastFileBase64).then(() => {
-    copyFileFeedback.style.display = '';
-    setTimeout(() => { copyFileFeedback.style.display = 'none'; }, 2000);
-  }).catch(() => {});
-});
-
 inputText.addEventListener('input', () => {
   updateCharInfo(inputText.value.length, outputText.value.length);
 });
@@ -171,14 +163,6 @@ fileInput.addEventListener('change', e => {
     lastFileBase64 = '';
   };
   reader.readAsDataURL(file);
-});
-
-copyFileBtn.addEventListener('click', () => {
-  if (!lastFileBase64) return;
-  navigator.clipboard.writeText(lastFileBase64).then(() => {
-    copyFileFeedback.style.display = '';
-    setTimeout(() => { copyFileFeedback.style.display = 'none'; }, 2000);
-  });
 });
 
 function formatSize(bytes) {
