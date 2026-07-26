@@ -24,9 +24,14 @@ const AMBIGUOUS = new Set(['0', 'O', '1', 'l', 'I']);
 /* Secure randomness using Web Crypto API */
 function secureRandomInt(max) {
   if (max <= 0) return 0;
+  const limit = Math.floor(4294967296 / max) * max;
   const array = new Uint32Array(1);
-  crypto.getRandomValues(array);
-  return array[0] % max;
+  let value;
+  do {
+    crypto.getRandomValues(array);
+    value = array[0];
+  } while (value >= limit);
+  return value % max;
 }
 
 function secureShuffle(array) {

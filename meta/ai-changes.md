@@ -245,3 +245,8 @@
 - Fixed aria-current not applied to Home nav link on tool pages: the `isHomeLink` condition only checked for `index.html`, `./index.html`, and `/index.html`, but tool pages in the `/html/` subdirectory use relative path `../index.html`. Added `../index.html` to the match so keyboard and screen reader users navigating tool pages hear "current page" on the Home link.
 - Fixed dead ternary in random-number-generator.js line 97: `const separator = isInteger ? ', ' : ', '` had identical branches, making the conditional a no-op. Simplified to `const separator = ', '`.
 - Updated sitemap.xml lastmod dates to 2026-07-25 for all 28 URLs to signal freshness after the code fixes.
+
+### 2026-07-26 [Bug fixes]
+- Fixed cryptographic modulo bias in Lorem Ipsum Generator (`js/lorem-ipsum.js`): `randInt()` used `array[0] % (max - min + 1)` without rejection sampling, so words near the start of the word list were slightly more likely to be picked than words near the end when the range did not evenly divide 2^32. Replaced with rejection sampling (`while (value >= limit)`) matching the pattern already used by `list-randomizer.js` since 2026-07-10.
+- Fixed cryptographic modulo bias in Password Generator (`js/password-generator.js`): `secureRandomInt()` used `array[0] % max` without rejection sampling, introducing the same bias in character selection and Fisher-Yates shuffle that was already fixed in `list-randomizer.js` on 2026-07-10. Both functions now use rejection sampling for unbiased distribution.
+- Updated sitemap.xml lastmod dates to 2026-07-26 for all 28 URLs to signal freshness after the JS fixes.

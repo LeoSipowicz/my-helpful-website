@@ -35,9 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearBtn = document.getElementById('clear-btn');
 
   function randInt(min, max) {
+    const range = max - min + 1;
+    const limit = Math.floor(4294967296 / range) * range;
     const array = new Uint32Array(1);
-    crypto.getRandomValues(array);
-    return min + (array[0] % (max - min + 1));
+    let value;
+    do {
+      crypto.getRandomValues(array);
+      value = array[0];
+    } while (value >= limit);
+    return min + (value % range);
   }
 
   function pickWord() {
