@@ -7,23 +7,23 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>Lorem Ipsum Generator - Free Online Placeholder Text Generator</title>
-  <meta name="description" content="Generate Lorem Ipsum placeholder text online for free. Choose paragraphs, sentences, or words. Perfect for designers, developers, and content creators. No data sent to any server." />
-  <link rel="canonical" href="https://helpful-website.com/html/lorem-ipsum.html" />
+  <title>Date Duration Calculator - Free Online Days Between Dates Calculator</title>
+  <meta name="description" content="Calculate the exact number of days, weeks, months, and years between two dates. Free online date duration calculator. No data sent to any server." />
+  <link rel="canonical" href="https://helpful-website.com/html/date-calculator.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="Lorem Ipsum Generator - Free Online Placeholder Text Generator" />
-  <meta property="og:description" content="Generate Lorem Ipsum placeholder text online for free. Choose paragraphs, sentences, or words. Perfect for designers, developers, and content creators." />
+  <meta property="og:title" content="Date Duration Calculator - Free Online Days Between Dates Calculator" />
+  <meta property="og:description" content="Calculate the exact number of days, weeks, months, and years between two dates. Free online date duration calculator." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/lorem-ipsum.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/date-calculator.html" />
   <meta property="og:site_name" content="A Helpful Website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://helpful-website.com/og-image.svg" />
   <meta name="twitter:image" content="https://helpful-website.com/og-image.svg" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lorem Ipsum Generator - Free Online Placeholder Text Generator" />
-  <meta name="twitter:description" content="Generate Lorem Ipsum placeholder text online for free. Choose paragraphs, sentences, or words. Perfect for designers, developers, and content creators." />
+  <meta name="twitter:title" content="Date Duration Calculator - Free Online Days Between Dates Calculator" />
+  <meta name="twitter:description" content="Calculate the exact number of days, weeks, months, and years between two dates. Free online date duration calculator." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,13 +36,13 @@
     },{
       "@type": "ListItem",
       "position": 2,
-      "name": "Text Tools",
+      "name": "Developer Tools",
       "item": "https://helpful-website.com/"
     },{
       "@type": "ListItem",
       "position": 3,
-      "name": "Lorem Ipsum Generator",
-      "item": "https://helpful-website.com/html/lorem-ipsum.html"
+      "name": "Date Duration Calculator",
+      "item": "https://helpful-website.com/html/date-calculator.html"
     }]
   }
   </script>
@@ -50,9 +50,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Lorem Ipsum Generator",
-    "applicationCategory": "UtilityApplication",
-    "description": "A browser-based tool to generate Lorem Ipsum placeholder text in paragraphs, sentences, or words.",
+    "name": "Date Duration Calculator",
+    "applicationCategory": "DeveloperApplication",
+    "description": "A browser-based tool to calculate the exact duration between two dates in days, weeks, months, and years.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -72,30 +72,56 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
+    .date-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: flex-end;
     }
-    .option-item {
+    .date-row .form-group {
+      flex: 1 1 200px;
+      margin-bottom: 0;
+    }
+    .date-row input {
+      margin-bottom: 0;
+    }
+    #result-display {
+      font-size: 1.2rem;
+      padding: 1rem;
+      border: 2px solid var(--onyx);
+      background: rgba(21,21,21,0.03);
+      word-break: break-word;
+      min-height: 3rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 1rem;
       font-family: Georgia, serif;
-      font-size: 0.95rem;
-      cursor: pointer;
     }
-    .option-item input {
-      width: auto;
-      margin: 0;
+    .duration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
-    #output-text {
-      min-height: 12rem;
-      resize: vertical;
-      font-family: Georgia, serif;
-      font-size: 1rem;
-      line-height: 1.7;
+    .duration-card {
+      border: 2px solid var(--onyx);
+      padding: 1rem;
+      text-align: center;
+    }
+    .duration-value {
+      font-family: Impact, sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .duration-label {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
     }
     #copy-feedback {
       font-size: 0.85rem;
@@ -104,32 +130,6 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-left: 0.75rem;
-    }
-    .count-row {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-    .count-row .form-group {
-      flex: 0 0 auto;
-      margin-bottom: 0;
-    }
-    .count-row input {
-      width: 5rem;
-      text-align: center;
-    }
-    .count-row label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: Georgia, serif;
-      text-transform: none;
-      letter-spacing: 0;
-      font-size: 0.95rem;
-      margin-bottom: 0;
-      cursor: pointer;
     }
   </style>
 <script src="../js/nav.js" defer></script></head>
@@ -157,7 +157,7 @@
           </ul>
         </li>
         <li class="has-dropdown">
-          <button type="button" class="dropdown-toggle active" aria-expanded="false">Text Tools</button>
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Text Tools</button>
           <ul class="dropdown">
             <li><a href="text-case-converter.html">Case Converter</a></li>
 <li><a href="word-counter.html">Word Counter</a></li>
@@ -167,7 +167,7 @@
           </ul>
         </li>
         <li class="has-dropdown">
-          <button type="button" class="dropdown-toggle" aria-expanded="false">Developer Tools</button>
+          <button type="button" class="dropdown-toggle active" aria-expanded="false">Developer Tools</button>
           <ul class="dropdown">
             <li><a href="json-formatter.html">JSON Formatter</a></li>
 <li><a href="base64-encoder.html">Base64 Encoder</a></li>
@@ -198,47 +198,47 @@
 
   <main id="main-content">
     <section>
-      <h2>Lorem Ipsum Generator</h2>
-      <p>Generate placeholder text for your designs, prototypes, and layouts. Choose how much text you need and click Generate. All processing happens in your browser - nothing is sent to any server.</p>
+      <h2>Date Duration Calculator</h2>
+      <p>Calculate the exact duration between two dates. Pick a start date and an end date to see the total days, weeks, months, and years. All processing happens in your browser - nothing is sent to any server.</p>
     </section>
 
     <section>
-      <div class="count-row">
+      <div class="date-row">
         <div class="form-group">
-          <label for="count">Amount <span id="count-val">3</span></label>
-          <input type="number" id="count" min="1" max="100" value="3" />
+          <label for="start-date">Start Date</label>
+          <input type="date" id="start-date" />
+        </div>
+        <div class="form-group">
+          <label for="end-date">End Date</label>
+          <input type="date" id="end-date" />
         </div>
       </div>
 
-      <div class="options-grid">
-        <label class="option-item">
-          <input type="radio" name="unit" value="paragraphs" checked />
-          Paragraphs
-        </label>
-        <label class="option-item">
-          <input type="radio" name="unit" value="sentences" />
-          Sentences
-        </label>
-        <label class="option-item">
-          <input type="radio" name="unit" value="words" />
-          Words
-        </label>
-        <label class="option-item">
-          <input type="checkbox" id="start-lorem" checked />
-          Start with "Lorem ipsum..."
-        </label>
-      </div>
+      <label class="checkbox-label">
+        <input type="checkbox" id="include-end" />
+        Include end date in calculation
+      </label>
 
       <div class="btn-group">
-        <button id="generate-btn" class="btn-primary">Generate</button>
-        <button id="copy-btn">Copy to Clipboard</button>
-        <span id="copy-feedback" style="display:none;">Copied!</span>
-        <button id="clear-btn">Clear</button>
+        <button id="calc-btn" class="btn-primary">Calculate</button>
+        <button id="swap-btn">Swap Dates</button>
+        <button id="clear-btn">Reset</button>
       </div>
 
-      <div class="form-group">
-        <label for="output-text">Generated Text</label>
-        <textarea id="output-text" readonly placeholder="Click Generate to create placeholder text..."></textarea>
+      <div id="result-block" style="display:none;">
+        <div id="result-display" aria-live="polite" aria-atomic="true"></div>
+
+        <div class="duration-grid">
+          <div class="duration-card"><div class="duration-value" id="total-days">0</div><div class="duration-label">Days</div></div>
+          <div class="duration-card"><div class="duration-value" id="total-weeks">0</div><div class="duration-label">Weeks</div></div>
+          <div class="duration-card"><div class="duration-value" id="total-months">0</div><div class="duration-label">Months</div></div>
+          <div class="duration-card"><div class="duration-value" id="total-years">0</div><div class="duration-label">Years</div></div>
+        </div>
+
+        <div class="btn-group">
+          <button id="copy-btn">Copy Result</button>
+          <span id="copy-feedback" style="display:none;">Copied!</span>
+        </div>
       </div>
     </section>
   </main>
@@ -253,6 +253,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/lorem-ipsum.js"></script>
+  <script src="../js/date-calculator.js"></script>
 </body>
 </html>
