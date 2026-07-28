@@ -244,6 +244,8 @@ li { margin-bottom: 0.4rem; }
 .tool-card p { margin-bottom: 1rem; font-size: 0.95rem; flex: 1 1 auto; }
 .tool-card a { margin-top: auto; }
 
+.tool-grid + h3 { margin-top: 2rem; }
+
 /* ── Palette ── */
 .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; margin-bottom: 1rem; }
 .palette-swatch {
