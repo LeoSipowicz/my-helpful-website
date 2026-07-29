@@ -256,3 +256,6 @@
 
 ### 2026-07-28 [UI/UX polish]
 - Added category heading separators (Image Tools, Text Tools, Developer Tools, Security Tools) to the tool grids on the homepage (index.html) and 404 page (404.html). The 24 tool cards were displayed in a single flat grid with no visual grouping, forcing visitors to read every card title to find a specific tool. Each category group now has its own `<h3>` heading above its `<div class="tool-grid">`, matching the navigation's four-category structure and making the grid scannable for visitors looking for a specific type of tool. Added `.tool-grid + h3 { margin-top: 2rem }` CSS rule for consistent spacing between grids and category headings. Updated sitemap.xml lastmod dates to 2026-07-28 for all 28 URLs to signal freshness.
+
+### 2026-07-29 [UI/UX polish]
+- Replaced the 450-word single-sentence paragraph in the about page "Our Tools" section (about.html) with a categorized tool grid matching the homepage and 404 page. The previous paragraph listed all 24 tools in prose form, making it impossible for visitors to scan for a specific tool. The new categorized grid with cards (Image Tools, Text Tools, Developer Tools, Security Tools) matches the homepage style and lets visitors find tools by category at a glance. Updated sitemap lastmod for about.html to 2026-07-29 to signal freshness.
