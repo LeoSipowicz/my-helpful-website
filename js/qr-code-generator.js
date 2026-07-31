@@ -59,9 +59,9 @@
       L: [0, 17, 32, 53, 78, 106, 134, 154, 192, 230, 271],
       M: [0, 14, 26, 42, 62, 84, 106, 122, 152, 180, 213],
       Q: [0, 11, 20, 32, 46, 60, 74, 86, 108, 130, 151],
-      H: [0, 9, 16, 24, 34, 44, 58, 64, 84, 98, 116]
+      H: [0, 7, 14, 24, 34, 44, 58, 64, 84, 98, 119]
     };
-    var ecCW = { L: [0,7,10,15,20,26,18,20,24,30,18], M: [0,10,16,26,18,24,16,18,22,22,26], Q: [0,13,22,18,26,18,24,18,22,20,24], H: [0,17,28,22,26,22,20,24,24,24,30] };
+    var ecCW = { L: [0,7,10,15,20,26,18,20,24,30,18], M: [0,10,16,26,18,24,16,18,22,22,26], Q: [0,13,22,18,26,18,24,18,22,20,24], H: [0,17,28,22,16,22,28,26,26,24,28] };
     var blocks = { L: [0,1,1,1,1,1,2,2,2,2,4], M: [0,1,1,1,2,2,4,4,4,5,5], Q: [0,1,1,2,2,4,4,6,6,8,8], H: [0,1,1,2,4,4,4,5,6,8,8] };
     return { totalCW: totalCW, byteCap: byteCap, ecCW: ecCW, blocks: blocks };
   })();
@@ -96,12 +96,13 @@
     }
 
     var totalDataCW = VERSION_TABLES.totalCW[version];
-    var ecLevelIndex = { L: 0, M: 1, Q: 2, H: 3 };
     var ecCWPerBlock = VERSION_TABLES.ecCW[ecLevel][version];
     var numBlocks = VERSION_TABLES.blocks[ecLevel][version];
-    var dataCWPerBlock = Math.floor(totalDataCW / numBlocks) - ecCWPerBlock;
+    var totalData = totalDataCW - ecCWPerBlock * numBlocks;
+    var dataShort = Math.floor(totalData / numBlocks);
+    var numLong = totalData % numBlocks;
 
-    var dataBitsNeeded = totalDataCW * 8;
+    var dataBitsNeeded = totalData * 8;
     var terminatorLen = Math.min(4, dataBitsNeeded - bitStream.length);
     for (i = 0; i < terminatorLen; i++) bitStream.push(0);
 
@@ -132,15 +133,20 @@
       dataCW.push(byteVal);
     }
 
-    return { dataCW: dataCW, totalCW: totalDataCW, ecCWPerBlock: ecCWPerBlock, numBlocks: numBlocks, dataCWPerBlock: dataCWPerBlock };
+    return { dataCW: dataCW, ecCWPerBlock: ecCWPerBlock, numBlocks: numBlocks, dataShort: dataShort, numLong: numLong };
   }
 
-  function interleaveBlocks(dataCW, numBlocks, dataCWPerBlock, ecCWPerBlock, ecLevel) {
+  function interleaveBlocks(dataCW, numBlocks, dataShort, numLong, ecCWPerBlock) {
+    var numShort = numBlocks - numLong;
     var blocks = [];
     var pos = 0;
-    for (var i = 0; i < numBlocks; i++) {
-      blocks.push(dataCW.slice(pos, pos + dataCWPerBlock));
-      pos += dataCWPerBlock;
+    for (var i = 0; i < numShort; i++) {
+      blocks.push(dataCW.slice(pos, pos + dataShort));
+      pos += dataShort;
+    }
+    for (i = 0; i < numLong; i++) {
+      blocks.push(dataCW.slice(pos, pos + dataShort + 1));
+      pos += dataShort + 1;
     }
 
     var ecBlocks = [];
@@ -149,10 +155,13 @@
     }
 
     var interleaved = [];
-    for (var col = 0; col < dataCWPerBlock; col++) {
+    for (var col = 0; col < dataShort; col++) {
       for (var b = 0; b < numBlocks; b++) {
         interleaved.push(blocks[b][col]);
       }
+    }
+    for (b = 0; b < numLong; b++) {
+      interleaved.push(blocks[numShort + b][dataShort]);
     }
     for (col = 0; col < ecCWPerBlock; col++) {
       for (b = 0; b < numBlocks; b++) {
@@ -479,7 +488,7 @@
 
     var interleaved = interleaveBlocks(
       encoded.dataCW, encoded.numBlocks,
-      encoded.dataCWPerBlock, encoded.ecCWPerBlock, ecLevel
+      encoded.dataShort, encoded.numLong, encoded.ecCWPerBlock
     );
 
     var bits = [];
