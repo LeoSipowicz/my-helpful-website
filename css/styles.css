@@ -442,6 +442,15 @@ canvas {
   text-decoration: none;
 }
 
+/* ── Breadcrumbs ── */
+.breadcrumb { margin-bottom: 1.5rem; font-size: 0.9rem; }
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; align-items: center; margin: 0; padding: 0; }
+.breadcrumb li { margin: 0; display: flex; align-items: center; }
+.breadcrumb li + li::before { content: '/'; margin: 0 0.5rem; color: rgba(21,21,21,0.45); }
+.breadcrumb a { color: var(--blue); font-weight: bold; text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span[aria-current="page"] { font-weight: bold; color: var(--onyx); }
+
 /* ── Honeypot (invisible to users, catches spam bots) ── */
 .honeypot {
   position: absolute;
