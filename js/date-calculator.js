@@ -56,7 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
       end = temp;
     }
 
-    let dayDiff = Math.floor((end - start) / (1000 * 60 * 60 * 24));
+    let dayDiff = Math.floor(
+      (Date.UTC(end.getFullYear(), end.getMonth(), end.getDate())
+       - Date.UTC(start.getFullYear(), start.getMonth(), start.getDate()))
+      / (1000 * 60 * 60 * 24)
+    );
     if (includeEnd.checked) {
       dayDiff += 1;
     }

@@ -305,6 +305,16 @@
   }
   initVersionInfo();
 
+  function reserveVersionInfo(matrix, size, version) {
+    if (version < 7) return;
+    for (var i = 0; i < 6; i++) {
+      for (var j = 0; j < 3; j++) {
+        matrix[size-11+j][i] = -1;
+        matrix[i][size-11+j] = -1;
+      }
+    }
+  }
+
   function addVersionInfo(matrix, size, version) {
     if (version < 7) return;
     var vi = VERSION_INFO[version];
@@ -517,7 +527,7 @@
 
     addTimingPatterns(matrix, size);
     reserveFormatInfo(matrix, size);
-    addVersionInfo(matrix, size, version);
+    reserveVersionInfo(matrix, size, version);
     addDataBits(matrix, size, bits);
 
     var bestMask = findBestMask(matrix, size, ecLevel);
