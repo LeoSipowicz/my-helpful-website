@@ -66,10 +66,14 @@
     return { totalCW: totalCW, byteCap: byteCap, ecCW: ecCW, blocks: blocks };
   })();
 
-  function getVersion(textLen, ecLevel) {
+  function byteLengthOf(text) {
+    return new TextEncoder().encode(text).length;
+  }
+
+  function getVersion(byteLen, ecLevel) {
     var caps = VERSION_TABLES.byteCap[ecLevel];
     for (var v = 1; v <= 10; v++) {
-      if (caps[v] >= textLen) return v;
+      if (caps[v] >= byteLen) return v;
     }
     return -1;
   }
@@ -175,13 +179,20 @@
   function createMatrix(version) {
     var size = 17 + version * 4;
     var matrix = [];
+    var funcVal = [];
     for (var r = 0; r < size; r++) {
       matrix[r] = new Array(size).fill(0);
+      funcVal[r] = new Array(size).fill(-1);
     }
-    return matrix;
+    return { matrix: matrix, funcVal: funcVal, size: size };
   }
 
-  function addFinderPattern(matrix, size, row, col) {
+  function setFunctionModule(matrix, funcVal, r, c, val) {
+    matrix[r][c] = 2;
+    funcVal[r][c] = val;
+  }
+
+  function addFinderPattern(matrix, funcVal, size, row, col) {
     for (var r = -1; r <= 7; r++) {
       for (var c = -1; c <= 7; c++) {
         var mr = row + r, mc = col + c;
@@ -189,24 +200,22 @@
         if (r >= 0 && r <= 6 && c >= 0 && c <= 6) {
           var isOuter = r === 0 || r === 6 || c === 0 || c === 6;
           var isInner = r >= 2 && r <= 4 && c >= 2 && c <= 4;
-          if (isOuter || isInner) {
-            matrix[mr][mc] = 1;
-          }
-        } else if ((r === -1 || r === 7 || c === -1 || c === 7) && mr >= 0 && mr < size && mc >= 0 && mc < size) {
-          matrix[mr][mc] = 0;
+          setFunctionModule(matrix, funcVal, mr, mc, (isOuter || isInner) ? 1 : 0);
+        } else {
+          setFunctionModule(matrix, funcVal, mr, mc, 0);
         }
       }
     }
   }
 
-  function addAlignmentPattern(matrix, size, row, col) {
+  function addAlignmentPattern(matrix, funcVal, size, row, col) {
     for (var r = -2; r <= 2; r++) {
       for (var c = -2; c <= 2; c++) {
         var mr = row + r, mc = col + c;
         if (mr < 0 || mr >= size || mc < 0 || mc >= size) continue;
-        if (r === 0 && c === 0) { matrix[mr][mc] = 1; }
-        else if (Math.abs(r) === 2 || Math.abs(c) === 2) { matrix[mr][mc] = 1; }
-        else { matrix[mr][mc] = 0; }
+        if (r === 0 && c === 0) { setFunctionModule(matrix, funcVal, mr, mc, 1); }
+        else if (Math.abs(r) === 2 || Math.abs(c) === 2) { setFunctionModule(matrix, funcVal, mr, mc, 1); }
+        else { setFunctionModule(matrix, funcVal, mr, mc, 0); }
       }
     }
   }
@@ -228,10 +237,10 @@
     })();
   }
 
-  function addTimingPatterns(matrix, size) {
+  function addTimingPatterns(matrix, funcVal, size) {
     for (var i = 8; i < size - 8; i++) {
-      matrix[6][i] = matrix[6][i] === 0 ? (i % 2 === 0 ? 1 : 0) : matrix[6][i];
-      matrix[i][6] = matrix[i][6] === 0 ? (i % 2 === 0 ? 1 : 0) : matrix[i][6];
+      if (matrix[6][i] !== 2) setFunctionModule(matrix, funcVal, 6, i, i % 2 === 0 ? 1 : 0);
+      if (matrix[i][6] !== 2) setFunctionModule(matrix, funcVal, i, 6, i % 2 === 0 ? 1 : 0);
     }
   }
 
@@ -300,7 +309,7 @@
       for (var i = 17; i >= 12; i--) {
         if ((ec >> i) & 1) ec ^= gen << (i - 12);
       }
-      VERSION_INFO[v] = ((data << 12) | ec) ^ 0x1DFC;
+      VERSION_INFO[v] = (data << 12) | ec;
     }
   }
   initVersionInfo();
@@ -434,7 +443,7 @@
     return score;
   }
 
-  function findBestMask(matrix, size, ecLevel) {
+  function findBestMask(matrix, funcVal, size, ecLevel) {
     var bestScore = Infinity;
     var bestPattern = 0;
     var savedMatrix = [];
@@ -448,6 +457,11 @@
         testMatrix[r] = savedMatrix[r].slice();
       }
       applyMask(testMatrix, size, p);
+      for (r = 0; r < size; r++) {
+        for (var c = 0; c < size; c++) {
+          if (testMatrix[r][c] === 2) testMatrix[r][c] = funcVal[r][c];
+        }
+      }
       addFormatInfo(testMatrix, size, ecLevel, p);
       var score = evaluateMask(testMatrix, size);
       if (score < bestScore) {
@@ -490,7 +504,7 @@
 
     if (!text || text.length === 0) return null;
 
-    var version = getVersion(text.length, ecLevel);
+    var version = getVersion(byteLengthOf(text), ecLevel);
     if (version === -1) return null;
 
     var encoded = encodeByteData(text, version, ecLevel);
@@ -509,11 +523,13 @@
     }
 
     var size = 17 + version * 4;
-    var matrix = createMatrix(version);
+    var created = createMatrix(version);
+    var matrix = created.matrix;
+    var funcVal = created.funcVal;
 
-    addFinderPattern(matrix, size, 0, 0);
-    addFinderPattern(matrix, size, 0, size - 7);
-    addFinderPattern(matrix, size, size - 7, 0);
+    addFinderPattern(matrix, funcVal, size, 0, 0);
+    addFinderPattern(matrix, funcVal, size, 0, size - 7);
+    addFinderPattern(matrix, funcVal, size, size - 7, 0);
 
     var alignPositions = getAlignmentPositions(version);
     for (i = 0; i < alignPositions.length; i++) {
@@ -521,19 +537,25 @@
         if (i === 0 && j === 0) continue;
         if (i === 0 && j === alignPositions.length - 1) continue;
         if (i === alignPositions.length - 1 && j === 0) continue;
-        addAlignmentPattern(matrix, size, alignPositions[i], alignPositions[j]);
+        addAlignmentPattern(matrix, funcVal, size, alignPositions[i], alignPositions[j]);
       }
     }
 
-    addTimingPatterns(matrix, size);
+    addTimingPatterns(matrix, funcVal, size);
     reserveFormatInfo(matrix, size);
     reserveVersionInfo(matrix, size, version);
     addDataBits(matrix, size, bits);
 
-    var bestMask = findBestMask(matrix, size, ecLevel);
+    var bestMask = findBestMask(matrix, funcVal, size, ecLevel);
     applyMask(matrix, size, bestMask);
     addFormatInfo(matrix, size, ecLevel, bestMask);
     addVersionInfo(matrix, size, version);
+
+    for (var fr = 0; fr < size; fr++) {
+      for (var fc = 0; fc < size; fc++) {
+        if (matrix[fr][fc] === 2) matrix[fr][fc] = funcVal[fr][fc];
+      }
+    }
 
     var canvas = renderMatrix(matrix, size, moduleSize, fgColor, bgColor);
 
