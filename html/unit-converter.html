@@ -86,10 +86,6 @@
     .input-row select {
       margin-bottom: 0;
     }
-    #to-value {
-      background: rgba(21,21,21,0.05);
-      cursor: default;
-    }
     #conversion-list {
       margin-top: 1rem;
     }
@@ -205,7 +201,7 @@
     </nav>
     <section>
       <h2>Unit Converter</h2>
-      <p>Convert between units of length, weight, temperature, area, volume, speed, time, and data size instantly. Pick a category, type a value, and see it converted to every unit in that category. All processing happens in your browser - nothing is sent to any server.</p>
+      <p>Convert between units of length, weight, temperature, area, volume, speed, time, and data size instantly. Type a value in either field and the other updates automatically, and the list below shows the input converted into every unit in the category. All processing happens in your browser - nothing is sent to any server.</p>
     </section>
 
     <section>
@@ -239,8 +235,8 @@
           <select id="to-unit"></select>
         </div>
         <div class="form-group">
-          <label for="to-value">Converted value</label>
-          <input type="text" id="to-value" readonly />
+          <label for="to-value">To value</label>
+          <input type="text" id="to-value" inputmode="decimal" autocomplete="off" spellcheck="false" />
         </div>
       </div>
 
