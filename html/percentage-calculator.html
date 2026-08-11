@@ -7,23 +7,23 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>HTML Entity Encoder &amp; Decoder - Free Online HTML Escape Tool</title>
-  <meta name="description" content="Encode and decode HTML entities online for free. Escape special characters to HTML entities or decode them back to plain text. Supports named and numeric entities. No data sent to any server." />
-  <link rel="canonical" href="https://helpful-website.com/html/html-entity-encoder.html" />
+  <title>Percentage Calculator - Free Online Percent Calculator</title>
+  <meta name="description" content="Calculate percentages instantly: find X% of Y, what percent X is of Y, and percent change between two values. Free, private, and browser-based." />
+  <link rel="canonical" href="https://helpful-website.com/html/percentage-calculator.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="HTML Entity Encoder &amp; Decoder - Free Online HTML Escape Tool" />
-  <meta property="og:description" content="Encode and decode HTML entities online for free. Supports named and numeric entities. No data sent to any server." />
+  <meta property="og:title" content="Percentage Calculator - Free Online Percent Calculator" />
+  <meta property="og:description" content="Calculate percentages instantly: find X% of Y, what percent X is of Y, and percent change between two values. Free, private, and browser-based." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/html-entity-encoder.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/percentage-calculator.html" />
   <meta property="og:site_name" content="A Helpful Website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://helpful-website.com/og-image.svg" />
   <meta name="twitter:image" content="https://helpful-website.com/og-image.svg" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="HTML Entity Encoder &amp; Decoder - Free Online HTML Escape Tool" />
-  <meta name="twitter:description" content="Encode and decode HTML entities online for free. Supports named and numeric entities. No data sent to any server." />
+  <meta name="twitter:title" content="Percentage Calculator - Free Online Percent Calculator" />
+  <meta name="twitter:description" content="Calculate percentages instantly: find X% of Y, what percent X is of Y, and percent change between two values. Free, private, and browser-based." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,8 +41,8 @@
     },{
       "@type": "ListItem",
       "position": 3,
-      "name": "HTML Entity Encoder & Decoder",
-      "item": "https://helpful-website.com/html/html-entity-encoder.html"
+      "name": "Percentage Calculator",
+      "item": "https://helpful-website.com/html/percentage-calculator.html"
     }]
   }
   </script>
@@ -50,9 +50,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "HTML Entity Encoder & Decoder",
+    "name": "Percentage Calculator",
     "applicationCategory": "DeveloperApplication",
-    "description": "A browser-based tool to encode text to HTML entities and decode HTML entities back to plain text.",
+    "description": "A browser-based tool to find X% of Y, what percent X is of Y, and the percent change between two values.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -61,6 +61,7 @@
     }
   }
   </script>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -71,46 +72,39 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    #input-text, #output-text {
-      min-height: 10rem;
-      resize: vertical;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-    #output-text {
-      background: rgba(21,21,21,0.03);
-    }
-    .options-row {
+    .mode-selector {
       display: flex;
-      gap: 1rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
-    .options-row .form-group {
-      flex: 0 0 auto;
-      margin-bottom: 0;
+    .mode-btn.active {
+      background: var(--onyx);
+      color: var(--sand);
     }
-    .options-row label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: Georgia, serif;
-      text-transform: none;
-      letter-spacing: 0;
+    .mode-btn:hover,
+    .mode-btn:focus-visible {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--sand);
+    }
+    #result-block {
+      display: none;
+      border: 3px solid var(--onyx);
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    #result-value {
+      font-family: Impact, sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.04em;
+      color: var(--onyx);
+      margin-bottom: 0.5rem;
+      word-break: break-all;
+    }
+    #result-sentence {
       font-size: 0.95rem;
-      margin-bottom: 0;
-      cursor: pointer;
-    }
-    .options-row label input {
-      width: auto;
-      margin: 0;
-    }
-    .options-row select {
-      width: auto;
-      min-width: 10rem;
-      margin-bottom: 0;
+      margin-bottom: 1rem;
     }
     #copy-feedback {
       font-size: 0.85rem;
@@ -119,19 +113,6 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-left: 0.75rem;
-    }
-    #char-info {
-      font-size: 0.85rem;
-      opacity: 0.7;
-      margin-bottom: 1rem;
-    }
-    .mode-note {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      margin-bottom: 1rem;
-    }
-    @media (max-width: 768px) {
-      #input-text, #output-text { font-size: 0.85rem; }
     }
   </style>
 <script src="../js/nav.js" defer></script></head>
@@ -206,53 +187,42 @@
       <ol>
         <li><a href="../index.html">Home</a></li>
         <li><span>Developer Tools</span></li>
-        <li><span aria-current="page">HTML Entity Encoder</span></li>
+        <li><span aria-current="page">Percentage Calculator</span></li>
       </ol>
     </nav>
     <section>
-      <h2>HTML Entity Encoder &amp; Decoder</h2>
-      <p>Encode special characters to HTML entities to make text safe for use in HTML documents, or decode HTML entities back to plain text. All processing happens in your browser - your data never leaves your device.</p>
+      <h2>Percentage Calculator</h2>
+      <p>Find X% of a number, work out what percent one number is of another, or measure the percent increase or decrease between two values. Results update as you type, and everything is calculated in your browser - nothing is sent to any server.</p>
     </section>
 
     <section>
-      <div class="form-group">
-        <label for="input-text">Input (plain text or HTML entities)</label>
-        <textarea id="input-text" rows="8" placeholder="Paste text to encode, or HTML entities to decode..."></textarea>
+      <div class="mode-selector" role="group" aria-label="Calculation type">
+        <button type="button" class="mode-btn active" data-mode="percent-of">X% of Y</button>
+        <button type="button" class="mode-btn" data-mode="is-what-percent">X is what % of Y</button>
+        <button type="button" class="mode-btn" data-mode="change">% Change</button>
       </div>
 
-      <div class="options-row">
+      <div class="form-row">
         <div class="form-group">
-          <label for="mode-select">Encoding Mode</label>
-          <select id="mode-select">
-            <option value="named">Named entities (readable)</option>
-            <option value="numeric">Numeric entities (all chars)</option>
-          </select>
+          <label id="input-a-label" for="input-a">Percentage</label>
+          <input type="text" id="input-a" value="15" inputmode="decimal" autocomplete="off" spellcheck="false" aria-labelledby="input-a-label" />
+        </div>
+        <div class="form-group">
+          <label id="input-b-label" for="input-b">Value</label>
+          <input type="text" id="input-b" value="200" inputmode="decimal" autocomplete="off" spellcheck="false" aria-labelledby="input-b-label" />
         </div>
       </div>
 
-      <p class="mode-note" id="mode-note"><strong>Named mode</strong> uses human-readable entity names like <code>&amp;lt;</code> and <code>&amp;gt;</code> for common symbols, and numeric codes for other characters. Best for readability.</p>
-
       <div class="btn-group">
-        <button id="encode-btn" class="btn-primary">Encode to Entities</button>
-        <button id="decode-btn">Decode from Entities</button>
-        <button id="swap-btn">Swap Input / Output</button>
-        <button id="clear-btn">Clear</button>
-      </div>
-
-      <div id="char-info"></div>
-
-      <div class="form-group">
-        <label for="output-text">Output</label>
-        <textarea id="output-text" rows="8" readonly placeholder="Result will appear here..."></textarea>
-      </div>
-
-      <div class="btn-group">
-        <button id="copy-btn" class="btn-primary">Copy Output</button>
+        <button type="button" id="copy-btn">Copy Result</button>
         <span id="copy-feedback" style="display:none;">Copied!</span>
       </div>
+
+      <div id="result-block">
+        <div id="result-value">30</div>
+        <p id="result-sentence"></p>
+      </div>
     </section>
-
-
   </main>
 
     <footer>
@@ -265,6 +235,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/html-entity-encoder.js"></script>
+  <script src="../js/percentage-calculator.js"></script>
 </body>
 </html>
