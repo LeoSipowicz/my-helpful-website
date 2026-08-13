@@ -203,6 +203,10 @@
 
   fromValueInput.addEventListener('input', update);
 
+  fromUnitSelect.addEventListener('change', update);
+
+  toUnitSelect.addEventListener('change', update);
+
   toValueInput.addEventListener('input', function() {
     const raw = toValueInput.value.trim();
     if (raw === '') {

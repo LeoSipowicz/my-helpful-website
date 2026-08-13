@@ -138,6 +138,14 @@ inputText.addEventListener('input', () => {
   updateCharInfo(inputText.value.length, outputText.value.length);
 });
 
+copyFileBtn.addEventListener('click', () => {
+  if (!lastFileBase64) return;
+  navigator.clipboard.writeText(lastFileBase64).then(() => {
+    copyFileFeedback.style.display = '';
+    setTimeout(() => { copyFileFeedback.style.display = 'none'; }, 2000);
+  }).catch(() => {});
+});
+
 // ── File encoding ────────────────────────────────────────────────────────────
 
 fileInput.addEventListener('change', e => {
