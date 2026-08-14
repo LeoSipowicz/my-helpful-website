@@ -7,16 +7,16 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>Base64 Encoder &amp; Decoder - Free Online Base64 Converter</title>
-  <meta name="description" content="Encode and decode Base64 online for free. Convert text to Base64 or decode Base64 back to text. Supports file encoding too. No data sent to any server - everything runs in your browser." />
-  <link rel="canonical" href="https://helpful-website.com/html/base64-encoder.html" />
+  <title>Age Calculator - Free Online Age From Date of Birth Calculator</title>
+  <meta name="description" content="Calculate your exact age in years, months, and days from your date of birth, plus total days old and your next birthday. Free, private, and browser-based." />
+  <link rel="canonical" href="https://helpful-website.com/html/age-calculator.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="Base64 Encoder &amp; Decoder - Free Online Base64 Converter" />
-  <meta property="og:description" content="Encode and decode Base64 online for free. Convert text to Base64 or decode Base64 back to text. Supports file encoding too." />
+  <meta property="og:title" content="Age Calculator - Free Online Age From Date of Birth Calculator" />
+  <meta property="og:description" content="Calculate your exact age in years, months, and days from your date of birth, plus total days old and your next birthday. Free, private, and browser-based." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/base64-encoder.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/age-calculator.html" />
   <meta property="og:site_name" content="A Helpful Website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://helpful-website.com/og-image.png" />
@@ -24,8 +24,8 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:image" content="https://helpful-website.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Base64 Encoder &amp; Decoder - Free Online Base64 Converter" />
-  <meta name="twitter:description" content="Encode and decode Base64 online for free. Convert text to Base64 or decode Base64 back to text. Supports file encoding too." />
+  <meta name="twitter:title" content="Age Calculator - Free Online Age From Date of Birth Calculator" />
+  <meta name="twitter:description" content="Calculate your exact age in years, months, and days from your date of birth, plus total days old and your next birthday. Free, private, and browser-based." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -43,8 +43,8 @@
     },{
       "@type": "ListItem",
       "position": 3,
-      "name": "Base64 Encoder & Decoder",
-      "item": "https://helpful-website.com/html/base64-encoder.html"
+      "name": "Age Calculator",
+      "item": "https://helpful-website.com/html/age-calculator.html"
     }]
   }
   </script>
@@ -52,9 +52,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Base64 Encoder & Decoder",
+    "name": "Age Calculator",
     "applicationCategory": "DeveloperApplication",
-    "description": "A browser-based tool to encode text and files to Base64 and decode Base64 back to text or files.",
+    "description": "A browser-based tool to calculate exact age in years, months, and days from a date of birth, including total days old and next birthday.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -63,6 +63,7 @@
     }
   }
   </script>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -73,37 +74,84 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    #input-text, #output-text {
-      min-height: 10rem;
-      resize: vertical;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-    #output-text {
-      background: rgba(21,21,21,0.03);
-    }
-    .options-row {
+    .date-row {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .date-row .form-group {
+      flex: 1 1 200px;
+      margin-bottom: 0;
+    }
+    .date-row input {
+      margin-bottom: 0;
+    }
+    #error-msg {
+      display: none;
+      border: 2px solid #c0392b;
+      color: #c0392b;
+      padding: 0.75rem 1rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+    #result-display {
+      font-size: 1.2rem;
+      padding: 1rem;
+      border: 2px solid var(--onyx);
+      background: rgba(21,21,21,0.03);
+      word-break: break-word;
+      min-height: 3rem;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 1rem;
+      font-family: Georgia, serif;
+    }
+    .duration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
       margin-bottom: 1rem;
     }
-    .options-row label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: Georgia, serif;
-      text-transform: none;
-      letter-spacing: 0;
-      font-size: 0.95rem;
-      margin-bottom: 0;
-      cursor: pointer;
+    .duration-card {
+      border: 2px solid var(--onyx);
+      padding: 1rem;
+      text-align: center;
     }
-    .options-row label input {
-      width: auto;
-      margin: 0;
+    .duration-value {
+      font-family: Impact, sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .duration-label {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+    }
+    #next-birthday-wrap {
+      border: 2px solid var(--onyx);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    #next-birthday-label {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.8rem;
+    }
+    #next-birthday {
+      font-size: 0.95rem;
+      text-align: right;
     }
     #copy-feedback {
       font-size: 0.85rem;
@@ -112,30 +160,6 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-left: 0.75rem;
-    }
-    #char-info {
-      font-size: 0.85rem;
-      opacity: 0.7;
-      margin-bottom: 1rem;
-    }
-    #file-section {
-      border: 2px dashed var(--onyx);
-      padding: 1.5rem;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    #file-section p {
-      margin-bottom: 0.5rem;
-    }
-    #file-section input[type="file"] {
-      margin-bottom: 0;
-    }
-    #file-meta {
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-    }
-    @media (max-width: 768px) {
-      #input-text, #output-text { font-size: 0.85rem; }
     }
   </style>
 <script src="../js/nav.js" defer></script></head>
@@ -211,61 +235,50 @@
       <ol>
         <li><a href="../index.html">Home</a></li>
         <li><span>Developer Tools</span></li>
-        <li><span aria-current="page">Base64 Encoder</span></li>
+        <li><span aria-current="page">Age Calculator</span></li>
       </ol>
     </nav>
     <section>
-      <h2>Base64 Encoder &amp; Decoder</h2>
-      <p>Encode plain text or files to Base64, or decode Base64 strings back to their original content. All processing happens in your browser - your data never leaves your device.</p>
+      <h2>Age Calculator</h2>
+      <p>Enter a date of birth and a date to get the exact age in years, months, and days, plus total days old and your next birthday. Results update as you type, and everything is calculated in your browser - nothing is sent to any server.</p>
     </section>
 
     <section>
-      <div class="form-group">
-        <label for="input-text">Input (text or Base64)</label>
-        <textarea id="input-text" rows="8" placeholder="Type or paste text here to encode, or paste a Base64 string to decode..."></textarea>
-      </div>
-
-      <div class="options-row">
-        <label>
-          <input type="checkbox" id="url-safe" />
-          URL-safe Base64 (replace + with - and / with _)
-        </label>
-      </div>
-
-      <div class="btn-group">
-        <button id="encode-btn" class="btn-primary">Encode to Base64</button>
-        <button id="decode-btn">Decode from Base64</button>
-        <button id="swap-btn">Swap Input / Output</button>
-        <button id="clear-btn">Clear</button>
-      </div>
-
-      <div id="char-info"></div>
-
-      <div class="form-group">
-        <label for="output-text">Output</label>
-        <textarea id="output-text" rows="8" readonly placeholder="Result will appear here..."></textarea>
+      <div class="date-row">
+        <div class="form-group">
+          <label for="birth-date">Date of Birth</label>
+          <input type="date" id="birth-date" />
+        </div>
+        <div class="form-group">
+          <label for="age-on-date">Age On</label>
+          <input type="date" id="age-on-date" />
+        </div>
       </div>
 
       <div class="btn-group">
-        <button id="copy-btn" class="btn-primary">Copy Output</button>
+        <button id="today-btn">Use Today</button>
+        <button id="copy-btn">Copy Result</button>
         <span id="copy-feedback" style="display:none;">Copied!</span>
       </div>
-    </section>
 
-    <section>
-      <h3>Encode a File to Base64</h3>
-      <p>Upload any file to get its Base64 representation. This is useful for embedding small images directly in CSS or HTML, or for transmitting binary data in text-based formats like JSON.</p>
-      <div id="file-section">
-        <input type="file" id="file-input" />
-        <p id="file-meta"></p>
+      <div id="error-msg"></div>
+
+      <div id="result-block" style="display:none;">
+        <div id="result-display" aria-live="polite" aria-atomic="true"></div>
+
+        <div class="duration-grid">
+          <div class="duration-card"><div class="duration-value" id="total-years">0</div><div class="duration-label">Years Old</div></div>
+          <div class="duration-card"><div class="duration-value" id="total-months">0</div><div class="duration-label">Total Months</div></div>
+          <div class="duration-card"><div class="duration-value" id="total-weeks">0</div><div class="duration-label">Total Weeks</div></div>
+          <div class="duration-card"><div class="duration-value" id="total-days">0</div><div class="duration-label">Total Days</div></div>
+        </div>
+
+        <div id="next-birthday-wrap">
+          <span id="next-birthday-label">Next Birthday</span>
+          <span id="next-birthday"></span>
+        </div>
       </div>
-      <div class="btn-group">
-        <button id="copy-file-btn" class="btn-primary" style="display:none;">Copy File Base64</button>
-        <span id="copy-file-feedback" style="display:none;">Copied!</span>
-      </div>
     </section>
-
-
   </main>
 
     <footer>
@@ -278,6 +291,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/base64-encoder.js"></script>
+  <script src="../js/age-calculator.js"></script>
 </body>
 </html>
