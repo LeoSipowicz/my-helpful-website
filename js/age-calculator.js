@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (birth > ageOn) {
       errorMsg.textContent = 'Date of birth must be on or before the age-on date.';
-      errorMsg.style.display = '';
+      errorMsg.style.display = 'block';
       resultBlock.style.display = 'none';
       return;
     }
