@@ -246,6 +246,16 @@ li { margin-bottom: 0.4rem; }
 
 .tool-grid + h3 { margin-top: 2rem; }
 
+.tool-filter-wrap { max-width: 28rem; margin-bottom: 1.5rem; }
+.tool-filter-wrap input { margin-bottom: 0; }
+#tool-filter-empty {
+  display: none;
+  border: 2px solid var(--onyx);
+  padding: 1rem;
+  margin: 1rem 0 0 0;
+  text-align: center;
+}
+
 /* ── Palette ── */
 .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; margin-bottom: 1rem; }
 .palette-swatch {
