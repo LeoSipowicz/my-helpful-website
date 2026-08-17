@@ -7,16 +7,16 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>Unit Converter - Free Online Length, Weight, Temperature & More</title>
-  <meta name="description" content="Convert units of length, weight, temperature, area, volume, speed, time, and data instantly. Free online unit converter. No server uploads." />
-  <link rel="canonical" href="https://helpful-website.com/html/unit-converter.html" />
+  <title>Stopwatch & Timer - Free Online Stopwatch and Countdown Timer</title>
+  <meta name="description" content="Time anything with an online stopwatch that records laps, or set a countdown timer that alerts you when it hits zero. Free and runs in your browser." />
+  <link rel="canonical" href="https://helpful-website.com/html/timer.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="Unit Converter - Free Online Length, Weight, Temperature & More" />
-  <meta property="og:description" content="Convert units of length, weight, temperature, area, volume, speed, time, and data instantly. Free online unit converter." />
+  <meta property="og:title" content="Stopwatch & Timer - Free Online Stopwatch and Countdown Timer" />
+  <meta property="og:description" content="Time anything with an online stopwatch that records laps, or set a countdown timer that alerts you when it hits zero. Free and runs in your browser." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/unit-converter.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/timer.html" />
   <meta property="og:site_name" content="A Helpful Website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://helpful-website.com/og-image.png" />
@@ -24,8 +24,8 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:image" content="https://helpful-website.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Unit Converter - Free Online Length, Weight, Temperature & More" />
-  <meta name="twitter:description" content="Convert units of length, weight, temperature, area, volume, speed, time, and data instantly. Free online unit converter." />
+  <meta name="twitter:title" content="Stopwatch & Timer - Free Online Stopwatch and Countdown Timer" />
+  <meta name="twitter:description" content="Time anything with an online stopwatch that records laps, or set a countdown timer that alerts you when it hits zero. Free and runs in your browser." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -43,8 +43,8 @@
     },{
       "@type": "ListItem",
       "position": 3,
-      "name": "Unit Converter",
-      "item": "https://helpful-website.com/html/unit-converter.html"
+      "name": "Stopwatch & Timer",
+      "item": "https://helpful-website.com/html/timer.html"
     }]
   }
   </script>
@@ -52,9 +52,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Unit Converter",
+    "name": "Stopwatch & Timer",
     "applicationCategory": "DeveloperApplication",
-    "description": "A browser-based tool to convert units of length, weight, temperature, area, volume, speed, time, and data size.",
+    "description": "A browser-based stopwatch with lap times and a countdown timer that alerts you when time is up.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -74,57 +74,114 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    .input-row {
+    .mode-selector {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .mode-btn.active {
+      background: var(--onyx);
+      color: var(--sand);
+    }
+    .mode-btn:hover,
+    .mode-btn:focus-visible {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--sand);
+    }
+    .clock-display {
+      font-family: 'Courier New', monospace;
+      font-size: 3.25rem;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      border: 3px solid var(--onyx);
+      background: var(--onyx);
+      color: var(--sand);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      word-break: break-all;
+    }
+    .clock-display.done-flash {
+      animation: flashBg 0.5s infinite;
+    }
+    @keyframes flashBg {
+      0% { background: var(--onyx); color: var(--sand); border-color: var(--onyx); }
+      50% { background: var(--sand); color: var(--onyx); border-color: var(--onyx); }
+      100% { background: var(--onyx); color: var(--sand); border-color: var(--onyx); }
+    }
+    .time-input-row {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
       align-items: flex-end;
+      margin-bottom: 1rem;
+    }
+    .time-input-row .form-group {
+      flex: 1 1 90px;
+      margin-bottom: 0;
+    }
+    .time-input-row input {
+      margin-bottom: 0;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+    }
+    .preset-btns {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
       margin-bottom: 1.5rem;
     }
-    .input-row .form-group {
-      flex: 1 1 200px;
-      margin-bottom: 0;
+    .preset-btns button {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.9rem;
     }
-    .input-row select {
-      margin-bottom: 0;
+    .laps-wrap {
+      margin-top: 1.5rem;
+      max-width: 26rem;
     }
-    #conversion-list {
-      margin-top: 1rem;
-    }
-    .conv-row {
+    .laps-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 16rem;
+      overflow-y: auto;
       border: 2px solid var(--onyx);
-      padding: 0.6rem 1rem;
-      margin-bottom: 0.5rem;
+    }
+    .laps-list li {
       display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-    .conv-label {
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.8rem;
-      min-width: 11rem;
-    }
-    .conv-value {
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.4rem 0.75rem;
+      border-bottom: 1px solid rgba(21,21,21,0.15);
       font-family: 'Courier New', monospace;
-      font-size: 1rem;
-      word-break: break-all;
-      flex: 1;
-      text-align: right;
-    }
-    .conv-copy {
-      padding: 0.3rem 0.75rem;
-      font-size: 0.8rem;
-    }
-    #copy-feedback {
       font-size: 0.85rem;
-      color: var(--blue);
+    }
+    .laps-list li:last-child { border-bottom: none; }
+    .laps-list li.laps-header {
+      background: rgba(21,21,21,0.07);
       font-family: Impact, sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-left: 0.75rem;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+    #timer-done {
+      display: none;
+      border: 2px solid #c0392b;
+      color: #c0392b;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0 0 0;
+      font-weight: bold;
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .clock-display { font-size: 2rem; }
+    }
+    @media (max-width: 400px) {
+      .clock-display { font-size: 1.6rem; }
     }
   </style>
 <script src="../js/nav.js" defer></script></head>
@@ -201,59 +258,64 @@
       <ol>
         <li><a href="../index.html">Home</a></li>
         <li><span>Developer Tools</span></li>
-        <li><span aria-current="page">Unit Converter</span></li>
+        <li><span aria-current="page">Stopwatch &amp; Timer</span></li>
       </ol>
     </nav>
     <section>
-      <h2>Unit Converter</h2>
-      <p>Convert between units of length, weight, temperature, area, volume, speed, time, and data size instantly. Type a value in either field and the other updates automatically, and the list below shows the input converted into every unit in the category. All processing happens in your browser - nothing is sent to any server.</p>
+      <h2>Stopwatch &amp; Timer</h2>
+      <p>Time anything with a precise stopwatch that records laps, or set a countdown timer that alerts you when it reaches zero. Everything runs in your browser - no downloads, no servers, and nothing is sent anywhere.</p>
     </section>
 
     <section>
-      <div class="input-row">
-        <div class="form-group">
-          <label for="category">Category</label>
-          <select id="category">
-            <option value="length" selected>Length</option>
-            <option value="weight">Weight</option>
-            <option value="temperature">Temperature</option>
-            <option value="area">Area</option>
-            <option value="volume">Volume</option>
-            <option value="speed">Speed</option>
-            <option value="time">Time</option>
-            <option value="data">Data Size</option>
-          </select>
+      <div class="mode-selector" role="group" aria-label="Timer type">
+        <button type="button" class="mode-btn active" data-mode="stopwatch">Stopwatch</button>
+        <button type="button" class="mode-btn" data-mode="timer">Countdown Timer</button>
+      </div>
+
+      <div id="stopwatch-panel">
+        <div class="clock-display" id="sw-display" aria-label="Stopwatch reading">00:00:00.00</div>
+        <div class="btn-group">
+          <button type="button" id="sw-start">Start</button>
+          <button type="button" id="sw-lap" disabled>Lap</button>
+          <button type="button" id="sw-reset" disabled>Reset</button>
+        </div>
+        <div class="laps-wrap" id="laps-wrap" style="display:none;">
+          <h3>Laps</h3>
+          <ol class="laps-list" id="laps-list">
+            <li class="laps-header"><span>Lap</span><span>Lap time</span><span>Total</span></li>
+          </ol>
         </div>
       </div>
 
-      <div class="input-row">
-        <div class="form-group">
-          <label for="from-value">Value</label>
-          <input type="text" id="from-value" value="1" inputmode="decimal" autocomplete="off" spellcheck="false" />
+      <div id="timer-panel" style="display:none;">
+        <div class="time-input-row">
+          <div class="form-group">
+            <label for="tm-h">Hours</label>
+            <input type="text" id="tm-h" inputmode="numeric" placeholder="0" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="form-group">
+            <label for="tm-m">Minutes</label>
+            <input type="text" id="tm-m" value="5" inputmode="numeric" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="form-group">
+            <label for="tm-s">Seconds</label>
+            <input type="text" id="tm-s" inputmode="numeric" placeholder="0" autocomplete="off" spellcheck="false" />
+          </div>
         </div>
-        <div class="form-group">
-          <label for="from-unit">From</label>
-          <select id="from-unit"></select>
+        <div class="preset-btns">
+          <button type="button" class="preset-btn" data-minutes="1">1 min</button>
+          <button type="button" class="preset-btn" data-minutes="5">5 min</button>
+          <button type="button" class="preset-btn" data-minutes="10">10 min</button>
+          <button type="button" class="preset-btn" data-minutes="30">30 min</button>
+          <button type="button" class="preset-btn" data-minutes="0" data-hours="1">1 hour</button>
         </div>
-        <div class="form-group">
-          <label for="to-unit">To</label>
-          <select id="to-unit"></select>
+        <div class="clock-display" id="tm-display" aria-label="Countdown reading">05:00:00</div>
+        <div class="btn-group">
+          <button type="button" id="tm-start">Start</button>
+          <button type="button" id="tm-reset" disabled>Reset</button>
         </div>
-        <div class="form-group">
-          <label for="to-value">To value</label>
-          <input type="text" id="to-value" inputmode="decimal" autocomplete="off" spellcheck="false" />
-        </div>
+        <div id="timer-done" aria-live="assertive"></div>
       </div>
-
-      <div class="btn-group">
-        <button type="button" id="swap-btn">Swap Units</button>
-        <button type="button" id="copy-btn">Copy Result</button>
-        <span id="copy-feedback" style="display:none;">Copied!</span>
-      </div>
-
-      <h3>All Conversions</h3>
-      <p>Values below show the current input converted into every unit of the selected category.</p>
-      <div id="conversion-list"></div>
     </section>
   </main>
 
@@ -267,6 +329,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/unit-converter.js"></script>
+  <script src="../js/timer.js"></script>
 </body>
 </html>
