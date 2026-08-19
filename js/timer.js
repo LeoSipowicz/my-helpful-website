@@ -241,7 +241,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function rearmFromInputs() {
-    if (tmRunning || tmFinished) return;
+    if (tmRunning) return;
+    if (tmFinished) {
+      tmFinished = false;
+      tmDisplay.classList.remove('done-flash');
+      timerDone.style.display = 'none';
+      tmStartBtn.disabled = false;
+    }
     tmTarget = readTarget();
     tmAccumulated = 0;
     renderTimer();
