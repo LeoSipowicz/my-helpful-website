@@ -7,16 +7,16 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>Age Calculator - Free Online Age From Date of Birth</title>
-  <meta name="description" content="Calculate your exact age in years, months, and days from your date of birth, plus total days old and your next birthday. Free, private, and browser-based." />
-  <link rel="canonical" href="https://helpful-website.com/html/age-calculator.html" />
+  <title>Compound Interest Calculator - Free Savings Growth Tool</title>
+  <meta name="description" content="See how your savings grow. Project the future value of a lump sum plus regular deposits with compound interest. Free, private, and browser-based." />
+  <link rel="canonical" href="https://helpful-website.com/html/compound-interest.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="Age Calculator - Free Online Age From Date of Birth" />
-  <meta property="og:description" content="Calculate your exact age in years, months, and days from your date of birth, plus total days old and your next birthday. Free, private, and browser-based." />
+  <meta property="og:title" content="Compound Interest Calculator - Free Savings Growth Tool" />
+  <meta property="og:description" content="See how your savings grow. Project the future value of a lump sum plus regular deposits with compound interest. Free, private, and browser-based." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://helpful-website.com/html/age-calculator.html" />
+  <meta property="og:url" content="https://helpful-website.com/html/compound-interest.html" />
   <meta property="og:site_name" content="A Helpful Website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://helpful-website.com/og-image.png" />
@@ -24,8 +24,8 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:image" content="https://helpful-website.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Age Calculator - Free Online Age From Date of Birth" />
-  <meta name="twitter:description" content="Calculate your exact age in years, months, and days from your date of birth, plus total days old and your next birthday. Free, private, and browser-based." />
+  <meta name="twitter:title" content="Compound Interest Calculator - Free Savings Growth Tool" />
+  <meta name="twitter:description" content="See how your savings grow. Project the future value of a lump sum plus regular deposits with compound interest. Free, private, and browser-based." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -43,8 +43,8 @@
     },{
       "@type": "ListItem",
       "position": 3,
-      "name": "Age Calculator",
-      "item": "https://helpful-website.com/html/age-calculator.html"
+      "name": "Compound Interest Calculator",
+      "item": "https://helpful-website.com/html/compound-interest.html"
     }]
   }
   </script>
@@ -52,9 +52,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Age Calculator",
+    "name": "Compound Interest Calculator",
     "applicationCategory": "DeveloperApplication",
-    "description": "A browser-based tool to calculate exact age in years, months, and days from a date of birth, including total days old and next birthday.",
+    "description": "A browser-based tool to project the future value of a lump sum and regular contributions with compound interest.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -74,92 +74,90 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
-    .date-row {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: flex-end;
-    }
-    .date-row .form-group {
-      flex: 1 1 200px;
-      margin-bottom: 0;
-    }
-    .date-row input {
-      margin-bottom: 0;
-    }
-    #error-msg {
+    #result-block {
       display: none;
-      border: 2px solid #c0392b;
-      color: #c0392b;
-      padding: 0.75rem 1rem;
-      margin-top: 1rem;
-      font-size: 0.95rem;
+      margin-top: 1.5rem;
     }
-    #result-display {
-      font-size: 1.2rem;
-      padding: 1rem;
-      border: 2px solid var(--onyx);
-      background: rgba(21,21,21,0.03);
-      word-break: break-word;
-      min-height: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 1rem;
-      font-family: Georgia, serif;
-    }
-    .duration-grid {
+    .result-summary {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1rem;
+      border: 3px solid var(--onyx);
+      padding: 1.25rem;
       margin-bottom: 1rem;
     }
-    .duration-card {
-      border: 2px solid var(--onyx);
-      padding: 1rem;
-      text-align: center;
+    .result-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
     }
-    .duration-value {
-      font-family: Impact, sans-serif;
-      font-size: 1.8rem;
-      letter-spacing: 0.02em;
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-    .duration-label {
+    .result-label {
       font-family: Impact, sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       font-size: 0.75rem;
     }
-    #next-birthday-wrap {
-      border: 2px solid var(--onyx);
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+    .result-value {
+      font-family: 'Courier New', monospace;
+      font-size: 1.25rem;
+      font-weight: bold;
+      word-break: break-all;
     }
-    #next-birthday-label {
-      font-family: Impact, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 0.8rem;
-    }
-    #next-birthday {
+    #rule-72 {
       font-size: 0.95rem;
-      text-align: right;
+      margin-bottom: 1rem;
     }
-    #copy-feedback {
+    .chart-legend {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      flex-wrap: wrap;
       font-size: 0.85rem;
-      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+    .legend-swatch {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--onyx);
+      margin-right: 0.35rem;
+    }
+    .legend-contrib { background: var(--blue); }
+    .legend-interest { background: var(--onyx); }
+    #result-block h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .table-wrap {
+      max-height: 22rem;
+      overflow-y: auto;
+      border: 2px solid var(--onyx);
+    }
+    #year-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+    }
+    #year-table th,
+    #year-table td {
+      text-align: right;
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid rgba(21,21,21,0.15);
+      white-space: nowrap;
+    }
+    #year-table th {
       font-family: Impact, sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-left: 0.75rem;
+      font-size: 0.7rem;
+    }
+    #year-table th:first-child,
+    #year-table td:first-child {
+      text-align: left;
+    }
+    @media (max-width: 400px) {
+      .result-value { font-size: 1rem; }
     }
   </style>
 <script src="../js/nav.js" defer></script></head>
@@ -237,47 +235,111 @@
       <ol>
         <li><a href="../index.html">Home</a></li>
         <li><span>Developer Tools</span></li>
-        <li><span aria-current="page">Age Calculator</span></li>
+        <li><span aria-current="page">Compound Interest Calculator</span></li>
       </ol>
     </nav>
     <section>
-      <h2>Age Calculator</h2>
-      <p>Enter a date of birth and a date to get the exact age in years, months, and days, plus total days old and your next birthday. Results update as you type, and everything is calculated in your browser - nothing is sent to any server.</p>
+      <h2>Compound Interest Calculator</h2>
+      <p>Project how a lump sum plus regular contributions grows with compound interest. Set your starting amount, contributions, rate, and compounding schedule to see the yearly balance and interest earned. Everything runs in your browser - nothing is sent to any server.</p>
     </section>
 
     <section>
-      <div class="date-row">
+      <div class="form-row">
         <div class="form-group">
-          <label for="birth-date">Date of Birth</label>
-          <input type="date" id="birth-date" />
+          <label for="principal">Starting amount</label>
+          <input type="text" id="principal" value="1000" inputmode="decimal" autocomplete="off" spellcheck="false" />
         </div>
         <div class="form-group">
-          <label for="age-on-date">Age On</label>
-          <input type="date" id="age-on-date" />
+          <label for="contrib">Contribution amount</label>
+          <input type="text" id="contrib" value="100" inputmode="decimal" autocomplete="off" spellcheck="false" />
         </div>
       </div>
 
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contrib-freq">Contribution frequency</label>
+          <select id="contrib-freq">
+            <option value="monthly" selected>Monthly</option>
+            <option value="quarterly">Quarterly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="rate">Annual interest rate (%)</label>
+          <input type="text" id="rate" value="7" inputmode="decimal" autocomplete="off" spellcheck="false" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="comp-freq">Compounding frequency</label>
+          <select id="comp-freq">
+            <option value="annually">Annually</option>
+            <option value="semiannually">Semiannually</option>
+            <option value="quarterly">Quarterly</option>
+            <option value="monthly" selected>Monthly</option>
+            <option value="daily">Daily</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="years">Number of years</label>
+          <input type="text" id="years" value="10" inputmode="numeric" autocomplete="off" spellcheck="false" />
+        </div>
+      </div>
+
+      <label class="checkbox-label" for="at-start">
+        <input type="checkbox" id="at-start" checked />
+        Add contributions at the start of each period
+      </label>
+
       <div class="btn-group">
-        <button id="today-btn">Use Today</button>
-        <button id="copy-btn">Copy Result</button>
+        <button type="button" id="copy-btn">Copy Summary</button>
         <span id="copy-feedback" style="display:none;">Copied!</span>
       </div>
 
-      <div id="error-msg"></div>
-
-      <div id="result-block" style="display:none;">
-        <div id="result-display" aria-live="polite" aria-atomic="true"></div>
-
-        <div class="duration-grid">
-          <div class="duration-card"><div class="duration-value" id="total-years">0</div><div class="duration-label">Years Old</div></div>
-          <div class="duration-card"><div class="duration-value" id="total-months">0</div><div class="duration-label">Total Months</div></div>
-          <div class="duration-card"><div class="duration-value" id="total-weeks">0</div><div class="duration-label">Total Weeks</div></div>
-          <div class="duration-card"><div class="duration-value" id="total-days">0</div><div class="duration-label">Total Days</div></div>
+      <div id="result-block">
+        <div class="result-summary">
+          <div class="result-item">
+            <span class="result-label">Final balance</span>
+            <span class="result-value" id="final-value">$0.00</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Total contributions</span>
+            <span class="result-value" id="total-contrib">$0.00</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Interest earned</span>
+            <span class="result-value" id="total-interest">$0.00</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Interest share</span>
+            <span class="result-value" id="interest-share">0% of the balance</span>
+          </div>
         </div>
 
-        <div id="next-birthday-wrap">
-          <span id="next-birthday-label">Next Birthday</span>
-          <span id="next-birthday"></span>
+        <p id="rule-72" style="display:none;"></p>
+
+        <canvas id="growth-chart" aria-label="Bar chart of balance growth by year"></canvas>
+
+        <div class="chart-legend">
+          <span><span class="legend-swatch legend-contrib"></span>Contributions</span>
+          <span><span class="legend-swatch legend-interest"></span>Interest</span>
+        </div>
+
+        <h3>Year by Year</h3>
+        <div class="table-wrap">
+          <table id="year-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Balance</th>
+                <th>Total contributions</th>
+                <th>Interest that year</th>
+                <th>Total interest</th>
+              </tr>
+            </thead>
+            <tbody id="year-table-body"></tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -293,6 +355,6 @@
     <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
   </footer>
 
-  <script src="../js/age-calculator.js"></script>
+  <script src="../js/compound-interest.js"></script>
 </body>
 </html>
