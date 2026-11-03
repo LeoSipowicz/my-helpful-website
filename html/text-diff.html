@@ -8,13 +8,13 @@
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
   <title>Text Diff - Free Online Text Comparison Tool</title>
-  <meta name="description" content="Compare two texts and see the differences instantly. Side-by-side diff with added and removed lines highlighted. Free, private, no data sent to any server." />
+  <meta name="description" content="Compare two texts and see the differences instantly. Unified or side-by-side views highlight changed words. Ignore case or whitespace. Free and private." />
   <link rel="canonical" href="https://helpful-website.com/html/text-diff.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
   <meta property="og:title" content="Text Diff - Free Online Text Comparison Tool" />
-  <meta property="og:description" content="Compare two texts and see the differences instantly. Side-by-side diff with added and removed lines highlighted. Free and private." />
+  <meta property="og:description" content="Compare two texts with a unified or side-by-side view. Changed words are highlighted, and you can ignore case or whitespace. Free and private." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://helpful-website.com/html/text-diff.html" />
   <meta property="og:site_name" content="A Helpful Website" />
@@ -25,7 +25,7 @@
   <meta name="twitter:image" content="https://helpful-website.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Text Diff - Free Online Text Comparison Tool" />
-  <meta name="twitter:description" content="Compare two texts and see the differences instantly. Side-by-side diff with added and removed lines highlighted. Free and private." />
+  <meta name="twitter:description" content="Compare two texts with a unified or side-by-side view. Changed words are highlighted, and you can ignore case or whitespace. Free and private." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,46 +82,80 @@
     }
     .diff-grid .form-group { margin-bottom: 0; }
     .diff-grid textarea { min-height: 12rem; resize: vertical; }
+    .diff-options {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .diff-options .checkbox-label { margin-bottom: 0; }
+    .view-toggle { display: flex; gap: 0.5rem; margin-left: auto; }
+    .view-btn { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
+    .view-btn.active { background: var(--onyx); color: var(--sand); }
     @media (max-width: 768px) {
       .diff-grid { grid-template-columns: 1fr; }
+      .view-toggle { margin-left: 0; }
     }
     .diff-result {
       border: 2px solid var(--onyx);
       background: rgba(21,21,21,0.03);
-      max-height: 24rem;
+      max-height: 30rem;
       overflow-y: auto;
       margin-bottom: 1rem;
-    }
-    .diff-result pre {
-      margin: 0;
-      padding: 0.5rem 0.75rem;
       font-family: 'Courier New', monospace;
       font-size: 0.85rem;
       line-height: 1.5;
+    }
+    .diff-line { display: flex; min-height: 1.6em; }
+    .diff-sign {
+      flex: 0 0 2rem;
+      text-align: center;
+      font-weight: bold;
+      user-select: none;
+      border-right: 1px solid rgba(21,21,21,0.15);
+    }
+    .diff-text {
+      flex: 1;
+      padding: 0.1rem 0.6rem;
       white-space: pre-wrap;
-      word-break: break-all;
+      word-break: break-word;
     }
-    .diff-result .diff-add {
-      background: rgba(39, 174, 96, 0.12);
+    .diff-add { background: rgba(39, 174, 96, 0.12); }
+    .diff-add .diff-sign { color: #27ae60; }
+    .diff-remove { background: rgba(192, 57, 43, 0.12); }
+    .diff-remove .diff-sign { color: #c0392b; }
+    .diff-same .diff-sign { color: rgba(21,21,21,0.35); }
+    .word-add { background: rgba(39, 174, 96, 0.4); font-weight: bold; }
+    .word-remove { background: rgba(192, 57, 43, 0.4); text-decoration: line-through; }
+    .diff-side-by-side .diff-row {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr 2.5rem 1fr;
+      min-height: 1.6em;
     }
-    .diff-result .diff-add::before {
-      content: '+ ';
-      color: #27ae60;
-      font-weight: bold;
+    .diff-line-no {
+      text-align: right;
+      padding: 0.1rem 0.5rem;
+      color: rgba(21,21,21,0.45);
+      background: rgba(21,21,21,0.04);
+      border-right: 1px solid rgba(21,21,21,0.15);
+      user-select: none;
     }
-    .diff-result .diff-remove {
-      background: rgba(192, 57, 43, 0.12);
+    .diff-side {
+      padding: 0.1rem 0.6rem;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
-    .diff-result .diff-remove::before {
-      content: '- ';
-      color: #c0392b;
-      font-weight: bold;
+    .diff-side.diff-empty { background: rgba(21,21,21,0.03); }
+    @media (max-width: 600px) {
+      .diff-side-by-side .diff-row { grid-template-columns: 1fr 1fr; }
+      .diff-line-no { display: none; }
     }
-    .diff-result .diff-same {
-      background: transparent;
-    }
-    .diff-result .diff-same::before {
-      content: '  ';
+    .diff-identical {
+      text-align: center;
+      padding: 1.25rem;
+      font-family: Georgia, serif;
+      font-size: 1rem;
     }
     .diff-meta {
       font-size: 0.85rem;
@@ -216,7 +250,7 @@
     </nav>
     <section>
       <h2>Text Diff</h2>
-      <p>Paste two versions of a text into the boxes below and click Compare to see the differences. Added lines are highlighted in green, removed lines in red. All processing happens in your browser. No data is sent to any server.</p>
+      <p>Paste two versions of a text below and click Compare. Choose a unified or side-by-side view, see changed words highlighted inside each line, and ignore case or whitespace when those differences do not matter. Everything runs in your browser, so your text is never sent to a server.</p>
     </section>
 
     <section>
@@ -231,6 +265,15 @@
         </div>
       </div>
 
+      <div class="diff-options">
+        <label class="checkbox-label"><input type="checkbox" id="ignore-case" /> Ignore case</label>
+        <label class="checkbox-label"><input type="checkbox" id="ignore-whitespace" /> Ignore whitespace</label>
+        <div class="view-toggle" role="group" aria-label="Diff view">
+          <button type="button" class="view-btn active" data-view="unified" aria-pressed="true">Unified</button>
+          <button type="button" class="view-btn" data-view="side" aria-pressed="false">Side by side</button>
+        </div>
+      </div>
+
       <div class="btn-group">
         <button id="compare-btn" class="btn-primary">Compare</button>
         <button id="swap-btn">Swap</button>
@@ -238,8 +281,8 @@
       </div>
 
       <div id="diff-warning" style="display:none;"></div>
-      <div class="diff-meta" id="diff-meta" style="display:none;"></div>
-      <div class="diff-result" id="diff-result" style="display:none;"></div>
+      <div class="diff-meta" id="diff-meta" aria-live="polite" style="display:none;"></div>
+      <div class="diff-result" id="diff-result" role="region" aria-label="Diff result" style="display:none;"></div>
     </section>
 
 
