@@ -256,6 +256,59 @@ li { margin-bottom: 0.4rem; }
   text-align: center;
 }
 
+/* ── Site-wide tool finder ── */
+.site-tool-search {
+  position: relative;
+  max-width: 28rem;
+  margin-top: 1rem;
+}
+.site-tool-search input { margin-bottom: 0; }
+#site-tool-search-results {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 2px);
+  background: var(--sand);
+  border: 2px solid var(--onyx);
+  box-shadow: 4px 4px 0 var(--onyx);
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem;
+  z-index: 200;
+  max-height: 18rem;
+  overflow-y: auto;
+}
+#site-tool-search-results li { margin: 0; }
+#site-tool-search-results a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.1);
+  color: var(--onyx);
+  font-family: Georgia, serif;
+  font-weight: normal;
+  text-decoration: none;
+}
+#site-tool-search-results li:last-child a { border-bottom: none; }
+#site-tool-search-results a:hover,
+#site-tool-search-results a:focus-visible,
+#site-tool-search-results li.active a {
+  background: var(--onyx);
+  color: var(--sand);
+  text-decoration: none;
+}
+.site-tool-result-name { font-weight: bold; min-width: 0; }
+.site-tool-result-cat {
+  flex: none;
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
 /* ── Palette ── */
 .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; margin-bottom: 1rem; }
 .palette-swatch {
