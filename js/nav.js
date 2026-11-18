@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'percentage-calculator': 'percent discount tip change increase decrease',
       'timer': 'stopwatch countdown alarm minutes seconds',
       'compound-interest': 'savings investment interest growth',
+      'loan-calculator': 'mortgage loan payment amortization interest car auto home',
       'password-generator': 'random secure password',
       'hash-generator': 'md5 sha checksum digest'
     };

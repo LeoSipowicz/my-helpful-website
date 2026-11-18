@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <title>Loan Calculator - Monthly Payment &amp; Amortization</title>
+  <meta name="description" content="Estimate monthly payments, total interest, and payoff time for any loan. See a full amortization schedule and download it as CSV. Free and private." />
+  <link rel="canonical" href="https://www.helpful-website.com/html/loan-calculator.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <meta name="theme-color" content="#E6E1C5" />
+  <meta property="og:title" content="Loan Calculator - Monthly Payment &amp; Amortization" />
+  <meta property="og:description" content="Estimate monthly payments, total interest, and payoff time for any loan. See a full amortization schedule and download it as CSV. Free and private." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.helpful-website.com/html/loan-calculator.html" />
+  <meta property="og:site_name" content="A Helpful Website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://www.helpful-website.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:image" content="https://www.helpful-website.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Loan Calculator - Monthly Payment &amp; Amortization" />
+  <meta name="twitter:description" content="Estimate monthly payments, total interest, and payoff time for any loan. See a full amortization schedule and download it as CSV. Free and private." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.helpful-website.com/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Developer Tools",
+      "item": "https://www.helpful-website.com/"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Loan Calculator",
+      "item": "https://www.helpful-website.com/html/loan-calculator.html"
+    }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Loan Calculator",
+    "applicationCategory": "DeveloperApplication",
+    "description": "A browser-based loan and mortgage calculator that shows monthly payments, total interest, payoff time, and a full amortization schedule.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    #result-block {
+      display: none;
+      margin-top: 1.5rem;
+    }
+    #error-msg {
+      display: none;
+      border: 2px solid #c0392b;
+      color: #c0392b;
+      padding: 0.65rem 0.85rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .result-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      border: 3px solid var(--onyx);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .result-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .result-label {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+    }
+    .result-value {
+      font-family: 'Courier New', monospace;
+      font-size: 1.25rem;
+      font-weight: bold;
+      word-break: break-word;
+    }
+    #savings-note {
+      display: none;
+      border: 2px solid var(--onyx);
+      background: rgba(109, 114, 195, 0.12);
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+    #result-block h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .table-wrap {
+      max-height: 26rem;
+      overflow: auto;
+      border: 2px solid var(--onyx);
+    }
+    #schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+    }
+    #schedule-table th,
+    #schedule-table td {
+      text-align: right;
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid rgba(21,21,21,0.15);
+      white-space: nowrap;
+    }
+    #schedule-table th {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.7rem;
+      position: sticky;
+      top: 0;
+      background: var(--sand);
+    }
+    #schedule-table th:first-child,
+    #schedule-table td:first-child {
+      text-align: left;
+    }
+    @media (max-width: 400px) {
+      .result-value { font-size: 1rem; }
+    }
+  </style>
+<script src="../js/nav.js" defer></script></head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <header>
+    <div class="header-top">
+      <h1><a href="../index.html" class="site-title">A Helpful Website</a></h1>
+      <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="../index.html" class="nav-item">Home</a></li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Image Tools</button>
+          <ul class="dropdown">
+            <li><a href="image-resizer.html">Image Resizer</a></li>
+<li><a href="image-converter.html">Image Converter</a></li>
+<li><a href="image-compressor.html">Image Compressor</a></li>
+<li><a href="color-palette.html">Color Palette</a></li>
+<li><a href="color-replacer.html">Color Replacer</a></li>
+<li><a href="image-cropper.html">Image Cropper</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Text Tools</button>
+          <ul class="dropdown">
+            <li><a href="text-case-converter.html">Case Converter</a></li>
+<li><a href="word-counter.html">Word Counter</a></li>
+            <li><a href="text-diff.html">Text Diff</a></li>
+<li><a href="lorem-ipsum.html">Lorem Ipsum</a></li>
+<li><a href="list-randomizer.html">List Randomizer</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle active" aria-expanded="false">Developer Tools</button>
+          <ul class="dropdown">
+            <li><a href="json-formatter.html">JSON Formatter</a></li>
+<li><a href="base64-encoder.html">Base64 Encoder</a></li>
+<li><a href="url-encoder.html">URL Encoder</a></li>
+<li><a href="html-entity-encoder.html">HTML Entities</a></li>
+<li><a href="uuid-generator.html">UUID Generator</a></li>
+<li><a href="color-converter.html">Color Converter</a></li>
+<li><a href="markdown-editor.html">Markdown Editor</a></li>
+<li><a href="timestamp-converter.html">Timestamp Converter</a></li>
+<li><a href="number-base-converter.html">Number Base Converter</a></li>
+<li><a href="random-number-generator.html">Random Number Generator</a></li>
+<li><a href="date-calculator.html">Date Calculator</a></li>
+<li><a href="age-calculator.html">Age Calculator</a></li>
+<li><a href="qr-code-generator.html">QR Code Generator</a></li>
+<li><a href="unit-converter.html">Unit Converter</a></li>
+<li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+<li><a href="timer.html">Stopwatch &amp; Timer</a></li>
+<li><a href="compound-interest.html">Compound Interest</a></li>
+<li><a href="loan-calculator.html">Loan Calculator</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Security Tools</button>
+          <ul class="dropdown">
+            <li><a href="password-generator.html">Password Generator</a></li>
+<li><a href="hash-generator.html">Hash Generator</a></li>
+          </ul>
+        </li>
+        <li><a href="../about.html" class="nav-item">About</a></li>
+        <li><a href="../privacy.html" class="nav-item">Privacy</a></li>
+        <li><a href="../contact.html" class="nav-item">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><span>Developer Tools</span></li>
+        <li><span aria-current="page">Loan Calculator</span></li>
+      </ol>
+    </nav>
+    <section>
+      <h2>Loan &amp; Mortgage Calculator</h2>
+      <p>Estimate the monthly payment, total interest, and payoff date for a mortgage, auto loan, or personal loan. Add an extra monthly payment to see how much interest you save. Everything runs in your browser - nothing is sent to any server.</p>
+    </section>
+
+    <section>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="loan-amount">Loan amount</label>
+          <input type="text" id="loan-amount" value="250000" inputmode="decimal" autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="form-group">
+          <label for="interest-rate">Annual interest rate (%)</label>
+          <input type="text" id="interest-rate" value="6.5" inputmode="decimal" autocomplete="off" spellcheck="false" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="term-years">Term (years)</label>
+          <input type="text" id="term-years" value="30" inputmode="numeric" autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="form-group">
+          <label for="term-months">Term (months)</label>
+          <input type="text" id="term-months" value="0" inputmode="numeric" autocomplete="off" spellcheck="false" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="extra-payment">Extra monthly payment</label>
+          <input type="text" id="extra-payment" value="0" inputmode="decimal" autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="form-group">
+          <label for="start-month">First payment month</label>
+          <input type="month" id="start-month" />
+        </div>
+      </div>
+
+      <p id="error-msg" role="alert"></p>
+
+      <div class="btn-group">
+        <button type="button" id="copy-btn">Copy Summary</button>
+        <button type="button" id="csv-btn">Download CSV</button>
+        <span id="copy-feedback" style="display:none;">Copied!</span>
+      </div>
+
+      <div id="result-block">
+        <div class="result-summary">
+          <div class="result-item">
+            <span class="result-label">Monthly payment</span>
+            <span class="result-value" id="monthly-payment">$0.00</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Total interest</span>
+            <span class="result-value" id="total-interest">$0.00</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Total paid</span>
+            <span class="result-value" id="total-paid">$0.00</span>
+          </div>
+          <div class="result-item">
+            <span class="result-label">Payoff time</span>
+            <span class="result-value" id="payoff-time">-</span>
+          </div>
+          <div class="result-item" id="payoff-date-wrap">
+            <span class="result-label">Estimated payoff</span>
+            <span class="result-value" id="payoff-date">-</span>
+          </div>
+        </div>
+
+        <p id="savings-note"></p>
+
+        <h3>Amortization Schedule</h3>
+        <div class="table-wrap">
+          <table id="schedule-table">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Extra</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <footer>
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/loan-calculator.js"></script>
+</body>
+</html>
