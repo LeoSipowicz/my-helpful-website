@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const startDate = document.getElementById('start-date');
   const endDate = document.getElementById('end-date');
   const includeEnd = document.getElementById('include-end');
-  const calcBtn = document.getElementById('calc-btn');
   const swapBtn = document.getElementById('swap-btn');
   const clearBtn = document.getElementById('clear-btn');
   const resultBlock = document.getElementById('result-block');
@@ -14,14 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyBtn = document.getElementById('copy-btn');
   const copyFeedback = document.getElementById('copy-feedback');
 
-  function setDefaultDates() {
-    const now = new Date();
-    const end = new Date(now);
-    end.setDate(now.getDate() + 7);
-    startDate.value = formatDateInput(now);
-    endDate.value = formatDateInput(end);
-  }
-
   function formatDateInput(date) {
     const y = date.getFullYear();
     const m = String(date.getMonth() + 1).padStart(2, '0');
@@ -32,6 +23,64 @@ document.addEventListener('DOMContentLoaded', () => {
   function formatDateDisplay(date) {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+  }
+
+  function daysInMonth(year, month) {
+    return new Date(year, month + 1, 0).getDate();
+  }
+
+  function addMonths(date, months) {
+    const total = date.getMonth() + months;
+    const year = date.getFullYear() + Math.floor(total / 12);
+    const month = ((total % 12) + 12) % 12;
+    const day = Math.min(date.getDate(), daysInMonth(year, month));
+    return new Date(year, month, day);
+  }
+
+  function addDays(date, days) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
+  }
+
+  function utcDaysBetween(a, b) {
+    const ms = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate())
+             - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    return Math.round(ms / 86400000);
+  }
+
+  function decompose(start, end) {
+    let years = end.getFullYear() - start.getFullYear();
+    if (addMonths(start, years * 12) > end) {
+      years--;
+    }
+    let months = 0;
+    while (months < 12 && addMonths(start, years * 12 + months + 1) <= end) {
+      months++;
+    }
+    const days = utcDaysBetween(addMonths(start, years * 12 + months), end);
+    return { years, months, days };
+  }
+
+  function plural(value, unit) {
+    return value + ' ' + unit + (value === 1 ? '' : 's');
+  }
+
+  function formatBreakdown(parts) {
+    const units = [];
+    if (parts.years) units.push(plural(parts.years, 'year'));
+    if (parts.months) units.push(plural(parts.months, 'month'));
+    if (parts.days) units.push(plural(parts.days, 'day'));
+    if (units.length === 0) return '0 days';
+    if (units.length === 1) return units[0];
+    if (units.length === 2) return units[0] + ' and ' + units[1];
+    return units[0] + ', ' + units[1] + ', and ' + units[2];
+  }
+
+  function setDefaultDates() {
+    const now = new Date();
+    const end = new Date(now);
+    end.setDate(now.getDate() + 7);
+    startDate.value = formatDateInput(now);
+    endDate.value = formatDateInput(end);
   }
 
   function calculateDuration() {
@@ -56,59 +105,40 @@ document.addEventListener('DOMContentLoaded', () => {
       end = temp;
     }
 
-    let dayDiff = Math.floor(
-      (Date.UTC(end.getFullYear(), end.getMonth(), end.getDate())
-       - Date.UTC(start.getFullYear(), start.getMonth(), start.getDate()))
-      / (1000 * 60 * 60 * 24)
-    );
-    if (includeEnd.checked) {
-      dayDiff += 1;
-    }
+    const inclusive = includeEnd.checked;
+    const spanEnd = inclusive ? addDays(end, 1) : end;
+    const dayDiff = utcDaysBetween(start, spanEnd);
+    const calendar = decompose(start, spanEnd);
 
-    const weeks = dayDiff / 7;
-    const months = dayDiff / 30.436875;
-    const years = dayDiff / 365.25;
-
-    let yearsComponent = end.getFullYear() - start.getFullYear();
-    let monthsComponent = end.getMonth() - start.getMonth();
-    let daysComponent = end.getDate() - start.getDate();
-
-    if (daysComponent < 0) {
-      monthsComponent--;
-      const prevMonth = new Date(end.getFullYear(), end.getMonth(), 0);
-      daysComponent += prevMonth.getDate();
-    }
-    if (monthsComponent < 0) {
-      yearsComponent--;
-      monthsComponent += 12;
-    }
-
-    resultDisplay.innerHTML = '<strong>' + dayDiff.toLocaleString() + ' days</strong>'
-      + ' between ' + formatDateDisplay(start)
-      + ' and ' + formatDateDisplay(end);
+    resultDisplay.innerHTML = '<strong>' + formatBreakdown(calendar) + '</strong> from '
+      + formatDateDisplay(start) + ' to ' + formatDateDisplay(end)
+      + (inclusive ? ' (end date included)' : '');
 
     totalDays.textContent = dayDiff.toLocaleString();
-    totalWeeks.textContent = weeks.toFixed(1);
-    totalMonths.textContent = months.toFixed(1);
-    totalYears.textContent = years.toFixed(1);
+    totalWeeks.textContent = (dayDiff / 7).toFixed(1);
+    totalMonths.textContent = (dayDiff / 30.436875).toFixed(1);
+    totalYears.textContent = (dayDiff / 365.25).toFixed(1);
 
     resultBlock.style.display = '';
   }
 
-  calcBtn.addEventListener('click', calculateDuration);
+  startDate.addEventListener('input', calculateDuration);
+  startDate.addEventListener('change', calculateDuration);
+  endDate.addEventListener('input', calculateDuration);
+  endDate.addEventListener('change', calculateDuration);
+  includeEnd.addEventListener('change', calculateDuration);
 
   swapBtn.addEventListener('click', () => {
     const temp = startDate.value;
     startDate.value = endDate.value;
     endDate.value = temp;
-    if (resultBlock.style.display !== 'none') {
-      calculateDuration();
-    }
+    calculateDuration();
   });
 
   clearBtn.addEventListener('click', () => {
     setDefaultDates();
-    resultBlock.style.display = 'none';
+    includeEnd.checked = false;
+    calculateDuration();
   });
 
   copyBtn.addEventListener('click', () => {
@@ -121,4 +151,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   setDefaultDates();
+  calculateDuration();
 });

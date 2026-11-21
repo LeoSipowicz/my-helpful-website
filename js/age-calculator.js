@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       day = 28;
     }
     let bday = new Date(year, month, day);
-    if (bday <= from) {
+    if (bday < from) {
       year++;
       if (month === 1 && day === 29 && !isLeapYear(year)) {
         day = 28;
