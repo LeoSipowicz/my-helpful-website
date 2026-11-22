@@ -34,9 +34,12 @@ fileInput.addEventListener('change', e => {
   img.src = imgObjectUrl;
 });
 
-formatSelect.addEventListener('change', () => {
+function updateQualityVisibility() {
   qualityGroup.style.display = formatSelect.value === 'png' ? 'none' : '';
-});
+}
+
+formatSelect.addEventListener('change', updateQualityVisibility);
+updateQualityVisibility();
 
 qualityInput.addEventListener('input', () => {
   qualityVal.textContent = qualityInput.value;

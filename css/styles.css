@@ -246,6 +246,38 @@ li { margin-bottom: 0.4rem; }
 
 .tool-grid + h3 { margin-top: 2rem; }
 
+/* Related tools */
+.related-tools {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 3px solid var(--onyx);
+}
+.related-tools h2 { font-size: 1.5rem; }
+.related-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+.related-list li {
+  margin: 0;
+  border: 2px solid var(--onyx);
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.related-list a {
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+}
+.related-list span { font-size: 0.9rem; line-height: 1.5; }
+.related-all { margin: 1rem 0 0 0; }
+
 .tool-filter-wrap { max-width: 28rem; margin-bottom: 1.5rem; }
 .tool-filter-wrap input { margin-bottom: 0; }
 #tool-filter-empty {

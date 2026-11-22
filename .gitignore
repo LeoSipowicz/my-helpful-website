@@ -72,3 +72,6 @@ node_modules/
 secrets/
 *credentials*
 *service-account*
+
+# Agent scratch space
+.agent-tmp/
