@@ -546,6 +546,73 @@ canvas {
 .breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb span[aria-current="page"] { font-weight: bold; color: var(--onyx); }
 
+/* ── Time Zone Converter ── */
+.tz-actions { margin-bottom: 1rem; }
+.tz-result {
+  border: 3px solid var(--onyx);
+  padding: 1.25rem;
+  background: rgba(21, 21, 21, 0.03);
+}
+.tz-result-label {
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+}
+.tz-result-time {
+  font-family: 'Courier New', monospace;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+.tz-result-sub { margin-bottom: 0; font-size: 0.95rem; }
+.tz-legend { font-size: 0.9rem; margin-bottom: 0.75rem; }
+.tz-table-wrap { overflow-x: auto; border: 2px solid var(--onyx); }
+.tz-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.tz-table th,
+.tz-table td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.15);
+  vertical-align: top;
+}
+.tz-table th {
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  background: var(--sand);
+  position: sticky;
+  top: 0;
+}
+.tz-table tr:last-child td { border-bottom: none; }
+.tz-table tr.is-business td { background: rgba(109, 114, 195, 0.14); }
+.tz-table tr.is-from td:first-child { border-left: 5px solid var(--onyx); }
+.tz-table tr.is-to td:first-child { border-left: 5px solid var(--blue); }
+.tz-name { display: block; font-weight: bold; }
+.tz-meta { display: block; font-size: 0.78rem; color: rgba(21, 21, 21, 0.7); }
+.tz-time { font-family: 'Courier New', monospace; white-space: nowrap; }
+.tz-day { display: block; font-size: 0.78rem; font-weight: bold; }
+.tz-badge {
+  display: inline-block;
+  margin-top: 0.25rem;
+  margin-right: 0.25rem;
+  padding: 0 0.35rem;
+  border: 1px solid var(--onyx);
+  font-family: Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.62rem;
+}
+#tz-message {
+  border: 2px solid #c0392b;
+  color: #c0392b;
+  padding: 0.65rem 0.85rem;
+  font-weight: bold;
+}
+
 /* ── Honeypot (invisible to users, catches spam bots) ── */
 .honeypot {
   position: absolute;
@@ -564,6 +631,7 @@ canvas {
   h2 { font-size: 1.3rem; }
   h3 { font-size: 1.1rem; }
   .tool-grid { grid-template-columns: 1fr; }
+  .tz-result-time { font-size: 1.5rem; }
 }
 
 /* ── Responsive ── */
@@ -617,6 +685,10 @@ canvas {
   }
 
   .form-row .form-group { flex: 1 1 100%; }
+
+  .tz-result-time { font-size: 1.7rem; }
+  .tz-table { font-size: 0.82rem; }
+  .tz-table th, .tz-table td { padding: 0.4rem 0.5rem; }
 
   main { max-width: none; }
 }
