@@ -16,6 +16,7 @@ let originalFileSize = 0;
 let originalMimeType = 'image/jpeg';
 let currentBlob = null;
 let currentExtension = 'jpg';
+let compressRequest = 0;
 let imgObjectUrl = null;
 
 fileInput.addEventListener('change', e => {
@@ -30,14 +31,12 @@ fileInput.addEventListener('change', e => {
   const img = new Image();
   img.onload = () => {
     originalImage = img;
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    ctx.drawImage(img, 0, 0);
     originalFormatEl.textContent = formatLabel(originalMimeType);
     originalSizeEl.textContent = formatSize(originalFileSize);
     controlsSection.style.display = '';
     formatSelect.value = 'auto';
     updateQualityVisibility();
+    drawSource();
     compressImage();
     if (imgObjectUrl) {
       URL.revokeObjectURL(imgObjectUrl);
@@ -50,8 +49,20 @@ fileInput.addEventListener('change', e => {
 
 formatSelect.addEventListener('change', () => {
   updateQualityVisibility();
+  drawSource();
   compressImage();
 });
+
+function drawSource() {
+  if (!originalImage) return;
+  canvas.width = originalImage.naturalWidth;
+  canvas.height = originalImage.naturalHeight;
+  if (resolveFormat() === 'jpeg') {
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+  ctx.drawImage(originalImage, 0, 0);
+}
 
 qualityInput.addEventListener('input', () => {
   qualityVal.textContent = qualityInput.value;
@@ -61,6 +72,8 @@ qualityInput.addEventListener('input', () => {
 function updateQualityVisibility() {
   const fmt = resolveFormat();
   qualityGroup.style.display = fmt === 'png' ? 'none' : '';
+  const note = document.getElementById('format-note');
+  if (note) note.style.display = fmt === 'jpeg' ? 'block' : 'none';
 }
 
 function resolveFormat() {
@@ -77,9 +90,10 @@ function compressImage() {
   const fmt = resolveFormat();
   const quality = parseInt(qualityInput.value) / 100;
   const mimeType = fmt === 'jpeg' ? 'image/jpeg' : fmt === 'webp' ? 'image/webp' : 'image/png';
-  currentExtension = fmt === 'jpeg' ? 'jpg' : fmt;
+  const request = ++compressRequest;
 
   canvas.toBlob(blob => {
+    if (request !== compressRequest) return;
     if (!blob) {
       // Browser doesn't support the chosen format (e.g., WebP on older Safari)
       compressedSizeEl.textContent = 'Format not supported in this browser';
@@ -87,6 +101,10 @@ function compressImage() {
       return;
     }
     currentBlob = blob;
+    currentExtension = blob.type === 'image/jpeg' ? 'jpg'
+      : blob.type === 'image/webp' ? 'webp'
+      : blob.type === 'image/png' ? 'png'
+      : (fmt === 'jpeg' ? 'jpg' : fmt);
     compressedSizeEl.textContent = formatSize(blob.size);
   }, mimeType, quality);
 }

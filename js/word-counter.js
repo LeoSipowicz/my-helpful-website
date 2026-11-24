@@ -35,13 +35,16 @@ function updateStats() {
   const paragraphCount = text.trim().length === 0 ? 0 : paragraphs.length;
 
   // Reading time (200 wpm average)
-  const minutes = Math.floor(wordCount / 200);
-  const seconds = Math.round((wordCount % 200) / 200 * 60);
+  const totalSeconds = Math.round(wordCount / 200 * 60);
   let readingTime;
-  if (minutes > 0) {
-    readingTime = seconds > 0 ? `${minutes}m ${seconds}s` : `${minutes}m`;
+  if (wordCount === 0) {
+    readingTime = '0s';
+  } else if (totalSeconds < 60) {
+    readingTime = '< 1m';
   } else {
-    readingTime = wordCount > 0 ? '< 1m' : '0s';
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    readingTime = seconds > 0 ? `${minutes}m ${seconds}s` : `${minutes}m`;
   }
 
   wordCountEl.textContent = wordCount;
