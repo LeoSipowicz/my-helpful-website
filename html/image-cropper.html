@@ -7,14 +7,14 @@
   <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-  <title>Image Cropper - Free Online Photo Cropping Tool</title>
-  <meta name="description" content="Crop images online for free. Select any area of your photo and download the result instantly. 100% private browser-based cropping." />
+  <title>Image Cropper - Crop Photos to Any Aspect Ratio</title>
+  <meta name="description" content="Crop images online for free. Choose an aspect ratio like 1:1 or 16:9, drag to select, and download instantly. Private and browser-based." />
   <link rel="canonical" href="https://www.helpful-website.com/html/image-cropper.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
-  <meta property="og:title" content="Image Cropper - Free Online Photo Cropping Tool" />
-  <meta property="og:description" content="Crop images online for free. Select any area of your photo and download the cropped result instantly. No server uploads, 100% private." />
+  <meta property="og:title" content="Image Cropper - Crop Photos to Any Aspect Ratio" />
+  <meta property="og:description" content="Crop images online for free. Choose an aspect ratio, drag to select, and download the cropped result instantly. No uploads, 100% private." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.helpful-website.com/html/image-cropper.html" />
   <meta property="og:site_name" content="A Helpful Website" />
@@ -24,8 +24,8 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:image" content="https://www.helpful-website.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Image Cropper - Free Online Photo Cropping Tool" />
-  <meta name="twitter:description" content="Crop images online for free. Select any area of your photo and download the cropped result instantly. No server uploads, 100% private." />
+  <meta name="twitter:title" content="Image Cropper - Crop Photos to Any Aspect Ratio" />
+  <meta name="twitter:description" content="Crop images online for free. Choose an aspect ratio, drag to select, and download the cropped result instantly. No uploads, 100% private." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,7 +54,7 @@
     "@type": "SoftwareApplication",
     "name": "Image Cropper",
     "applicationCategory": "MultimediaApplication",
-    "description": "A browser-based tool to crop images by selecting a rectangular region.",
+    "description": "A browser-based tool to crop images to a rectangular region or a fixed aspect ratio.",
     "operatingSystem": "All",
     "browserRequirements": "Requires browser with Canvas API support",
     "offers": {
@@ -75,9 +75,24 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
      crossorigin="anonymous"></script>
   <style>
+    .crop-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .crop-controls .form-group {
+      flex: 0 1 240px;
+      margin-bottom: 0;
+    }
+    .crop-controls select {
+      margin-bottom: 0;
+    }
     .crop-instruction {
+      flex: 1 1 280px;
       font-size: 0.95rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
     }
     #crop-canvas {
       display: block;
@@ -186,7 +201,7 @@
     </nav>
     <section>
       <h2>Image Cropper</h2>
-      <p>Upload an image and click and drag to select the area you want to keep. The crop is applied at full resolution so your output retains the original quality. All processing happens locally in your browser.</p>
+      <p>Upload an image, choose an aspect ratio, and drag to select the area you want to keep. Drag inside the selection to move it. Presets like 1:1, 4:3, and 16:9 lock the shape, or leave it on Free for any rectangle. The crop is applied at full resolution, and all processing happens locally in your browser.</p>
     </section>
 
     <section id="upload">
@@ -195,11 +210,27 @@
     </section>
 
     <section id="canvas-section" style="display:none;">
-      <p class="crop-instruction">Click and drag on the image to select the area you want to crop.</p>
+      <div class="crop-controls">
+        <div class="form-group">
+          <label for="aspect-select">Aspect ratio</label>
+          <select id="aspect-select">
+            <option value="free">Free</option>
+            <option value="1:1">Square (1:1)</option>
+            <option value="4:3">Landscape (4:3)</option>
+            <option value="3:4">Portrait (3:4)</option>
+            <option value="16:9">Widescreen (16:9)</option>
+            <option value="9:16">Vertical (9:16)</option>
+            <option value="3:2">Photo (3:2)</option>
+            <option value="2:3">Portrait photo (2:3)</option>
+          </select>
+        </div>
+        <p class="crop-instruction">Drag on the image to select an area. Drag inside the selection to move it.</p>
+      </div>
       <canvas id="crop-canvas"></canvas>
       <div id="crop-info"></div>
       <div class="btn-group">
         <button id="crop-btn" class="btn-primary" disabled>Crop Selection</button>
+        <button id="select-all-btn" disabled>Select All</button>
         <button id="reset-btn">Reset Selection</button>
         <button id="download-btn" disabled>Download Cropped Image</button>
       </div>
