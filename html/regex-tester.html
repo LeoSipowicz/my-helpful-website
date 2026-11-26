@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://www.googlesyndication.com" crossorigin />
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+  <title>Regex Tester - Free Online Regex Match &amp; Replace Tool</title>
+  <meta name="description" content="Test regular expressions live in your browser. Highlight matches, inspect capture groups, and replace text instantly. Free and private." />
+  <link rel="canonical" href="https://www.helpful-website.com/html/regex-tester.html" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <meta name="theme-color" content="#E6E1C5" />
+  <meta property="og:title" content="Regex Tester - Free Online Regex Match &amp; Replace Tool" />
+  <meta property="og:description" content="Test regular expressions live in your browser. Highlight matches, inspect capture groups, and replace text instantly. Free and private." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.helpful-website.com/html/regex-tester.html" />
+  <meta property="og:site_name" content="A Helpful Website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://www.helpful-website.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:image" content="https://www.helpful-website.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Regex Tester - Free Online Regex Match &amp; Replace Tool" />
+  <meta name="twitter:description" content="Test regular expressions live in your browser. Highlight matches, inspect capture groups, and replace text instantly. Free and private." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.helpful-website.com/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Text Tools",
+      "item": "https://www.helpful-website.com/"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Regex Tester",
+      "item": "https://www.helpful-website.com/html/regex-tester.html"
+    }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Regex Tester",
+    "applicationCategory": "DeveloperApplication",
+    "description": "A browser-based tool to test regular expressions, highlight matches, inspect capture groups, and replace text.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4NMW91VYPW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4NMW91VYPW');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1928586694916423"
+     crossorigin="anonymous"></script>
+  <style>
+    .regex-flags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .regex-flags .checkbox-label { margin-bottom: 0; }
+    .regex-flags code {
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+    }
+    #regex-error {
+      display: none;
+      border: 2px solid #c0392b;
+      color: #c0392b;
+      padding: 0.65rem 0.85rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .regex-meta {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+    .match-preview {
+      border: 2px solid var(--onyx);
+      background: rgba(21,21,21,0.03);
+      padding: 0.75rem 1rem;
+      max-height: 22rem;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .match-preview mark {
+      background: var(--blue);
+      color: var(--sand);
+      padding: 0 0.1em;
+    }
+    .match-preview mark.alt { background: var(--onyx); }
+    .match-preview mark.zero {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      vertical-align: text-bottom;
+      background: #c0392b;
+      padding: 0;
+    }
+    .match-list { list-style: none; margin: 0 0 1.5rem 0; padding: 0; }
+    .match-item {
+      border: 2px solid var(--onyx);
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .match-head {
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      word-break: break-word;
+    }
+    .match-index {
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.72rem;
+      margin-right: 0.5rem;
+    }
+    .match-groups {
+      margin: 0.35rem 0 0 0;
+      font-size: 0.85rem;
+      font-family: 'Courier New', monospace;
+      word-break: break-word;
+    }
+    .match-groups span { display: block; }
+    .match-empty { margin-bottom: 1rem; }
+    .pattern-library {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .pattern-library button { font-size: 0.8rem; padding: 0.4rem 0.75rem; }
+    .regex-cheatsheet { margin-top: 1.5rem; }
+    .regex-cheatsheet summary {
+      cursor: pointer;
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.85rem;
+    }
+    .regex-cheatsheet dl {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 0.3rem 1rem;
+      margin: 0.75rem 0 0 0;
+      font-size: 0.9rem;
+    }
+    .regex-cheatsheet dt { font-family: 'Courier New', monospace; font-weight: bold; }
+    .regex-cheatsheet dd { margin: 0; }
+    @media (max-width: 400px) {
+      .regex-cheatsheet dl { grid-template-columns: 1fr; }
+      .regex-cheatsheet dd { margin-bottom: 0.35rem; }
+    }
+  </style>
+<script src="../js/nav.js" defer></script></head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+  <header>
+    <div class="header-top">
+      <h1><a href="../index.html" class="site-title">A Helpful Website</a></h1>
+      <button type="button" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="../index.html" class="nav-item">Home</a></li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Image Tools</button>
+          <ul class="dropdown">
+            <li><a href="image-resizer.html">Image Resizer</a></li>
+            <li><a href="image-converter.html">Image Converter</a></li>
+            <li><a href="image-compressor.html">Image Compressor</a></li>
+            <li><a href="color-palette.html">Color Palette</a></li>
+            <li><a href="color-replacer.html">Color Replacer</a></li>
+            <li><a href="image-cropper.html">Image Cropper</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle active" aria-expanded="false">Text Tools</button>
+          <ul class="dropdown">
+            <li><a href="text-case-converter.html">Case Converter</a></li>
+            <li><a href="word-counter.html">Word Counter</a></li>
+            <li><a href="text-diff.html">Text Diff</a></li>
+<li><a href="regex-tester.html">Regex Tester</a></li>
+<li><a href="lorem-ipsum.html">Lorem Ipsum</a></li>
+<li><a href="list-randomizer.html">List Randomizer</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Developer Tools</button>
+          <ul class="dropdown">
+            <li><a href="json-formatter.html">JSON Formatter</a></li>
+            <li><a href="base64-encoder.html">Base64 Encoder</a></li>
+            <li><a href="url-encoder.html">URL Encoder</a></li>
+            <li><a href="html-entity-encoder.html">HTML Entities</a></li>
+<li><a href="uuid-generator.html">UUID Generator</a></li>
+<li><a href="color-converter.html">Color Converter</a></li>
+<li><a href="markdown-editor.html">Markdown Editor</a></li>
+<li><a href="timestamp-converter.html">Timestamp Converter</a></li>
+<li><a href="number-base-converter.html">Number Base Converter</a></li>
+<li><a href="random-number-generator.html">Random Number Generator</a></li>
+<li><a href="date-calculator.html">Date Calculator</a></li>
+<li><a href="age-calculator.html">Age Calculator</a></li>
+<li><a href="qr-code-generator.html">QR Code Generator</a></li>
+<li><a href="unit-converter.html">Unit Converter</a></li>
+<li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+<li><a href="timer.html">Stopwatch &amp; Timer</a></li>
+<li><a href="compound-interest.html">Compound Interest</a></li>
+<li><a href="loan-calculator.html">Loan Calculator</a></li>
+<li><a href="time-zone-converter.html">Time Zone Converter</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <button type="button" class="dropdown-toggle" aria-expanded="false">Security Tools</button>
+          <ul class="dropdown">
+            <li><a href="password-generator.html">Password Generator</a></li>
+            <li><a href="hash-generator.html">Hash Generator</a></li>
+          </ul>
+        </li>
+        <li><a href="../about.html" class="nav-item">About</a></li>
+        <li><a href="../privacy.html" class="nav-item">Privacy</a></li>
+        <li><a href="../contact.html" class="nav-item">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="../index.html">Home</a></li>
+        <li><span>Text Tools</span></li>
+        <li><span aria-current="page">Regex Tester</span></li>
+      </ol>
+    </nav>
+    <section>
+      <h2>Regex Tester</h2>
+      <p>Test a regular expression against your own text and see matches highlighted as you type. Inspect capture groups, try a replacement, and copy the result. Everything runs in your browser, so your text is never sent to a server.</p>
+    </section>
+
+    <section>
+      <div class="form-group">
+        <label for="pattern">Regular expression</label>
+        <input type="text" id="pattern" value="\b\w+@\w+\.\w+\b" autocomplete="off" spellcheck="false" placeholder="Enter a pattern, for example \d{4}-\d{2}-\d{2}" />
+      </div>
+
+      <div class="regex-flags" role="group" aria-label="Regular expression flags">
+        <label class="checkbox-label"><input type="checkbox" id="flag-g" checked /> <code>g</code> global</label>
+        <label class="checkbox-label"><input type="checkbox" id="flag-i" /> <code>i</code> ignore case</label>
+        <label class="checkbox-label"><input type="checkbox" id="flag-m" /> <code>m</code> multiline</label>
+        <label class="checkbox-label"><input type="checkbox" id="flag-s" /> <code>s</code> dot matches newline</label>
+        <label class="checkbox-label"><input type="checkbox" id="flag-u" /> <code>u</code> unicode</label>
+      </div>
+
+      <div class="form-group">
+        <label for="test-text">Test text</label>
+        <textarea id="test-text" rows="8" spellcheck="false" placeholder="Paste the text you want to test">Contact support@example.com or sales@example.org for help.</textarea>
+      </div>
+
+      <div id="regex-error" role="alert"></div>
+      <div class="regex-meta" id="regex-meta" aria-live="polite"></div>
+      <div class="match-preview" id="match-preview" role="region" aria-label="Highlighted matches"></div>
+      <ul class="match-list" id="match-list" aria-label="Match details"></ul>
+
+      <h3>Replace</h3>
+      <div class="form-group">
+        <label for="replacement">Replacement text</label>
+        <input type="text" id="replacement" value="" autocomplete="off" spellcheck="false" placeholder="Use $1 for the first group, $&amp; for the whole match" />
+      </div>
+      <div class="form-group">
+        <label for="replace-output">Result</label>
+        <textarea id="replace-output" rows="6" readonly spellcheck="false"></textarea>
+      </div>
+      <div class="btn-group">
+        <button type="button" id="copy-replace">Copy Result</button>
+        <button type="button" id="clear-btn">Clear</button>
+        <span id="copy-feedback" style="display:none; font-size:0.85rem; color:var(--blue); font-family:Impact, sans-serif; text-transform:uppercase; letter-spacing:0.05em;">Copied!</span>
+      </div>
+
+      <h3 style="margin-top:1.5rem;">Common patterns</h3>
+      <div class="pattern-library" role="group" aria-label="Example patterns">
+        <button type="button" data-pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" data-flags="g">Email</button>
+        <button type="button" data-pattern="https?://[^\s]+" data-flags="g">URL</button>
+        <button type="button" data-pattern="\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}" data-flags="g">US phone</button>
+        <button type="button" data-pattern="\b\d{4}-\d{2}-\d{2}\b" data-flags="g">Date (YYYY-MM-DD)</button>
+        <button type="button" data-pattern="#(?:[0-9a-fA-F]{3}){1,2}\b" data-flags="g">Hex color</button>
+        <button type="button" data-pattern="\b(?:\d{1,3}\.){3}\d{1,3}\b" data-flags="g">IPv4 address</button>
+        <button type="button" data-pattern="\b(\w+)\s+\1\b" data-flags="gi">Repeated word</button>
+      </div>
+
+      <details class="regex-cheatsheet">
+        <summary>Regex cheat sheet</summary>
+        <dl>
+          <dt>.</dt><dd>Any character except a newline</dd>
+          <dt>\d \w \s</dt><dd>Digit, word character, whitespace</dd>
+          <dt>* + ?</dt><dd>Zero or more, one or more, zero or one</dd>
+          <dt>{2,5}</dt><dd>Between 2 and 5 repetitions</dd>
+          <dt>[abc]</dt><dd>One character from the set</dd>
+          <dt>[^abc]</dt><dd>One character not in the set</dd>
+          <dt>(abc)</dt><dd>Capture group, referenced as $1</dd>
+          <dt>(?:abc)</dt><dd>Non-capturing group</dd>
+          <dt>^ $</dt><dd>Start and end of the text or line</dd>
+          <dt>\b</dt><dd>Word boundary</dd>
+          <dt>a|b</dt><dd>Either a or b</dd>
+        </dl>
+      </details>
+    </section>
+
+    <section class="related-tools">
+      <h2>Related tools</h2>
+      <ul class="related-list">
+        <li>
+          <a href="text-diff.html">Text Diff</a>
+          <span>Compare two versions of a text after editing it.</span>
+        </li>
+        <li>
+          <a href="word-counter.html">Word Counter</a>
+          <span>Count words and characters in the tested text.</span>
+        </li>
+        <li>
+          <a href="text-case-converter.html">Text Case Converter</a>
+          <span>Normalize capitalization before matching.</span>
+        </li>
+      </ul>
+      <p class="related-all"><a href="../index.html">Browse all tools</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 A Helpful Website. All tools are free and open source.</p>
+  </footer>
+
+  <script src="../js/regex-tester.js"></script>
+</body>
+</html>

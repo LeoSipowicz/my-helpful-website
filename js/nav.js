@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'text-case-converter': 'uppercase lowercase title sentence camel snake kebab',
       'word-counter': 'words characters reading time keyword density',
       'text-diff': 'compare difference diff two texts',
+      'regex-tester': 'regex regular expression pattern match replace capture group',
       'lorem-ipsum': 'placeholder dummy text generator',
       'list-randomizer': 'random picker name shuffle draw',
       'json-formatter': 'beautify validate minify pretty print',
