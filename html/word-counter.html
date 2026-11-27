@@ -8,13 +8,13 @@
   <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.google-analytics.com" />
   <title>Word Counter &amp; Character Counter - Free Text Statistics</title>
-  <meta name="description" content="Count words, characters, sentences, and paragraphs instantly. Get reading time, keyword density, and text statistics. Free and private." />
+  <meta name="description" content="Count words, characters, sentences, and paragraphs instantly. Check your text against social media and SEO character limits. Free and private." />
   <link rel="canonical" href="https://www.helpful-website.com/html/word-counter.html" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <meta name="theme-color" content="#E6E1C5" />
   <meta property="og:title" content="Word Counter &amp; Character Counter - Free Text Statistics" />
-  <meta property="og:description" content="Count words, characters, sentences, and paragraphs instantly. Get reading time and keyword density. Free, private, no sign-up required." />
+  <meta property="og:description" content="Count words and characters, check social media and SEO limits, and get reading time and keyword density. Free and private." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.helpful-website.com/html/word-counter.html" />
   <meta property="og:site_name" content="A Helpful Website" />
@@ -25,7 +25,7 @@
   <meta name="twitter:image" content="https://www.helpful-website.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Word Counter &amp; Character Counter - Free Text Statistics" />
-  <meta name="twitter:description" content="Count words, characters, sentences, and paragraphs instantly. Get reading time and keyword density. Free, private, no sign-up required." />
+  <meta name="twitter:description" content="Count words and characters, check social media and SEO limits, and get reading time and keyword density. Free and private." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,7 +54,7 @@
     "@type": "SoftwareApplication",
     "name": "Word Counter & Character Counter",
     "applicationCategory": "UtilityApplication",
-    "description": "A browser-based tool to count words, characters, sentences, paragraphs, reading time, and keyword density in text.",
+    "description": "A browser-based tool to count words, characters, sentences, paragraphs, reading time, speaking time, keyword density, and social media character limits.",
     "operatingSystem": "All",
     "offers": {
       "@type": "Offer",
@@ -102,7 +102,8 @@
       min-height: 10rem;
       resize: vertical;
     }
-    #copy-feedback {
+    #copy-feedback,
+    #copy-stats-feedback {
       font-size: 0.85rem;
       color: var(--blue);
       font-family: Impact, sans-serif;
@@ -133,6 +134,54 @@
       margin-right: 0.5rem;
       vertical-align: middle;
     }
+    .limit-note {
+      font-size: 0.85rem;
+      margin: -0.25rem 0 1rem 0;
+    }
+    .limit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .limit-card {
+      border: 2px solid var(--onyx);
+      padding: 0.75rem;
+    }
+    .limit-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-family: Impact, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.8rem;
+    }
+    .limit-count {
+      font-family: 'Courier New', monospace;
+      text-transform: none;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+    .limit-bar {
+      height: 8px;
+      background: rgba(21,21,21,0.12);
+      margin: 0.5rem 0 0.35rem;
+      overflow: hidden;
+    }
+    .limit-fill {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--blue);
+      transition: width 0.15s;
+    }
+    .limit-card.warn .limit-fill { background: #e67e22; }
+    .limit-card.over .limit-fill { background: #c0392b; }
+    .limit-card.over { border-color: #c0392b; }
+    .limit-status { font-size: 0.8rem; }
+    .limit-card.warn .limit-status { color: #8a4b00; }
+    .limit-card.over .limit-status { color: #c0392b; font-weight: bold; }
   </style>
 <script src="../js/nav.js" defer></script></head>
 <body>
@@ -217,13 +266,13 @@
     </nav>
     <section>
       <h2>Word Counter &amp; Character Counter</h2>
-      <p>Paste or type your text below to get instant word count, character count, sentence count, paragraph count, estimated reading time, and keyword density analysis. No data is sent anywhere - everything runs in your browser.</p>
+      <p>Paste or type your text below to see live word, character, sentence, and paragraph counts, reading and speaking time, and keyword density. The character-limit panel shows whether your text fits X, Bluesky, SMS, LinkedIn, Instagram, YouTube titles, SEO titles, and meta descriptions. Everything runs in your browser.</p>
     </section>
 
     <section>
       <div class="form-group">
         <label for="input-text">Your Text</label>
-        <textarea id="input-text" rows="10" placeholder="Type or paste your text here to see live statistics..."></textarea>
+        <textarea id="input-text" rows="10" placeholder="Type or paste your text here to see live statistics."></textarea>
       </div>
 
       <div class="stats-grid" id="stats-grid">
@@ -233,7 +282,12 @@
         <div class="stat-card"><div class="stat-value" id="sentence-count">0</div><div class="stat-label">Sentences</div></div>
         <div class="stat-card"><div class="stat-value" id="paragraph-count">0</div><div class="stat-label">Paragraphs</div></div>
         <div class="stat-card"><div class="stat-value" id="reading-time">0s</div><div class="stat-label">Reading Time</div></div>
+        <div class="stat-card"><div class="stat-value" id="speaking-time">0s</div><div class="stat-label">Speaking Time</div></div>
       </div>
+
+      <h3>Character limits</h3>
+      <p class="limit-note">Counts include spaces. Some platforms count emoji and links differently.</p>
+      <div class="limit-grid" id="limit-grid"></div>
 
       <div id="keyword-section" style="display:none;">
         <h3>Top Keywords</h3>
@@ -243,6 +297,8 @@
       <div class="btn-group">
         <button id="copy-btn" class="btn-primary">Copy Text</button>
         <span id="copy-feedback" style="display:none;">Copied!</span>
+        <button id="copy-stats-btn">Copy Stats</button>
+        <span id="copy-stats-feedback" style="display:none;">Copied!</span>
         <button id="clear-btn">Clear</button>
       </div>
     </section>

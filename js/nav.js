@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'color-replacer': 'replace recolor swap color in image',
       'image-cropper': 'crop trim cut image',
       'text-case-converter': 'uppercase lowercase title sentence camel snake kebab',
-      'word-counter': 'words characters reading time keyword density',
+      'word-counter': 'words characters reading time speaking time keyword density character limit twitter sms social media seo meta description',
       'text-diff': 'compare difference diff two texts',
       'regex-tester': 'regex regular expression pattern match replace capture group',
       'lorem-ipsum': 'placeholder dummy text generator',
