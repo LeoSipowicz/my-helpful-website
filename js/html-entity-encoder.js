@@ -10,59 +10,130 @@ const charInfo   = document.getElementById('char-info');
 const modeSelect = document.getElementById('mode-select');
 const modeNote   = document.getElementById('mode-note');
 
-// Named entity map for encoding (common chars)
-const NAMED_ENTITIES = {
+// Characters that get a readable named entity in Named mode.
+const NAMED_ENCODE = {
   '&': '&amp;',
   '<': '&lt;',
   '>': '&gt;',
   '"': '&quot;',
   "'": '&#39;',
+  '\u00A0': '&nbsp;',
+  '\u00A1': '&iexcl;',
+  '\u00A2': '&cent;',
+  '\u00A3': '&pound;',
+  '\u00A4': '&curren;',
+  '\u00A5': '&yen;',
+  '\u00A6': '&brvbar;',
+  '\u00A7': '&sect;',
+  '\u00A8': '&uml;',
+  '\u00A9': '&copy;',
+  '\u00AA': '&ordf;',
+  '\u00AB': '&laquo;',
+  '\u00AC': '&not;',
+  '\u00AD': '&shy;',
+  '\u00AE': '&reg;',
+  '\u00AF': '&macr;',
+  '\u00B0': '&deg;',
+  '\u00B1': '&plusmn;',
+  '\u00B2': '&sup2;',
+  '\u00B3': '&sup3;',
+  '\u00B4': '&acute;',
+  '\u00B5': '&micro;',
+  '\u00B6': '&para;',
+  '\u00B7': '&middot;',
+  '\u00B8': '&cedil;',
+  '\u00B9': '&sup1;',
+  '\u00BA': '&ordm;',
+  '\u00BB': '&raquo;',
+  '\u00BC': '&frac14;',
+  '\u00BD': '&frac12;',
+  '\u00BE': '&frac34;',
+  '\u00BF': '&iquest;',
+  '\u00D7': '&times;',
+  '\u00F7': '&divide;',
+  '\u2013': '&ndash;',
+  '\u2014': '&mdash;',
+  '\u2018': '&lsquo;',
+  '\u2019': '&rsquo;',
+  '\u201A': '&sbquo;',
+  '\u201C': '&ldquo;',
+  '\u201D': '&rdquo;',
+  '\u201E': '&bdquo;',
+  '\u2020': '&dagger;',
+  '\u2021': '&Dagger;',
+  '\u2022': '&bull;',
+  '\u2026': '&hellip;',
+  '\u2030': '&permil;',
+  '\u2032': '&prime;',
+  '\u2033': '&Prime;',
+  '\u2039': '&lsaquo;',
+  '\u203A': '&rsaquo;',
+  '\u20AC': '&euro;',
+  '\u2122': '&trade;',
+  '\u2190': '&larr;',
+  '\u2191': '&uarr;',
+  '\u2192': '&rarr;',
+  '\u2193': '&darr;',
+  '\u2194': '&harr;',
+  '\u2212': '&minus;',
+  '\u221E': '&infin;',
+  '\u2260': '&ne;',
+  '\u2264': '&le;',
+  '\u2265': '&ge;',
+  '\u221A': '&radic;',
 };
 
-// Reverse map for named decoding
+// Reverse map for decoding, plus a few aliases that are decode-only.
 const NAMED_DECODE = {};
-for (const [k, v] of Object.entries(NAMED_ENTITIES)) {
-  NAMED_DECODE[v] = k;
+for (const [ch, entity] of Object.entries(NAMED_ENCODE)) {
+  NAMED_DECODE[entity] = ch;
 }
+NAMED_DECODE['&apos;'] = "'";
+NAMED_DECODE['&ensp;'] = '\u2002';
+NAMED_DECODE['&emsp;'] = '\u2003';
+NAMED_DECODE['&thinsp;'] = '\u2009';
+NAMED_DECODE['&lowast;'] = '\u2217';
+
+const KNOWN_ENTITIES = Object.keys(NAMED_DECODE);
 
 function encodeHtml(text) {
   if (modeSelect.value === 'named') {
-    // Encode common chars as named entities, rest as numeric
+    // Encode common characters as named entities, other non-ASCII as numeric
     let result = '';
     for (const ch of text) {
-      if (NAMED_ENTITIES[ch]) {
-        result += NAMED_ENTITIES[ch];
-      } else if (ch.charCodeAt(0) > 127) {
-        result += '&#' + ch.charCodeAt(0) + ';';
+      if (NAMED_ENCODE[ch]) {
+        result += NAMED_ENCODE[ch];
+      } else if (ch.codePointAt(0) > 127) {
+        result += '&#' + ch.codePointAt(0) + ';';
       } else {
         result += ch;
       }
     }
     return result;
   }
-  // numeric-all: encode everything as numeric entities
+  // numeric-all: encode every code point as a numeric entity
   let result = '';
   for (const ch of text) {
-    result += '&#' + ch.charCodeAt(0) + ';';
+    result += '&#' + ch.codePointAt(0) + ';';
   }
   return result;
 }
 
 function decodeHtml(text) {
-  // Decode named entities first, then numeric
-  let result = text;
-
-  // Named entities (longest first to avoid partial matches)
-  const namedKeys = Object.keys(NAMED_DECODE).sort((a, b) => b.length - a.length);
-  for (const key of namedKeys) {
-    result = result.split(key).join(NAMED_DECODE[key]);
-  }
-
-  // Numeric entities: &#123; or &#x7B;
-  result = result.replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code, 10)));
-  result = result.replace(/&#x([0-9A-Fa-f]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
-
-  return result;
+  // Single pass so an entity that decodes to another entity string is not
+  // decoded twice, and so code points above the BMP decode correctly.
+  return text.replace(/&(?:#(\d+)|#[xX]([0-9A-Fa-f]+)|([a-zA-Z][a-zA-Z0-9]+));/g, (match, dec, hex, name) => {
+    if (dec !== undefined) {
+      const code = parseInt(dec, 10);
+      return code <= 0x10FFFF ? String.fromCodePoint(code) : match;
+    }
+    if (hex !== undefined) {
+      const code = parseInt(hex, 16);
+      return code <= 0x10FFFF ? String.fromCodePoint(code) : match;
+    }
+    const entity = '&' + name + ';';
+    return Object.prototype.hasOwnProperty.call(NAMED_DECODE, entity) ? NAMED_DECODE[entity] : match;
+  });
 }
 
 function encodeHtmlEntities() {
@@ -74,7 +145,7 @@ function encodeHtmlEntities() {
 }
 
 function decodeHtmlEntities() {
-  const text = inputText.value.trim();
+  const text = inputText.value;
   if (!text) return;
   const result = decodeHtml(text);
   outputText.value = result;
@@ -98,7 +169,7 @@ function updateCharInfo(inLen, outLen) {
 
 function updateModeNote() {
   if (modeSelect.value === 'named') {
-    modeNote.innerHTML = '<strong>Named mode</strong> uses human-readable entity names like <code>&amp;lt;</code> and <code>&amp;gt;</code> for common symbols, and numeric codes for other characters. Best for readability.';
+    modeNote.innerHTML = '<strong>Named mode</strong> uses human-readable entity names like <code>&amp;lt;</code>, <code>&amp;copy;</code>, and <code>&amp;mdash;</code> for common symbols, and numeric codes for other characters. Best for readability.';
   } else {
     modeNote.innerHTML = '<strong>Numeric-all mode</strong> encodes every character as a numeric entity (e.g., <code>&amp;#72;</code>). Useful for obfuscation or when you need every character encoded.';
   }
@@ -135,8 +206,10 @@ inputText.addEventListener('paste', () => {
   setTimeout(() => {
     const text = inputText.value.trim();
     if (!text) return;
-    // If it contains &amp; &lt; &gt; &#nnn; or &xHH; patterns, likely encoded
-    if (/&(?:amp|lt|gt|quot|#39|#\d+|#x[0-9A-Fa-f]+);/.test(text)) {
+    // If it contains a known named entity or a numeric entity, likely encoded
+    const looksEncoded = /&#(?:\d+|[xX][0-9A-Fa-f]+);/.test(text) ||
+      KNOWN_ENTITIES.some(entity => text.indexOf(entity) !== -1);
+    if (looksEncoded) {
       decodeHtmlEntities();
     } else {
       encodeHtmlEntities();

@@ -38,7 +38,10 @@ function parseBigInt(raw, base) {
     return { invalid: true };
   }
 
-  return { value: BigInt((negative ? '-' : '') + prefix + value) };
+  // BigInt rejects a sign combined with a 0b/0o/0x prefix, so parse the
+  // magnitude first and apply the sign to the BigInt value.
+  const magnitude = BigInt(prefix + value);
+  return { value: negative ? -magnitude : magnitude };
 }
 
 function showInvalid() {
